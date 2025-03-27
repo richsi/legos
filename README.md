@@ -1,6 +1,8 @@
 # legos
-Ubuntu 24.04\\
+Ubuntu 24.04
+
 Python 3.9.17
+
 
 ## Setup
 1. Ensure python version is equal to 3.9.17 with `python3 --version`.
@@ -11,7 +13,8 @@ Python 3.9.17
 
 
 ## Usage Info:
-Set your run configuration in the configs yaml file.\\
+Set your run configuration in the configs yaml file.
+
 Pass in the configuration name as an argument when running the script.
 
 **Example**:
@@ -24,5 +27,6 @@ configuration_name:
 
 
 ## Algorithm 2 - Insight Extraction
-Usage: `python3 src/insight_extraction.py -c <config_name> -n <run_name>`\\
+Usage: `python3 src/insight_extraction.py -c <config_name> -n <run_name>`
+
 **Note**: The model and benchmark are set in `configs/insight_extraction.yaml`
