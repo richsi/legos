@@ -1,1 +1,5 @@
-name: insight_extraction
+# Mistral7B-StrategyQA:
+default:
+  model: "Mistral7B"
+  benchmark: "StrategyQA"
+  exemplars: "strategyqa_mistral_7B_static_subset_selection.csv"
