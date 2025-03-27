@@ -17,7 +17,7 @@ Set your run configuration in the configs yaml file.
 
 Pass in the configuration name as an argument when running the script.
 
-**Example**:
+**Example Configuration**:
 ```
 configuration_name:
   model: "Mistral7B"
@@ -25,8 +25,8 @@ configuration_name:
   exemplars: "exemplars_subset_file_name.csv"
 ```
 
+Usage: `python3 -m src.main -p train -c default -n test`
 
-## Algorithm 2 - Insight Extraction
-Usage: `python3 src/insight_extraction.py -c <config_name> -n <run_name>`
-
-**Note**: The model and benchmark are set in `configs/insight_extraction.yaml`
+* `--phase, -p` - choose train, insight_extraction, or eval
+* `--config, -c` - select which configuration in your yaml file you want to use
+* `--run_name, -n` - name your run
