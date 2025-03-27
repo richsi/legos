@@ -2,6 +2,7 @@ import os
 import argparse
 import pandas as pd
 import src.utils as utils
+import src.models as models
 from src.agents import AGENT
 
 def main():
@@ -25,6 +26,7 @@ def main():
   model = configs["model"]
   benchmark = configs["benchmark"]
   exemplars_file = os.getenv(benchmark.upper() + "_DIR") + "/" + configs["exemplars"]
+  num_reflections = configs["num_reflections"]
 
   # Loading training data
   exemplars = pd.read_csv(exemplars_file)
@@ -34,7 +36,8 @@ def main():
     model=model,
     benchmark=benchmark,
     run_name=run_name,
-    exemplars=exemplars
+    exemplars=exemplars,
+    num_reflections=num_reflections
   )
 
   insight_agent.run()

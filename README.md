@@ -8,7 +8,7 @@ Python 3.9.17
 1. Ensure python version is equal to 3.9.17 with `python3 --version`.
 2. Create virtual environment `python3 -m venv .venv`.
 3. Activate virtual environment `source .venv/bin/activate`.
-4. Run `source env.sh` to get environment variables.
+4. Run `source env.sh` to set environment variables.
 
 
 
