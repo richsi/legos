@@ -35,6 +35,7 @@ class TrainAgent(BaseAgent):
 
     while not self.done():
       self.step()
+      break
 
     utils.save_logs(self.benchmark, self.run_name, self.log_history)  # Once done with all tasks, save logs to txt file
 
@@ -50,33 +51,28 @@ class TrainAgent(BaseAgent):
     row = self.exemplars.iloc[self.task_idx]      # get current task
     # Build an experience prompt using the CSV fields
     experience_prompt = (
-        f"ID: {row['id']}\n"
+        # f"ID: {row['id']}\n"
         f"Question: {row['question']}\n"
         f"Answer: {row['answer']}\n"
         f"Facts: {row['facts']}\n"
         f"Decomposition: {row['decomposition']}\n"
-        f"Cluster: {row['cluster']}\n"
-        f"Index: {row['index']}"
+        # f"Cluster: {row['cluster']}\n"
+        # f"Index: {row['index']}"
     )
-    
-    # Generate a simulated action (replace with your model's call as needed)
-    action = f"Extracted insight from task {self.task_idx}"
-    
-    # Simulate an observation (this could be a result of processing or evaluation)
-    observation = f"Processed task {self.task_idx} successfully."
+
+    # LLM api call to get result 
+    result = utils.query(self.model, self.benchmark, experience_prompt)
     
     # Combine all elements into an experience log entry
     experience_log = (
         f"TASK {self.task_idx} Reflection {self.reflection_idx}\n"
         f"{experience_prompt}\n"
-        f"Action: {action}\n"
-        f"Observation: {observation}\n"
+        f"Result: {result}\n"
         "-------------------------------------"
     )
     
     # Save and print the experience log
     self.log_history.append(experience_log)
-    print(experience_log)
     
     # Move to the next task
     self.task_idx += 1
