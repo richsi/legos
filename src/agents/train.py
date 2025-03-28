@@ -1,4 +1,5 @@
 import os
+import time
 from typing import Callable
 import pandas as pd
 from src.agents.base import BaseAgent
@@ -24,6 +25,8 @@ class TrainAgent(BaseAgent):
     self.log_history = []          
     self.task_idx = 0                 # Tracks current task index 
     self.reflection_idx = 0           # Tracks current reflection index
+    self.stats = {"CORRECT": 0, "INCORRECT": 0}
+    self.runtime = 0
 
 
   def run(self, reset: bool=True):
@@ -33,11 +36,22 @@ class TrainAgent(BaseAgent):
     if reset:
       self.reset()
 
-    while not self.done():
-      self.step()
-      break
+    start_time = time.time()
 
-    utils.save_logs(self.benchmark, self.run_name, self.log_history)  # Once done with all tasks, save logs to txt file
+    while not self.done():
+      print(f"STARTING TASK {self.task_idx}\n")
+      self.step()
+
+    end_time = time.time()
+    self.runtime = start_time - end_time
+
+    utils.save_logs(
+      self.benchmark, 
+      self.run_name, 
+      self.log_history, 
+      self.stats, 
+      self.runtime
+    )  # Once done with all tasks, save logs to txt file
 
   def step(self):
     """
@@ -60,20 +74,24 @@ class TrainAgent(BaseAgent):
         # f"Index: {row['index']}"
     )
 
-    # LLM api call to get result 
-    result = utils.query(self.model, self.benchmark, experience_prompt)
+    # LLM api call to get model output
+    llm_output = utils.query(self.model, self.benchmark, experience_prompt)
+    result = utils.compare_final_answer(llm_output) # returns CORRECT or INCORRECT
+
+    self.stats[result] += 1 # increment final results
     
     # Combine all elements into an experience log entry
     experience_log = (
         f"TASK {self.task_idx} Reflection {self.reflection_idx}\n"
-        f"{experience_prompt}\n"
+        f"Output: {llm_output}\n\n"
         f"Result: {result}\n"
         "-------------------------------------"
     )
+
+    print(experience_log)
     
     # Save and print the experience log
     self.log_history.append(experience_log)
-    
     # Move to the next task
     self.task_idx += 1
 

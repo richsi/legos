@@ -1,3 +1,5 @@
+# src.utils
+
 def load_config(config_file, config_name):
   import yaml
   with open(config_file, "r") as f:
@@ -7,8 +9,7 @@ def load_config(config_file, config_name):
 
 
 
-
-def save_logs(benchmark: str, run_name: str, log_history: list):
+def save_logs(benchmark: str, run_name: str, log_history: list, stats: dict, runtime: float):
   """
   Saves two versions of the logs:
     1. A full version (with staple prompt and all thoughts and actions).
@@ -45,12 +46,17 @@ def save_logs(benchmark: str, run_name: str, log_history: list):
   clean_log_text = _remove_template_prompt_from_log(full_log_text)
     
   with open(full_log_path, "w") as f:
-      f.write(full_log_text)
+      f.write(full_log_text + "\n")
+      f.write(str(stats) + "\n")
+      f.write(f"Runtime: {runtime} seconds")
   with open(clean_log_path, "w") as f:
-      f.write(clean_log_text)
+      f.write(clean_log_text + "\n")
+      f.write(str(stats))
+      f.write(f"Runtime: {runtime} seconds")
     
   print(f"[TrainAgent] Full logs saved to {full_log_path}")
   print(f"[TrainAgent] Clean logs saved to {clean_log_path}")
+
 
 
 
@@ -63,11 +69,28 @@ def query(model: str, benchmark: str, exp_prompt: tuple):
     template_prompt = ""
 
   full_prompt = template_prompt + exp_prompt
-  print(full_prompt)
 
   if model == "Mistral7B":
-    from src.models import query_mistral7b
+    from src.models.mistral7b import query_mistral7b
     output = query_mistral7b(full_prompt)
 
-  print(output)
   return output
+
+
+
+def compare_final_answer(task_text: str):
+  import re
+  # Extract the Answer field
+  answer_match = re.search(r'^Answer:\s*(.+)$', task_text, re.MULTILINE)
+  if not answer_match:
+      raise ValueError("No Answer field found in the text.")
+  answer = answer_match.group(1).strip()
+
+  # Extract the Final Answer field; if there are multiple, take the last one.
+  final_answer_matches = re.findall(r'^Final Answer:\s*(.+)$', task_text, re.MULTILINE)
+  if not final_answer_matches:
+      raise ValueError("No Final Answer field found in the text.")
+  final_answer = final_answer_matches[-1].strip()
+
+  # Compare the answers (case-insensitive)
+  return "CORRECT" if answer.lower() == final_answer.lower() else "INCORRECT"

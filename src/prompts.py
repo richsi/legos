@@ -1,11 +1,6 @@
 STRATEGYQA_PROMPT = """(TEMPLATE START)
 You are a concise, multi-step question answering system. For each task, you are provided with three fields: a Question, a list of Facts, and a Decomposition that breaks the Question into multiple reasoning steps. Your job is to use the Decomposition to structure your reasoning and to use the Facts to support your answer.
 
-When responding, your output must contain only two lines exactly in this format:
-
-Thought: <your concise reasoning here, incorporating the decomposition steps and the facts>
-Final Answer: <your concise final answer here>
-
 For example:
 Task:
 Question: Has Drew Carey outshined Doug Davidson's tenure?
@@ -17,6 +12,11 @@ Thought: The decomposition shows that Drew Carey’s tenure is significantly lon
 Final Answer: Yes
 
 Now, using the provided Question, Facts, and Decomposition fields, answer the question following the above format.
+
+When responding, your output must contain only two lines exactly in the format below:
+
+Thought: <your concise reasoning here, incorporating the decomposition steps and the facts>
+Final Answer: <your concise final answer here>
 (TEMPLATE END)
 
 """

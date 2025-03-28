@@ -5,12 +5,14 @@ Python 3.9.17
 
 
 ## Setup
+
+#### Python venv
 1. Ensure python version is equal to 3.9.17 with `python3 --version`.
 2. Create virtual environment `python3 -m venv .venv`.
 3. Activate virtual environment `source .venv/bin/activate`.
 4. Run `source env.sh` to set environment variables.
 5. Set up huggingface token with `huggingface-cli login`.
-
+6. `pip install -r requirements.txt`
 
 ## Usage Info:
 Set your run configuration in the configs yaml file.
