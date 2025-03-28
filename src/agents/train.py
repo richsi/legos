@@ -12,6 +12,7 @@ class TrainAgent(BaseAgent):
     benchmark: str,
     run_name: str,
     exemplars: pd.DataFrame,
+    **kwargs
   ):
     # Default variables
     self.model = model

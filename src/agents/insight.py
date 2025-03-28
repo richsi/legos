@@ -13,6 +13,7 @@ class InsightAgent(BaseAgent):
     benchmark: str,
     run_name: str,
     exemplars: pd.DataFrame,
+    **kwargs
   ):
     # Default variables
     self.model = model
@@ -45,6 +46,7 @@ class InsightAgent(BaseAgent):
     self.runtime = end_time - start_time
 
     utils.save_logs(
+      self.model,
       self.benchmark, 
       self.run_name, 
       self.phase,
@@ -55,10 +57,8 @@ class InsightAgent(BaseAgent):
 
   def step(self):
     """
-    For the current task (CSV row), generate multiple reflections.
-    Each reflection includes:
-      - A header (e.g., "TASK X Reflection Y")
-      - The staple task description prompt
+    Log:
+      - The static task description prompt
       - Exemplar details (from the CSV)
       - Generated insights from the exemplars
     """
@@ -69,11 +69,11 @@ class InsightAgent(BaseAgent):
     exemplars = "\n---\n".join(all_exemplars)
 
     # LLM api call to get model output
-    kwargs = {"exemplars": exemplars}
+    kwargs = dict(exemplars=exemplars)
     formatted_prompt = utils.format_prompt(self.phase, self.benchmark, **kwargs) # formatting the prompt
     print(formatted_prompt)
     # llm_output = QUERY[self.model](formatted_prompt) # querying the LLM model
-    llm_output = "This is the output because my laptop cant handle 1b models..."
+    llm_output = "1. Break down the question into sub-questions to clarify the information needed."
 
     # Combine all elements into an experience log entry
     experience_log = (

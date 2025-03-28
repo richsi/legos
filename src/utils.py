@@ -9,7 +9,7 @@ def load_config(config_file, config_name):
 
 
 
-def save_logs(benchmark: str, run_name: str, phase: str, log_history: list, stats: dict, runtime: float):
+def save_logs(model: str, benchmark: str, run_name: str, phase: str, log_history: list, stats: dict, runtime: float):
   """
   Saves two versions of the logs:
     1. A full version (with staple prompt and all thoughts and actions).
@@ -39,8 +39,8 @@ def save_logs(benchmark: str, run_name: str, phase: str, log_history: list, stat
   os.makedirs(benchmark_log_path, exist_ok=True)
   phase_log_path = os.path.join(benchmark_log_path, phase)
   os.makedirs(phase_log_path, exist_ok=True)
-  full_log_path = os.path.join(phase_log_path, f"{run_name}_{phase}_full.log")
-  clean_log_path = os.path.join(phase_log_path, f"{run_name}_{phase}_clean.log")
+  full_log_path = os.path.join(phase_log_path, f"{run_name}_{model}_{phase}_full.log")
+  clean_log_path = os.path.join(phase_log_path, f"{run_name}_{model}_{phase}_clean.log")
     
   # Join all experience entries (each step) into one string
   full_log_text = "\n".join(log_history)
@@ -95,3 +95,18 @@ def compare_final_answer(task_text: str):
 
   # Compare the answers (case-insensitive)
   return "CORRECT" if answer.lower() == final_answer.lower() else "INCORRECT"
+
+
+def get_insights(model: str, benchmark: str, run_name: str):
+  import os
+  import re
+  file_name = "_".join([run_name, model, "insight_extraction", "clean.log"])
+  insights_path = os.path.join("logs", benchmark, "insight_extraction", file_name)
+  print(insights_path)
+  
+  with open(insights_path, "r") as f:
+     insights = []
+     for line in f:
+        if re.match(r'^\d+\.\s', line):
+          insights.append(line.strip())
+  return "\n".join(insights)

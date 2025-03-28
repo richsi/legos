@@ -1,8 +1,8 @@
+import os
 import time
 import pandas as pd
 from src.agents.base import BaseAgent
 import src.utils as utils
-import ast
 
 class EvalAgent(BaseAgent):
   def __init__(
@@ -12,6 +12,7 @@ class EvalAgent(BaseAgent):
     benchmark: str,
     run_name: str,
     exemplars: pd.DataFrame,
+    **kwargs
   ):
     # Default variables
     self.model = model
@@ -43,6 +44,7 @@ class EvalAgent(BaseAgent):
     self.runtime = end_time - start_time
 
     utils.save_logs(
+      self.model,
       self.benchmark, 
       self.run_name, 
       self.phase,
@@ -53,21 +55,28 @@ class EvalAgent(BaseAgent):
 
   def step(self):
     """
-    For the current task (CSV row), generate multiple reflections.
-    Each reflection includes:
-      - A header (e.g., "TASK X Reflection Y")
-      - The staple task description prompt
+    Log:
+      - The static task description prompt
       - Exemplar details (from the CSV)
       - Generated insights from the exemplars
+      - Final evaluation answers
     """
-
     all_test_exemplars = []
     for idx, row in self.exemplars.iterrows(): # ensure the exemplars are from the eval dataset
       all_test_exemplars.append(self.get_prompt_test(row))
-    prompt = "\n---\n".join(all_test_exemplars)
+    test_exemplars = "\n---\n".join(all_test_exemplars)
 
     # LLM api call to get model output
-    llm_output = utils.query(self.model, self.phase, self.benchmark, prompt)
+    insights = utils.get_insights(self.model, self.benchmark, self.run_name)
+    print(f"insights: {insights}")
+    train_exemplars = os.getenv(self.benchmark.upper()) + "/" + "static_subset_selection_mistral3.csv"
+    kwargs = dict(
+      exemplars=train_exemplars,
+      insights=insights,
+      test_data=test_exemplars
+    )
+    llm_output = "test"
+    # llm_output = utils.query(self.model, self.phase, self.benchmark, prompt)
 
     # Combine all elements into an experience log entry
     experience_log = (

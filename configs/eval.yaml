@@ -1,1 +1,4 @@
-name: eval
+llama1b:
+  model: "Llama1B"
+  benchmark: "StrategyQA"
+  exemplars: "strategyqa_mistral_7B_static_subset_selection.csv"

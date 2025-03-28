@@ -26,13 +26,14 @@ def main():
   model = configs["model"]
   benchmark = configs["benchmark"]
   exemplars_file = os.getenv(benchmark.upper()) + "/" + configs["exemplars"]
-  print(exemplars_file)
   # num_reflections = configs["num_reflections"]
 
   # Loading training data
   exemplars = pd.read_csv(exemplars_file)
 
   # Initializing model
+  kwargs = dict()
+
   insight_agent = AGENT[phase](
     model=model,
     phase=phase,
@@ -40,6 +41,7 @@ def main():
     run_name=run_name,
     exemplars=exemplars,
     # num_reflections=num_reflections
+    **kwargs
   )
 
   insight_agent.run()

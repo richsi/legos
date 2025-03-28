@@ -55,3 +55,6 @@ Evaluation: `python3 -m src.main -p eval -c <config_name> -n <run_name>`
 * `--phase, -p` - choose train, insight_extraction, or eval
 * `--config, -c` - select which configuration in your yaml file you want to use
 * `--run_name, -n` - name your run, will also be your log file name
+
+
+Keep the run_name constant across training, insight extraction, and evaluation. The logging script automatically adds the model name and phase to the end of the run_name.
