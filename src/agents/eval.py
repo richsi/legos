@@ -61,10 +61,10 @@ class EvalAgent(BaseAgent):
       - Generated insights from the exemplars
     """
 
-    all_exemplars = []
-    for idx, row in self.exemplars.iterrows():
-      all_exemplars.append(self.get_prompt(row))
-    prompt = "\n---\n".join(all_exemplars)
+    all_test_exemplars = []
+    for idx, row in self.exemplars.iterrows(): # ensure the exemplars are from the eval dataset
+      all_test_exemplars.append(self.get_prompt_test(row))
+    prompt = "\n---\n".join(all_test_exemplars)
 
     # LLM api call to get model output
     llm_output = utils.query(self.model, self.phase, self.benchmark, prompt)
@@ -82,16 +82,11 @@ class EvalAgent(BaseAgent):
     self.log_history.append(experience_log)
 
   
-  def get_prompt(self, exemplar):
+  def get_prompt_test(self, exemplar):
     string = "Facts: "
     for fact in exemplar["facts"]:
       string += fact
     string += "\nQuestion: " + exemplar["question"]
-    string += "\nAnswer:\n"
-    decomp_list = ast.literal_eval(exemplar["decomposition"])
-    for idx, question in enumerate(decomp_list):
-      string += "Sub-question {}: {}\n".format(idx+1, question)
-    string += "The answer is: " + exemplar["answer"]
     return string
 
 

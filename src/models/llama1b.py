@@ -1,12 +1,12 @@
 _llama_cache = {}
 
-def get_llama8b_model():
+def get_llama1b_model():
     import torch
     from transformers import AutoTokenizer, AutoModelForCausalLM
 
     global _llama_cache 
     if "llama_model" not in _llama_cache:
-        model_id = "meta-llama/Llama-3.1-8b-Instruct"
+        model_id = "meta-llama/Llama-3.2-1b-Instruct"
         tokenizer = AutoTokenizer.from_pretrained(model_id)
         if tokenizer.pad_token is None:
             tokenizer.add_special_tokens({'pad_token': '[PAD]'})
@@ -20,9 +20,9 @@ def get_llama8b_model():
     return _llama_cache["llama_tokenizer"], _llama_cache["llama_model"]
 
 
-def query_llama8b(full_prompt: str) -> str:
+def query_llama1b(full_prompt: str) -> str:
     import torch
-    tokenizer, model = get_llama8b_model()
+    tokenizer, model = get_llama1b_model()
     device = "cuda" if torch.cuda.is_available() else "cpu"
     
     encoded = tokenizer(

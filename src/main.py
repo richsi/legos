@@ -26,6 +26,7 @@ def main():
   model = configs["model"]
   benchmark = configs["benchmark"]
   exemplars_file = os.getenv(benchmark.upper()) + "/" + configs["exemplars"]
+  print(exemplars_file)
   # num_reflections = configs["num_reflections"]
 
   # Loading training data
@@ -34,6 +35,7 @@ def main():
   # Initializing model
   insight_agent = AGENT[phase](
     model=model,
+    phase=phase,
     benchmark=benchmark,
     run_name=run_name,
     exemplars=exemplars,

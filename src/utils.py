@@ -39,8 +39,8 @@ def save_logs(benchmark: str, run_name: str, phase: str, log_history: list, stat
   os.makedirs(benchmark_log_path, exist_ok=True)
   phase_log_path = os.path.join(benchmark_log_path, phase)
   os.makedirs(phase_log_path, exist_ok=True)
-  full_log_path = os.path.join(phase_log_path, f"{run_name}_full.log")
-  clean_log_path = os.path.join(phase_log_path, f"{run_name}_clean.log")
+  full_log_path = os.path.join(phase_log_path, f"{run_name}_{phase}_full.log")
+  clean_log_path = os.path.join(phase_log_path, f"{run_name}_{phase}_clean.log")
     
   # Join all experience entries (each step) into one string
   full_log_text = "\n".join(log_history)
@@ -60,20 +60,22 @@ def save_logs(benchmark: str, run_name: str, phase: str, log_history: list, stat
   print(f"[TrainAgent] Clean logs saved to {clean_log_path}")
 
 
+def format_prompt(phase: str, benchmark: str, **kwargs):
+  from src.prompts import PROMPTS
+  base_prompt = PROMPTS[benchmark + "_" + phase]
+
+  if phase == "train":
+    full_prompt = base_prompt
+  elif phase == "insight_extraction":
+    full_prompt = base_prompt.format(kwargs["exemplars"])
+  elif phase == "eval":
+    full_prompt = base_prompt.format(kwargs["exemplars"], kwargs["insights"], kwargs["test_data"])
+  return full_prompt
 
 
-def query(model: str, phase:str, benchmark: str, prompt: str):
-  import src.prompts as prompts
+def query(model: str, prompt: str):
   from src.models import QUERY
-
-  if benchmark == "StrategyQA" and phase == "insight_extraction":
-    full_prompt = prompts.STRATEGYQA_IE_PROMPT.format(prompt)
-  else:
-    full_prompt = "Something went wrong."
-
-  print(full_prompt)
-
-  return QUERY[model](full_prompt)
+  return QUERY[model](prompt)
 
 
 

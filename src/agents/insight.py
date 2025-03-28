@@ -3,6 +3,7 @@ import pandas as pd
 from src.agents.base import BaseAgent
 import src.utils as utils
 import ast
+from src.models import QUERY
 
 class InsightAgent(BaseAgent):
   def __init__(
@@ -65,10 +66,14 @@ class InsightAgent(BaseAgent):
     all_exemplars = []
     for idx, row in self.exemplars.iterrows():
       all_exemplars.append(self.get_prompt(row))
-    prompt = "\n---\n".join(all_exemplars)
+    exemplars = "\n---\n".join(all_exemplars)
 
     # LLM api call to get model output
-    llm_output = utils.query(self.model, self.phase, self.benchmark, prompt)
+    kwargs = {"exemplars": exemplars}
+    formatted_prompt = utils.format_prompt(self.phase, self.benchmark, **kwargs) # formatting the prompt
+    print(formatted_prompt)
+    # llm_output = QUERY[self.model](formatted_prompt) # querying the LLM model
+    llm_output = "This is the output because my laptop cant handle 1b models..."
 
     # Combine all elements into an experience log entry
     experience_log = (

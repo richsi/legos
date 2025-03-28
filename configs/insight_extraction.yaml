@@ -1,5 +1,20 @@
 # Mistral7B-StrategyQA:
-default:
+mistral:
   model: "Mistral7B"
+  benchmark: "StrategyQA"
+  exemplars: "strategyqa_mistral_7B_static_subset_selection.csv"
+
+llama8b:
+  model: "Llama8B"
+  benchmark: "StrategyQA"
+  exemplars: "strategyqa_mistral_7B_static_subset_selection.csv"
+
+llama3b:
+  model: "Llama3B"
+  benchmark: "StrategyQA"
+  exemplars: "strategyqa_mistral_7B_static_subset_selection.csv"
+
+llama1b:
+  model: "Llama1B"
   benchmark: "StrategyQA"
   exemplars: "strategyqa_mistral_7B_static_subset_selection.csv"

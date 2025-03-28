@@ -1,10 +1,31 @@
 # legos
-Ubuntu 24.04
 
-Python 3.9.17
+Exploration of improving benchmark performance with reduced computational overhead through coordination of an ensemble of smaller LLM models.
+
+## Overview
 
 
-## Setup
+## Components
+
+### Core 
+
+
+### Agents
+
+
+### Models
+
+
+### Prompts
+
+
+## Building the Project
+
+### Prerequisites
+* Ubuntu 24.04
+* Python 3.9.17
+
+### Setup
 
 #### Python venv
 1. Ensure python version is equal to 3.9.17 with `python3 --version`.
