@@ -9,7 +9,7 @@ def load_config(config_file, config_name):
 
 
 
-def save_logs(benchmark: str, run_name: str, log_history: list, stats: dict, runtime: float):
+def save_logs(benchmark: str, run_name: str, phase: str, log_history: list, stats: dict, runtime: float):
   """
   Saves two versions of the logs:
     1. A full version (with staple prompt and all thoughts and actions).
@@ -37,8 +37,10 @@ def save_logs(benchmark: str, run_name: str, log_history: list, stats: dict, run
   os.makedirs("logs", exist_ok=True)
   benchmark_log_path = os.path.join("logs", benchmark)
   os.makedirs(benchmark_log_path, exist_ok=True)
-  full_log_path = os.path.join(benchmark_log_path, f"{run_name}_full_train.log")
-  clean_log_path = os.path.join(benchmark_log_path, f"{run_name}_clean_train.log")
+  phase_log_path = os.path.join(benchmark_log_path, phase)
+  os.makedirs(phase_log_path, exist_ok=True)
+  full_log_path = os.path.join(phase_log_path, f"{run_name}_full_train.log")
+  clean_log_path = os.path.join(phase_log_path, f"{run_name}_clean_train.log")
     
   # Join all experience entries (each step) into one string
   full_log_text = "\n".join(log_history)
@@ -60,19 +62,21 @@ def save_logs(benchmark: str, run_name: str, log_history: list, stats: dict, run
 
 
 
-def query(model: str, benchmark: str, exp_prompt: tuple):
+def query(model: str, phase:str, benchmark: str, prompt: str):
   import src.prompts as prompts
 
-  if benchmark == "StrategyQA":
-    template_prompt = prompts.STRATEGYQA_PROMPT
+  if benchmark == "StrategyQA" and phase == "insight_extraction":
+    full_prompt = prompts.STRATEGYQA_IE_PROMPT.format(prompt)
   else:
-    template_prompt = ""
+    full_prompt = ""
 
-  full_prompt = template_prompt + exp_prompt
+  print(full_prompt)
 
   if model == "Mistral7B":
     from src.models.mistral7b import query_mistral7b
     output = query_mistral7b(full_prompt)
+  elif model == "Llama-3.1-8B":
+    from src.models.llama8b import query_llama8b
 
   return output
 

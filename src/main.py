@@ -11,7 +11,7 @@ def main():
   parser.add_argument("--phase", "-p", type=str, default="train", 
                       help="train, insight_extraction, or eval?")
   parser.add_argument("--config", "-c", type=str, required=True, 
-                      help="Which configuration to use from insight_extractions.yaml")
+                      help="Which configuration to use from [phase].yaml")
   parser.add_argument("--run_name", "-n", type=str, required=True, 
                       help="Name your run")
   args = parser.parse_args()
@@ -26,21 +26,22 @@ def main():
   model = configs["model"]
   benchmark = configs["benchmark"]
   exemplars_file = os.getenv(benchmark.upper() + "_DIR") + "/" + configs["exemplars"]
-  num_reflections = configs["num_reflections"]
+  # num_reflections = configs["num_reflections"]
 
   # Loading training data
   exemplars = pd.read_csv(exemplars_file)
 
   # Initializing model
-  insight_agent = AGENT[phase](
+  agent = AGENT[phase](
     model=model,
+    phase=phase,
     benchmark=benchmark,
     run_name=run_name,
     exemplars=exemplars,
-    num_reflections=num_reflections
+    # num_reflections=num_reflections
   )
 
-  insight_agent.run()
+  agent.run()
 
 if __name__ == "__main__":
   main()

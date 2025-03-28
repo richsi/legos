@@ -12,7 +12,6 @@ class TrainAgent(BaseAgent):
     benchmark: str,
     run_name: str,
     exemplars: pd.DataFrame,
-    num_reflections: int,
   ):
     # Default variables
     self.model = model
@@ -20,11 +19,9 @@ class TrainAgent(BaseAgent):
     self.run_name = run_name
     self.exemplars = exemplars
     self.num_tasks = len(exemplars)
-    self.num_reflections = num_reflections
 
     self.log_history = []          
     self.task_idx = 0                 # Tracks current task index 
-    self.reflection_idx = 0           # Tracks current reflection index
     self.stats = {"CORRECT": 0, "INCORRECT": 0}
     self.runtime = 0
 
@@ -48,6 +45,7 @@ class TrainAgent(BaseAgent):
     utils.save_logs(
       self.benchmark, 
       self.run_name, 
+      self.phase,
       self.log_history, 
       self.stats, 
       self.runtime
@@ -65,13 +63,13 @@ class TrainAgent(BaseAgent):
     row = self.exemplars.iloc[self.task_idx]      # get current task
     # Build an experience prompt using the CSV fields
     experience_prompt = (
-        # f"ID: {row['id']}\n"
-        f"Question: {row['question']}\n"
-        f"Answer: {row['answer']}\n"
-        f"Facts: {row['facts']}\n"
-        f"Decomposition: {row['decomposition']}\n"
-        # f"Cluster: {row['cluster']}\n"
-        # f"Index: {row['index']}"
+      # f"ID: {row['id']}\n"
+      f"Facts: {row['facts']}\n"
+      f"Question: {row['question']}\n"
+      f"Answer: {row['answer']}\n"
+      f"Decomposition: {row['decomposition']}\n"
+      # f"Cluster: {row['cluster']}\n"
+      # f"Index: {row['index']}"
     )
 
     # LLM api call to get model output
@@ -82,7 +80,7 @@ class TrainAgent(BaseAgent):
     
     # Combine all elements into an experience log entry
     experience_log = (
-        f"TASK {self.task_idx} Reflection {self.reflection_idx}\n"
+        f"TASK {self.task_idx}\n"
         f"Output: {llm_output}\n\n"
         f"Result: {result}\n"
         "-------------------------------------"

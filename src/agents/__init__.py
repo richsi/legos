@@ -5,6 +5,6 @@ from .eval import EvalAgent
 
 AGENT = dict(
   train=TrainAgent,
-  insight=InsightAgent, 
+  insight_extraction=InsightAgent, 
   eval=EvalAgent
 )

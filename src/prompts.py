@@ -20,3 +20,15 @@ Final Answer: <your concise final answer here>
 (TEMPLATE END)
 
 """
+
+
+STRATEGYQA_IE_PROMPT = """
+You are an insight generation assistant for multi-step question answering tasks. Your role is to generate between 5 and 20 concise, generic insights—each a helpful rule or direction—that guide the proper answering of a question based on the provided Facts and Decomposition. Your insights should be broadly applicable to any complex task, offering strategies for breaking the problem into manageable parts, formulating effective search queries, and verifying the final answer for accuracy. Focus on identifying key elements, avoiding common pitfalls, and developing sound reasoning strategies.
+
+Examples:
+{}
+
+(END OF EXAMPLES)
+
+Based on the task description and examples provided, generate between 5 and 20 generic insights. Each insight should be a clear rule or direction that assists in decomposing complex questions, refining search queries, and ensuring the final answer is accurate.
+"""
