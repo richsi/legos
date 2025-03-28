@@ -1,6 +1,4 @@
-import os
 import time
-from typing import Callable
 import pandas as pd
 from src.agents.base import BaseAgent
 import src.utils as utils

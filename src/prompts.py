@@ -21,14 +21,52 @@ Final Answer: <your concise final answer here>
 
 """
 
+STRATEGYQA_REASONING_PROMPT = """
+(TEMPLATE START)
+You are an insight generation assistant designed to provide structured guidance on solving multi-step, complex reasoning tasks from the StrategyQA dataset. Your primary goal is to generate generalizable insights and reasoning strategies that can be broadly applied to accurately solve similar reasoning problems. 
 
-STRATEGYQA_IE_PROMPT = """
-You are an insight generation assistant for multi-step question answering tasks. Your role is to generate between 5 and 20 concise, generic insights—each a helpful rule or direction—that guide the proper answering of a question based on the provided Facts and Decomposition. Your insights should be broadly applicable to any complex task, offering strategies for breaking the problem into manageable parts, formulating effective search queries, and verifying the final answer for accuracy. Focus on identifying key elements, avoiding common pitfalls, and developing sound reasoning strategies.
+Given a set of examples, each containing:
+- A Question
+- Relevant Facts
+- A Decomposition into sub-questions
+- The correct Answer
+
+your task is to:
+
+1. Identify general reasoning strategies from how the provided facts support the correct answer.
+2. Outline best practices for decomposing complex questions effectively.
+3. Highlight methods to systematically verify the accuracy of intermediate reasoning steps.
+4. Provide guidelines for effectively utilizing provided facts to construct logical pathways to the correct answer.
+
+You should NOT provide example-specific conclusions or directly state the answer. Instead, your insights should help establish clear rules and frameworks that guide effective reasoning.
 
 Examples:
-{}
+
+Question: Is latitude required to determine the coordinates of an area?
+Facts: ["Longitude is required for determining coordinates.", "Latitude is also required to determine coordinates of an area."]
+Decomposition: ["What are the two data points needed to determine coordinates?", "Is latitude one of these data points?"]
+Answer: Yes
+
+Insight Generation:
+- Always clearly identify all required data points when asked about coordinate determination.
+- Verify explicitly if each potential data point is listed in the provided facts.
+- Ensure each sub-question directly references or is addressed by the given facts.
+
+Question: Has Drew Carey outshined Doug Davidson's tenure?
+Facts: ["Drew Carey hosted The Price is Right for over 13 years.", "Doug Davidson hosted The Price is Right from 1994-1995."]
+Decomposition: ["How long has Drew Carey hosted The Price is Right?", "How long did Doug Davidson host The Price is Right?", "Is Drew Carey’s tenure longer?"]
+Answer: Yes
+
+Insight Generation:
+- When comparing durations, explicitly extract and quantify the time spans from the facts.
+- Clearly outline the comparison process, demonstrating a logical step-by-step evaluation.
+- Reinforce the importance of explicitly answering each sub-question before reaching a conclusion.
 
 (END OF EXAMPLES)
 
-Based on the task description and examples provided, generate between 5 and 20 generic insights. Each insight should be a clear rule or direction that assists in decomposing complex questions, refining search queries, and ensuring the final answer is accurate.
+Following this demonstrated approach, generate between 5 to 15 broadly applicable insights, outlining clear reasoning strategies, rules for decomposing complex questions, and guidelines for verifying accuracy and aligning reasoning steps with provided facts for the examples below.
+
+{}
+(TEMPLATE END)
 """
+

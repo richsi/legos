@@ -27,8 +27,10 @@ configuration_name:
   exemplars: "exemplars_subset_file_name.csv"
 ```
 
-Usage: `python3 -m src.main -p train -c default -n test`
+Insight Extraction: `python3 -m src.main -p insight_extraction -c <config_name> -n <run_name>`
+
+Evaluation: `python3 -m src.main -p eval -c <config_name> -n <run_name>`
 
 * `--phase, -p` - choose train, insight_extraction, or eval
 * `--config, -c` - select which configuration in your yaml file you want to use
-* `--run_name, -n` - name your run
+* `--run_name, -n` - name your run, will also be your log file name

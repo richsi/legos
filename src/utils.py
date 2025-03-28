@@ -19,7 +19,7 @@ def save_logs(benchmark: str, run_name: str, phase: str, log_history: list, stat
   def _remove_template_prompt_from_log(log_text: str) -> str:
     """
     Removes all occurrences of the staple prompt block from the log text.
-    Assumes each staple block starts with "You are QA system." and ends with "(END OF EXAMPLES)".
+    Assumes each staple block starts with "(TEMPLATE START)." and ends with "(TEMPLATE END)".
     """
     start_marker = "(TEMPLATE START)"
     end_marker = "(TEMPLATE END)"
@@ -39,8 +39,8 @@ def save_logs(benchmark: str, run_name: str, phase: str, log_history: list, stat
   os.makedirs(benchmark_log_path, exist_ok=True)
   phase_log_path = os.path.join(benchmark_log_path, phase)
   os.makedirs(phase_log_path, exist_ok=True)
-  full_log_path = os.path.join(phase_log_path, f"{run_name}_full_train.log")
-  clean_log_path = os.path.join(phase_log_path, f"{run_name}_clean_train.log")
+  full_log_path = os.path.join(phase_log_path, f"{run_name}_full.log")
+  clean_log_path = os.path.join(phase_log_path, f"{run_name}_clean.log")
     
   # Join all experience entries (each step) into one string
   full_log_text = "\n".join(log_history)
@@ -64,21 +64,16 @@ def save_logs(benchmark: str, run_name: str, phase: str, log_history: list, stat
 
 def query(model: str, phase:str, benchmark: str, prompt: str):
   import src.prompts as prompts
+  from src.models import QUERY
 
   if benchmark == "StrategyQA" and phase == "insight_extraction":
     full_prompt = prompts.STRATEGYQA_IE_PROMPT.format(prompt)
   else:
-    full_prompt = ""
+    full_prompt = "Something went wrong."
 
   print(full_prompt)
 
-  if model == "Mistral7B":
-    from src.models.mistral7b import query_mistral7b
-    output = query_mistral7b(full_prompt)
-  elif model == "Llama-3.1-8B":
-    from src.models.llama8b import query_llama8b
-
-  return output
+  return QUERY[model](full_prompt)
 
 
 
