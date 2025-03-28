@@ -51,7 +51,7 @@ def save_logs(benchmark: str, run_name: str, log_history: list, stats: dict, run
       f.write(f"Runtime: {runtime} seconds")
   with open(clean_log_path, "w") as f:
       f.write(clean_log_text + "\n")
-      f.write(str(stats))
+      f.write(str(stats) + "\n")
       f.write(f"Runtime: {runtime} seconds")
     
   print(f"[TrainAgent] Full logs saved to {full_log_path}")

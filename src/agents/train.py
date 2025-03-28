@@ -43,7 +43,7 @@ class TrainAgent(BaseAgent):
       self.step()
 
     end_time = time.time()
-    self.runtime = start_time - end_time
+    self.runtime = end_time - start_time
 
     utils.save_logs(
       self.benchmark, 
