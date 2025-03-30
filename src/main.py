@@ -22,7 +22,6 @@ def main():
 
   benchmark_path_configs = utils.load_config(f"configs/base.yaml", configs["benchmark"].lower())
 
-
   # Assigning variables 
   phase = args.phase
   run_name = args.run_name
@@ -32,7 +31,6 @@ def main():
   kwargs = benchmark_path_configs
   exemplars_file = os.getenv(benchmark.upper()) + "/" + configs["exemplars"]
   kwargs["exemplars"] = pd.read_csv(exemplars_file)
-
 
   # Initializing model
   insight_agent = AGENT[phase](

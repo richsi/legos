@@ -9,7 +9,17 @@ def load_config(config_file, config_name):
 
 
 
-def save_logs(model: str, benchmark: str, run_name: str, phase: str, log_history: list, stats: dict, runtime: float):
+
+def save_logs(
+  model: str,
+  benchmark: str, 
+  run_name: str, 
+  phase: str, 
+  log_history: list, 
+  stats: dict, 
+  runtime: float, 
+  results_dict: dict
+):
   """
   Saves two versions of the logs:
     1. A full version (with staple prompt and all thoughts and actions).
@@ -59,6 +69,13 @@ def save_logs(model: str, benchmark: str, run_name: str, phase: str, log_history
   print(f"[TrainAgent] Full logs saved to {full_log_path}")
   print(f"[TrainAgent] Clean logs saved to {clean_log_path}")
 
+  # CSV Logging
+  
+  # import pandas as pd
+  # log_dir = os.path.join(os.getenv("LOGS"), benchmark, phase)
+  # csv_logfile = f"{log_dir}/{run_name}_{model}_{phase}.csv"
+  # pd.DataFrame(results_dict).to_csv(csv_logfile, index=False)
+  # print(f"CSV file has been saved to {csv_logfile}")
 
 def format_prompt(phase: str, benchmark: str, **kwargs):
   from src.prompts import PROMPTS

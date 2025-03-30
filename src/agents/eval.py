@@ -71,6 +71,16 @@ class EvalAgent(BaseAgent):
     end_time = time.time()
     self.runtime = end_time - start_time
 
+    results_dict = {
+      "matches": [self.stats["CORRECT"]],
+      "mismatches": [self.stats["INCORRECT"]],
+      "EM": [0],
+      "train_data_len": [len(all_train_exemplars)],
+      "test_data_len": [[len(all_test_exemplars)]],
+      "model": [self.model],
+      "dataset": [self.benchmark]
+    }
+
     utils.save_logs(
       self.model,
       self.benchmark, 
@@ -78,8 +88,10 @@ class EvalAgent(BaseAgent):
       self.phase,
       self.log_history, 
       self.stats, 
-      self.runtime
+      self.runtime,
+      results_dict
     )  # Once done with all tasks, save logs to txt file
+
 
   def step(self, **kwargs):
     """
@@ -157,15 +169,3 @@ class EvalAgent(BaseAgent):
       final_answer = match.group(1)
     else:
       raise Exception(f"No final answer for task: {self.task_idx}")
-
-
-  def done(self):
-    """
-    Checks if we are doing with the dataset
-    """
-    return self.task_idx >= 20
-    # return self.task_idx >= self.num_tasks
-
-  def reset(self):
-    self.log_history = []
-    self.task_idx = 0
