@@ -110,3 +110,42 @@ def get_insights(model: str, benchmark: str, run_name: str):
         if re.match(r'^\d+\.\s', line):
           insights.append(line.strip())
   return "\n".join(insights)
+
+
+def self_consistency():
+  # TODO: implement
+  """
+  def self_con(tmp_list):
+    ans_list = []
+    for tmp in tmp_list:
+        ans = ""
+        if len(tmp.split("Final Answer:"))>0:
+            ans = tmp.split("Final Answer:")[-1]
+            ans = ans.split("\n")[0]
+            # print(ans)
+            if "each" in ans:  ans = ans.split("each")[0]
+            if "=" in ans: ans = ans.split("=")[-1]
+            ans = re.sub(r'[^0-9.]',"",ans)
+            if len(ans)>0 and ans[-1]==".": ans = ans[:-1]
+            # print(ans, "******")
+            try:
+                float(ans)
+                ans = round(float(ans))
+                ans_list.append(ans)
+            except: pass
+        # ans_list.append(ans)
+
+    # print(ans_list)
+    d = {}
+    for i in ans_list:
+        if i=="":
+            continue
+        if int(i) in d:
+            d[int(i)] += 1
+        else:
+            d[int(i)] = 1
+    # print(d)
+    n = sorted(d.items(), key=lambda x:x[1], reverse=True)
+    return n
+  """
+  pass

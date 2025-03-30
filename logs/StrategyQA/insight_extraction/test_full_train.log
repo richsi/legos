@@ -1,6 +1,26 @@
 Extracted Insights
 Output: 
-You are an insight generation assistant for multi-step question answering tasks. Your role is to generate between 5 and 20 concise, generic insights—each a helpful rule or direction—that guide the proper answering of a question based on the provided Facts and Decomposition. Your insights should be broadly applicable to any complex task, offering strategies for breaking the problem into manageable parts, formulating effective search queries, and verifying the final answer for accuracy. Focus on identifying key elements, avoiding common pitfalls, and developing sound reasoning strategies.
+You are an advanced reasoning agent that can add, edit, or remove rules from your existing rule set, based on new insights or expansions.
+
+Here is your existing rule set:
+RULE 1: <EXISTING RULE TEXT>
+RULE 2: <EXISTING RULE TEXT>
+RULE 3: <EXISTING RULE TEXT>
+...
+-----
+Now, you are given a StrategyQA task. Each task has:
+• A Question
+• A set of Facts
+• An Answer
+• A Decomposition (a step-by-step outline of how the question might be solved)
+
+Your job is to generate between 5 and 15 concise new insights (i.e., rules or directions) that would help an agent correctly answer any complex StrategyQA question. Each new rule should be:
+
+1. Generally applicable to tasks involving a Question, Facts, Answer, and Decomposition.
+2. Clear and concise, focusing on how to break down the question, leverage the facts, and verify the final answer.
+3. Helpful in ensuring the reasoning steps are valid and that the final answer is accurate.
+
+Please provide these new or revised rules below. Make sure each rule is presented as a single line or sentence and that it complements (or updates) the existing rules above.
 
 Examples:
 Facts: ['All purpose flour has about 9% gluten in it.', 'When someone with Celiac disease eats gluten, their body has an immune response that attacks their small intestine.']
@@ -392,20 +412,23 @@ The answer is: Yes
 
 (END OF EXAMPLES)
 
-Based on the task description and examples provided, generate between 5 and 20 generic insights. Each insight should be a clear rule or direction that assists in decomposing complex questions, refining search queries, and ensuring the final answer is accurate.
+Based on the provided task description and examples, generate between 5 and 15 new or updated rules.
+By examining the list of existing rules, you can perform the following operations: add, edit, downvote, or upvote so that the new rules are GENERAL and HIGH LEVEL insights of the trials or proposed way of Thought so they can be used as helpful tips to different tasks in the future.
+Have an emphasis on tips that help the agent by identifying key elements from the Question, leveraging the Facts, examining the Decomposition, and ensuring the Answer is correct. Each insight should be a clear, high-level guideline that strengthens the reasoning process.
+At the end, ensure that there are no empty rules.
 
-1. Understand the context of the question to determine the relevant facts.
-2. Identify the main focus of the question to determine the key information needed.
-3. Break down the question into sub-questions to clarify the information needed.
-4. Use the information provided in the facts to answer the sub-questions.
-5. Combine the answers to the sub-questions to form the final answer.
-6. Check the final answer for accuracy and completeness.
-7. Use the information provided in the facts to refine the search query.
-8. Use the information provided in the facts to determine the best approach to decomposing the question.
-9. Use the information provided in the facts to determine the most relevant facts to consider.
-10. Use the information provided in the facts to determine the most important information to focus on.
-11. Use the information provided in the facts to determine the most relevant facts to consider
+---
+
+New Rules:
+
+1. When answering a question, consider the context of the question and the facts provided to ensure that the answer is relevant and accurate.
+2. When decomposing a question, identify the key elements of the question and the facts provided to ensure that the answer is complete and comprehensive.
+3. When answering a question, consider the potential implications of the answer and how it may impact the decision-making process.
+4. When decomposing a question, identify any potential biases or assumptions that may impact the decision-making process and ensure that the answer is unbiased.
+5. When answering a question, consider the potential consequences of the answer and how it may impact the decision-making process.
+6. When decomposing a question, identify any potential risks or uncertainties that may impact the decision-making process and ensure that the answer is realistic.
+7. When answering a question, consider the potential benefits and draw
 
 -------------------------------------
 None
-Runtime: 53.734413385391235 seconds
+Runtime: 73.75217819213867 seconds
