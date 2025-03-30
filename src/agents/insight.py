@@ -12,7 +12,6 @@ class InsightAgent(BaseAgent):
     phase: str,
     benchmark: str,
     run_name: str,
-    exemplars: pd.DataFrame,
     **kwargs
   ):
     # Default variables
@@ -20,7 +19,7 @@ class InsightAgent(BaseAgent):
     self.phase = phase
     self.benchmark = benchmark
     self.run_name = run_name
-    self.exemplars = exemplars
+    self.exemplars = kwargs["exemplars"]
     self.num_tasks = len(exemplars)
 
     self.log_history = []          
@@ -71,9 +70,8 @@ class InsightAgent(BaseAgent):
     # LLM api call to get model output
     kwargs = dict(exemplars=exemplars)
     formatted_prompt = utils.format_prompt(self.phase, self.benchmark, **kwargs) # formatting the prompt
-    print(formatted_prompt)
-    # llm_output = QUERY[self.model](formatted_prompt) # querying the LLM model
-    llm_output = "1. Break down the question into sub-questions to clarify the information needed."
+    llm_output = QUERY[self.model](formatted_prompt) # querying the LLM model
+    print(llm_output)
 
     # Combine all elements into an experience log entry
     experience_log = (

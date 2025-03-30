@@ -1,4 +1,5 @@
 import os
+import re
 import time
 from typing import Callable
 import pandas as pd
@@ -11,14 +12,13 @@ class TrainAgent(BaseAgent):
     model: str,
     benchmark: str,
     run_name: str,
-    exemplars: pd.DataFrame,
     **kwargs
   ):
     # Default variables
     self.model = model
     self.benchmark = benchmark
     self.run_name = run_name
-    self.exemplars = exemplars
+    self.exemplars = kwargs["exemplars"]
     self.num_tasks = len(exemplars)
 
     self.log_history = []          
@@ -75,7 +75,7 @@ class TrainAgent(BaseAgent):
 
     # LLM api call to get model output
     llm_output = utils.query(self.model, self.benchmark, experience_prompt)
-    result = utils.compare_final_answer(llm_output) # returns CORRECT or INCORRECT
+    result = self.compare_final_answer(llm_output) # returns CORRECT or INCORRECT
 
     self.stats[result] += 1 # increment final results
     
@@ -105,3 +105,20 @@ class TrainAgent(BaseAgent):
   def reset(self):
     self.log_history = []
     self.task_idx = 0
+
+
+  def compare_final_answer(self, task_text: str):
+    # Extract the Answer field
+    answer_match = re.search(r'^Answer:\s*(.+)$', task_text, re.MULTILINE)
+    if not answer_match:
+        raise ValueError("No Answer field found in the text.")
+    answer = answer_match.group(1).strip()
+
+    # Extract the Final Answer field; if there are multiple, take the last one.
+    final_answer_matches = re.findall(r'^Final Answer:\s*(.+)$', task_text, re.MULTILINE)
+    if not final_answer_matches:
+        raise ValueError("No Final Answer field found in the text.")
+    final_answer = final_answer_matches[-1].strip()
+
+    # Compare the answers (case-insensitive)
+    return "CORRECT" if answer.lower() == final_answer.lower() else "INCORRECT"

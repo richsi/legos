@@ -79,30 +79,11 @@ def query(model: str, prompt: str):
 
 
 
-def compare_final_answer(task_text: str):
-  import re
-  # Extract the Answer field
-  answer_match = re.search(r'^Answer:\s*(.+)$', task_text, re.MULTILINE)
-  if not answer_match:
-      raise ValueError("No Answer field found in the text.")
-  answer = answer_match.group(1).strip()
-
-  # Extract the Final Answer field; if there are multiple, take the last one.
-  final_answer_matches = re.findall(r'^Final Answer:\s*(.+)$', task_text, re.MULTILINE)
-  if not final_answer_matches:
-      raise ValueError("No Final Answer field found in the text.")
-  final_answer = final_answer_matches[-1].strip()
-
-  # Compare the answers (case-insensitive)
-  return "CORRECT" if answer.lower() == final_answer.lower() else "INCORRECT"
-
-
 def get_insights(model: str, benchmark: str, run_name: str):
   import os
   import re
   file_name = "_".join([run_name, model, "insight_extraction", "clean.log"])
   insights_path = os.path.join("logs", benchmark, "insight_extraction", file_name)
-  print(insights_path)
   
   with open(insights_path, "r") as f:
      insights = []

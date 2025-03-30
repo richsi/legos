@@ -20,26 +20,26 @@ def main():
   config_path = f"configs/{args.phase}.yaml"
   configs = utils.load_config(config_path, args.config)
 
+  benchmark_path_configs = utils.load_config(f"configs/base.yaml", configs["benchmark"].lower())
+
+
   # Assigning variables 
   phase = args.phase
   run_name = args.run_name
   model = configs["model"]
   benchmark = configs["benchmark"]
-  exemplars_file = os.getenv(benchmark.upper()) + "/" + configs["exemplars"]
-  # num_reflections = configs["num_reflections"]
 
-  # Loading training data
-  exemplars = pd.read_csv(exemplars_file)
+  kwargs = benchmark_path_configs
+  exemplars_file = os.getenv(benchmark.upper()) + "/" + configs["exemplars"]
+  kwargs["exemplars"] = pd.read_csv(exemplars_file)
+
 
   # Initializing model
-  kwargs = dict()
-
   insight_agent = AGENT[phase](
     model=model,
     phase=phase,
     benchmark=benchmark,
     run_name=run_name,
-    exemplars=exemplars,
     # num_reflections=num_reflections
     **kwargs
   )
