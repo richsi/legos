@@ -56,16 +56,15 @@ class EvalAgent(BaseAgent):
     train_data = "\n---\n".join(all_train_exemplars)
     # LLM api call to get model output
     insights = utils.get_insights(self.model, self.benchmark, self.run_name)
-    print(f"insights:\n{insights}")
 
     kwargs = dict(
       exemplars=train_data,
       insights=insights,
+      batch_size=5
     )
 
     start_time = time.time()
     while not self.done():
-
       print(f"STARTING TASK {self.task_idx}\n")
       self.step(**kwargs)
       break
@@ -91,28 +90,46 @@ class EvalAgent(BaseAgent):
       - Final evaluation answers
     """
 
-    kwargs["test_data"] = self.all_test_exemplars[self.task_idx]
+    batch_prompts = []
+    batch_real_answers = []
+    batch_indices = []
 
+    # batching the data
+    for i in range(kwargs["batch_size"]):
+      if self.done():
+        break
+      batch_prompts.append(self.all_test_exemplars[self.task_idx])
+      batch_real_answers.append(self.eval_df.iloc[self.task_idx]["answer"])
+      batch_indices.append(self.task_idx)
+      self.task_idx += 1
+
+    kwargs["test_data"] = "\n---\n".join(batch_prompts)
+
+    # kwargs["test_data"] = self.all_test_exemplars[self.task_idx]
     prompt = utils.format_prompt(self.phase, self.benchmark, **kwargs)
+
     llm_output = utils.query(self.model, prompt)
 
-    real_answer = self.eval_df.iloc[self.task_idx]["answer"]
+    print(len(prompt), len(llm_output))
+    print("SPLICED:\n",llm_output[len(prompt):])
 
-    print(f"LLM_output: {llm_output[len(prompt):]}\nReal Answer: {real_answer}")
+    batch_final_answers = re.findall(r"^Final Answer:\s(.*)$", llm_output[len(prompt):], re.MULTILINE) # get only final answers and thought results
+    print(batch_final_answers)
 
     # recording stats
-    final_answer = self.get_final_answer(llm_output)
-    self.stats["CORRECT" if final_answer == real_answer else "INCORRECT"] += 1
+    print(batch_real_answers)
+    for final_answer, real_answer in zip(batch_final_answers, batch_real_answers):
+      key = "CORRECT" if final_answer.strip() == real_answer.strip() else "INCORRECT"
+      self.stats[key] += 1
 
     # Combine all elements into an experience log entry
     experience_log = (
-        f"{self.model} Output: {llm_output}\n\n"
+        f"{self.model} Tasks {batch_indices}:\n{llm_output}\n\n"
         "-------------------------------------"
     )
 
     # Save and print the experience log
     self.log_history.append(experience_log)
-    self.task_idx += 1
 
   def get_prompt(self, exemplar):
     string = "Facts: "

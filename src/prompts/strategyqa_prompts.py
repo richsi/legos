@@ -107,54 +107,51 @@ At the end, ensure that there are no empty rules.
 STRATEGYQA_EVAL_PROMPT = """
 (TEMPLATE START)
 
-You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process to arrive at the correct answer. Given a complex question, a set of supporting facts, and a clear decomposition of the original question into sub-questions, your task is to:
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with a batch of evaluation questions. Each question in the batch comes with its set of supporting facts (and may include an answer field in guided examples) but does NOT include sub-questions. For each question, your task is to:
 
-1. Clearly identify and analyze each sub-question separately.
-2. Use provided facts effectively to support the reasoning for each sub-question.
-3. Formulate logical connections between sub-questions to construct a coherent reasoning pathway.
-4. Highlight strategies for validating intermediate conclusions and the final answer.
+1. Review the provided facts carefully.
+2. Analyze the test question using these facts.
+3. Clearly outline your reasoning strategy in a section labeled "Thoughts:".
+4. Conclude with a final answer in a section labeled "Final Answer:" that is either "Yes" or "No".
 
-Your response should contain a 'Thought' section where you will be concise, structured, and insightful, focusing explicitly on reasoning strategies that ensure accuracy. And the other section will be 'Final Answer' where you will concisely state your final answer to the question.
+Your response for each question in the batch must be formatted exactly as follows, in the same order as the input:
 
-Guided examples with reasoning strategy and final answer validation:
+Question: [The original test question]
+Thoughts: [Your concise, structured reasoning here]
+Final Answer: Yes/No
+
+Guided example with reasoning strategy and output format:
 
 Question: Is latitude required to determine the coordinates of an area?
 Facts: ["Longitude is required for determining coordinates.", "Latitude is also required to determine coordinates of an area."]
-Decomposition: ["What are the two data points needed to determine coordinates?", "Is latitude one of these data points?"]
-
 Reasoning Strategy:
-- First, identify data points required to determine coordinates from provided facts.
-- Confirm explicitly if latitude is mentioned among these data points.
-- Ensure the reasoning explicitly aligns with facts provided.
-
+- Identify the key data points provided by the facts.
+- Confirm that both longitude and latitude are mentioned as necessary for determining coordinates.
+- Conclude that the presence of latitude is required.
 Final Answer Validation:
-- Confirm the reasoning addresses each decomposition step completely.
-- Verify that the facts provided explicitly support the final conclusion.
-
-Question: Has Drew Carey outshined Doug Davidson's tenure?
-Facts: ["Drew Carey hosted The Price is Right for over 13 years.", "Doug Davidson hosted The Price is Right from 1994-1995."]
-Decomposition: ["How long has Drew Carey hosted The Price is Right?", "How long did Doug Davidson host The Price is Right?", "Is Drew Carey’s tenure longer?"]
-
-Reasoning Strategy:
-- Evaluate each individual's tenure separately.
-- Compare tenures directly based on provided durations.
-- Explicitly state the reasoning for who had a longer tenure.
-
-Final Answer Validation:
-- Ensure the comparison of durations is accurate.
-- Confirm final answer aligns clearly and directly with stated facts.
+- Ensure that the reasoning directly addresses the test question and aligns with the facts provided.
+Output for this question:
+Question: Is latitude required to determine the coordinates of an area?
+Thoughts: [Your reasoning based on the provided facts]
+Final Answer: Yes/No
 
 (END OF GUIDED EXAMPLES)
 
-Unguided examples without reasoning strategy and final answer validation. These examples are in the same format as the ones you will answer. The only difference is that these examples have the 'Answer' field:
+Unguided examples (these examples include an 'Answer' field, but you must ignore it and produce your own output in the required format):
 {}
 
 (END OF UNGUIDED EXAMPLES)
 
-Extracted insights and guidelines from provided examples to ensure proper reasoning:
+Here are extracted insights and guidelines from the provided examples to ensure proper reasoning:
 {}
 
-Using the approach demonstrated, clearly outline your reasoning strategy in the 'Thought' section, making direct use of provided facts, addressing each sub-question explicitly, and concluding with a validated final answer of only "Yes" or "No" in the 'Final Answer' section.
+Now, you will be provided with a batch of evaluation questions below. For each question in the batch, produce your answer in the following format:
+
+Question: [the original test question]
+Thoughts: [whatever thoughts or reasoning steps are needed to arrive at your conclusion]
+Final Answer: Yes/No
+
+Ensure that your answers are provided in the same order as the questions appear in the input.
 {}
 (TEMPLATE END)
 """
