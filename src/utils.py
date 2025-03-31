@@ -8,8 +8,6 @@ def load_config(config_file, config_name):
   return all_configs.get(config_name, {})
 
 
-
-
 def save_logs(
   model: str,
   benchmark: str, 
@@ -75,6 +73,8 @@ def save_logs(
   csv_logfile = os.path.join(os.getenv("LOGS"), "results.csv")
   pd.DataFrame(results_dict).to_csv(csv_logfile, mode='a', index=False, header=False)
   print(f"CSV file has been saved to {csv_logfile}")
+
+
 
 def format_prompt(phase: str, benchmark: str, **kwargs):
   from src.prompts import PROMPTS

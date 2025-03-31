@@ -1,3 +1,3 @@
 strategyqa: 
-  train: "strategyqa_mistral_7B_static_subset_selection.csv"
+  train: "strategyqa_static_subset_selection.csv"
   eval: "strategyqa_test.csv"

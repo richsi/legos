@@ -58,3 +58,10 @@ Evaluation: `python3 -m src.main -p eval -c <config_name> -n <run_name>`
 
 
 Keep the run_name constant across training, insight extraction, and evaluation. The logging script automatically adds the model name and phase to the end of the run_name.
+
+[ ] StrategyQA
+[ ] GSM8k
+[ ] AquaRat
+[ ] TabMWP
+[ ] FinaQA
+[ ] Use base.yaml to store training exemplar path

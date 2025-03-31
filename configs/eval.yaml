@@ -1,9 +1,9 @@
 mistral:
   model: "Mistral7B"
   benchmark: "StrategyQA"
-  exemplars: "strategyqa_mistral_7B_static_subset_selection.csv"
+  exemplars: "strategyqa_static_subset_selection.csv"
 
 llama1b:
   model: "Llama1B"
   benchmark: "StrategyQA"
-  exemplars: "strategyqa_mistral_7B_static_subset_selection.csv"
+  exemplars: "strategyqa_static_subset_selection.csv"
