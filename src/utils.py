@@ -71,11 +71,10 @@ def save_logs(
 
   # CSV Logging
   
-  # import pandas as pd
-  # log_dir = os.path.join(os.getenv("LOGS"), benchmark, phase)
-  # csv_logfile = f"{log_dir}/{run_name}_{model}_{phase}.csv"
-  # pd.DataFrame(results_dict).to_csv(csv_logfile, index=False)
-  # print(f"CSV file has been saved to {csv_logfile}")
+  import pandas as pd
+  csv_logfile = os.path.join(os.getenv("LOGS"), "results.csv")
+  pd.DataFrame(results_dict).to_csv(csv_logfile, mode='a', index=False, header=False)
+  print(f"CSV file has been saved to {csv_logfile}")
 
 def format_prompt(phase: str, benchmark: str, **kwargs):
   from src.prompts import PROMPTS

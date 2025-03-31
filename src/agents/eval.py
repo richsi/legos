@@ -42,7 +42,6 @@ class EvalAgent(BaseAgent):
       self.reset()
 
     all_train_exemplars = []
-    all_test_exemplars = []
 
     for idx, row in self.train_exemplars.iterrows(): # ensure the exemplars are from the train dataset
       all_train_exemplars.append(self.get_prompt(row))
@@ -71,14 +70,17 @@ class EvalAgent(BaseAgent):
     end_time = time.time()
     self.runtime = end_time - start_time
 
+    EM = self.stats["CORRECT"] / (self.stats["CORRECT"] + self.stats["INCORRECT"]) * 100
+
     results_dict = {
       "matches": [self.stats["CORRECT"]],
       "mismatches": [self.stats["INCORRECT"]],
-      "EM": [0],
+      "EM": [EM],
       "train_data_len": [len(all_train_exemplars)],
-      "test_data_len": [[len(all_test_exemplars)]],
+      "test_data_len": [len(self.all_test_exemplars)],
       "model": [self.model],
-      "dataset": [self.benchmark]
+      "dataset": [self.benchmark],
+      "run_name": [self.run_name]
     }
 
     utils.save_logs(
