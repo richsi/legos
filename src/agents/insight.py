@@ -20,7 +20,7 @@ class InsightAgent(BaseAgent):
     self.benchmark = benchmark
     self.run_name = run_name
     self.exemplars = kwargs["exemplars"]
-    self.num_tasks = len(exemplars)
+    self.num_tasks = len(kwargs["exemplars"])
 
     self.log_history = []          
     self.task_idx = 0                 # Tracks current task index 
@@ -38,11 +38,10 @@ class InsightAgent(BaseAgent):
       self.reset()
 
     start_time = time.time()
-
     self.step()
-
     end_time = time.time()
     self.runtime = end_time - start_time
+
 
     utils.save_logs(
       self.model,

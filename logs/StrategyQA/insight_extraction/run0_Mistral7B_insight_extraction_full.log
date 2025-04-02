@@ -427,8 +427,16 @@ New Rules:
 4. When decomposing a question, identify any potential biases or assumptions that may impact the decision-making process and ensure that the answer is unbiased.
 5. When answering a question, consider the potential consequences of the answer and how it may impact the decision-making process.
 6. When decomposing a question, identify any potential risks or uncertainties that may impact the decision-making process and ensure that the answer is realistic.
-7. When answering a question, consider the potential benefits and draw
+7. When answering a question, consider the potential benefits and drawbacks of the answer and how it may impact the decision-making process.
+8. When decomposing a question, identify any potential trade-offs or compromises that may impact the decision-making process and ensure that the answer is balanced.
+9. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the goals and objectives.
+10. When decomposing a question, identify any potential constraints or limitations that may impact the decision-making process and ensure that the answer is feasible.
+11. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the values and principles.
+12. When decomposing a question, identify any potential ethical or moral considerations that may impact the decision-making process and ensure that the answer is ethical.
+13. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the legal or regulatory requirements.
+14. When decomposing a question, identify any potential cultural or societal considerations that may impact the decision-making process and ensure that the answer is culturally sensitive.
+15. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the scientific or technical standards.
 
 -------------------------------------
 None
-Runtime: 73.75217819213867 seconds
+Runtime: 108.14322710037231 seconds

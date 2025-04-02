@@ -1,0 +1,198 @@
+Mistral7B Tasks [0, 1, 2, 3, 4]:
+
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with a batch of evaluation questions. Each question in the batch comes with its set of supporting facts (and may include an answer field in guided examples) but does NOT include sub-questions. For each question, your task is to:
+
+1. Review the provided facts carefully.
+2. Analyze the test question using these facts.
+3. Clearly outline your reasoning strategy in a section labeled "Thoughts:".
+4. Conclude with a final answer in a section labeled "Final Answer:". The final answer can only be 'Yes' or 'No'.
+
+Your response for each question in the batch must be formatted exactly as follows, in the same order as the input:
+Question: [The original test question]
+Thoughts: [Your concise, structured reasoning here]
+Final Answer: [Yes or No]
+
+Here are extracted insights and guidelines from the provided examples to ensure proper reasoning:
+1. Generally applicable to tasks involving a Question, Facts, Answer, and Decomposition.
+2. Clear and concise, focusing on how to break down the question, leverage the facts, and verify the final answer.
+3. Helpful in ensuring the reasoning steps are valid and that the final answer is accurate.
+1. When answering a question, consider the context of the question and the facts provided to ensure that the answer is relevant and accurate.
+2. When decomposing a question, identify the key elements of the question and the facts provided to ensure that the answer is complete and comprehensive.
+3. When answering a question, consider the potential implications of the answer and how it may impact the decision-making process.
+4. When decomposing a question, identify any potential biases or assumptions that may impact the decision-making process and ensure that the answer is unbiased.
+5. When answering a question, consider the potential consequences of the answer and how it may impact the decision-making process.
+6. When decomposing a question, identify any potential risks or uncertainties that may impact the decision-making process and ensure that the answer is realistic.
+7. When answering a question, consider the potential benefits and drawbacks of the answer and how it may impact the decision-making process.
+8. When decomposing a question, identify any potential trade-offs or compromises that may impact the decision-making process and ensure that the answer is balanced.
+9. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the goals and objectives.
+10. When decomposing a question, identify any potential constraints or limitations that may impact the decision-making process and ensure that the answer is feasible.
+11. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the values and principles.
+12. When decomposing a question, identify any potential ethical or moral considerations that may impact the decision-making process and ensure that the answer is ethical.
+13. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the legal or regulatory requirements.
+14. When decomposing a question, identify any potential cultural or societal considerations that may impact the decision-making process and ensure that the answer is culturally sensitive.
+15. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the scientific or technical standards.
+
+For each question in the batch, produce your answer in the following format:
+Question: [the original test question]
+Thoughts: [whatever thoughts or reasoning steps are needed to arrive at your conclusion]
+Final Answer: Yes/No
+
+Now, you will be provided with a batch of evaluation questions below.
+Facts: ['Human overpopulation results from the birthrate exceeding the death rate in a country.', 'Rusev is a professional wrestler who was born in Bulgaria.', 'The population of Bulgaria decreased by .7% in 2018.']
+Question: Does Rusev have to worry about human overpopulation in his homeland?
+---
+Facts: ['God made Eve from a bone he removed from Adam.', 'Since Eve was made from Adam, they would have had similar DNA and been considered twins or at least siblings.', 'As the only humans at the time, they ended up starting a family together.']
+Question: Was Eve involved in an incestuous relationship?
+---
+Facts: ['The Hague is in the Netherlands. ', 'The Hague is in the Western part of the Netherlands. ', 'The Netherlands borders the North Sea to its west. ']
+Question: Does The Hague border multiple bodies of water?
+---
+Facts: ['The deadliest war in history was World War II.', 'Over 56 million people died during World War II.', 'The population of France as of 2019 is 66 million.']
+Question: Could casualties from deadliest war rival France's population?
+---
+Facts: ['The most common word in the English language is "the".', 'The second most common word in the English language is "be".']
+Question: Is letter C crucial to spelling the two most common words in English language?
+---
+
+Ensure that each of the evaluation questions gets answered.
+(TEMPLATE END)
+
+---
+
+Question: Does Rusev have to worry about human overpopulation in his homeland?
+Thoughts:
+1. Rusev is a professional wrestler and not directly related to the birthrate or death rate in Bulgaria.
+2. The population of Bulgaria decreased by .7% in 2018, which suggests that the birthrate is lower than the death rate.
+3. Therefore, Rusev does not have to worry about human overpopulation in his homeland.
+Final Answer: No.
+
+---
+
+Question: Was Eve involved in an incestuous relationship?
+Thoughts:
+1. Eve was made from a bone removed from Adam, and they would have had similar DNA and been considered twins or at least siblings.
+2. As the only humans at the time, they ended up starting a family together.
+3. However, incestuous relationships are generally considered taboo and unethical, even in biblical times.
+4. Therefore, Eve was not involved in an incestuous relationship.
+Final Answer: No.
+
+---
+
+Question: Does The Hague border multiple bodies of water?
+Thoughts:
+1. The Hague is in the Western part of the Netherlands.
+2. The Netherlands borders the North Sea to its west.
+3. Therefore, The Hague borders only one body of water, the North Sea.
+Final Answer: No.
+
+---
+
+Question: Could casualties from deadliest war rival France's population?
+Thoughts:
+1. The deadliest war in history was World War II, and over 56 million people died during it.
+2. The population of France as of 2019 is 66 million.
+3. However, casualties from a war are not the same as the population of a country.
+4. Therefore, casualties from the deadliest war could not rival France's population.
+Final Answer: No.
+
+---
+
+Question: Is letter C crucial to spelling the two most common words in English language?
+Thoughts:
+1. The most common word in the English language is "the", and the second most common word is "be".
+2. Both words can be spelled without the letter C.
+3. Therefore, letter C is not crucial to spelling the two most common words in the English language.
+Final Answer: No.
+
+-------------------------------------
+Mistral7B Tasks [5, 6, 7, 8, 9]:
+
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with a batch of evaluation questions. Each question in the batch comes with its set of supporting facts (and may include an answer field in guided examples) but does NOT include sub-questions. For each question, your task is to:
+
+1. Review the provided facts carefully.
+2. Analyze the test question using these facts.
+3. Clearly outline your reasoning strategy in a section labeled "Thoughts:".
+4. Conclude with a final answer in a section labeled "Final Answer:". The final answer can only be 'Yes' or 'No'.
+
+Your response for each question in the batch must be formatted exactly as follows, in the same order as the input:
+Question: [The original test question]
+Thoughts: [Your concise, structured reasoning here]
+Final Answer: [Yes or No]
+
+Here are extracted insights and guidelines from the provided examples to ensure proper reasoning:
+1. Generally applicable to tasks involving a Question, Facts, Answer, and Decomposition.
+2. Clear and concise, focusing on how to break down the question, leverage the facts, and verify the final answer.
+3. Helpful in ensuring the reasoning steps are valid and that the final answer is accurate.
+1. When answering a question, consider the context of the question and the facts provided to ensure that the answer is relevant and accurate.
+2. When decomposing a question, identify the key elements of the question and the facts provided to ensure that the answer is complete and comprehensive.
+3. When answering a question, consider the potential implications of the answer and how it may impact the decision-making process.
+4. When decomposing a question, identify any potential biases or assumptions that may impact the decision-making process and ensure that the answer is unbiased.
+5. When answering a question, consider the potential consequences of the answer and how it may impact the decision-making process.
+6. When decomposing a question, identify any potential risks or uncertainties that may impact the decision-making process and ensure that the answer is realistic.
+7. When answering a question, consider the potential benefits and drawbacks of the answer and how it may impact the decision-making process.
+8. When decomposing a question, identify any potential trade-offs or compromises that may impact the decision-making process and ensure that the answer is balanced.
+9. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the goals and objectives.
+10. When decomposing a question, identify any potential constraints or limitations that may impact the decision-making process and ensure that the answer is feasible.
+11. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the values and principles.
+12. When decomposing a question, identify any potential ethical or moral considerations that may impact the decision-making process and ensure that the answer is ethical.
+13. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the legal or regulatory requirements.
+14. When decomposing a question, identify any potential cultural or societal considerations that may impact the decision-making process and ensure that the answer is culturally sensitive.
+15. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the scientific or technical standards.
+
+For each question in the batch, produce your answer in the following format:
+Question: [the original test question]
+Thoughts: [whatever thoughts or reasoning steps are needed to arrive at your conclusion]
+Final Answer: Yes/No
+
+Now, you will be provided with a batch of evaluation questions below.
+Facts: ['A sonnet is a form of poetry that sticks to a strict 14 line rule.', 'The Rime of the Ancient Mariner is a story by Samuel Taylor Coleridge and contains over thirty lines.']
+Question: Would Rime of the Ancient Mariner make a good sonnet?
+---
+Facts: ['Rabbis are spiritual leaders of the Jewish community.', 'Baptism is a necessary Christian ritual for salvation.', "Any non-Christian can perform an emergency baptism if someone's life is in danger."]
+Question: Can a rabbi save the soul of a Christian?
+---
+Facts: ['The red panda is endemic to the temperate forests of the Himalayas, and ranges from the foothills of western Nepal to China in the east.', 'The red panda lives between 2,200 and 4,800 m (7,200 and 15,700 ft) altitude, inhabiting areas of moderate temperature between 10 and 25 °C (50 and 77 °F) with little annual change.', 'Shanghai is located on an alluvial plain, as such the vast majority of its land area is flat, with an average elevation of 4 m (13 ft).']
+Question: Is it normal to see a red panda in Shanghai outside of a zoo?
+---
+Facts: ['Macbeth features scenes with three witches throughout the play. ', 'Witches are often displayed with pointy hats and long black robes.']
+Question: Would costumes with robes and pointy hats be helpful for Macbeth?
+---
+Facts: ['Black Salt has is a kiln-fired rock salt that contains sulfur.', 'When black salt is cooked with, it smells similar to rotten eggs. ', 'Rotten eggs smell like sulfur.']
+Question: Would food made with black salt smell of sulfur?
+---
+
+Ensure that each of the evaluation questions gets answered.
+(TEMPLATE END)
+
+---
+
+Question: Would Rime of the Ancient Mariner make a good sonnet?
+Thoughts:
+The Rime of the Ancient Mariner is a story by Samuel Taylor Coleridge and contains over thirty lines. However, it does not adhere to the strict 14-line rule of a sonnet. Therefore, it would not make a good sonnet.
+Final Answer: No.
+
+Question: Can a rabbi save the soul of a Christian?
+Thoughts:
+Rabbis are spiritual leaders of the Jewish community, and baptism is a necessary Christian ritual for salvation. However, a non-Christian can perform an emergency baptism if someone's life is in danger. Therefore, a rabbi cannot save the soul of a Christian.
+Final Answer: No.
+
+Question: Is it normal to see a red panda in Shanghai outside of a zoo?
+Thoughts:
+The red panda is endemic to the temperate forests of the Himalayas and ranges from the foothills of western Nepal to China in the east. It lives between 2,200 and 4,800 m (7,200 and 15,700 ft) altitude, inhabiting areas of moderate temperature between 10 and 25 °C (50 and 77 °F) with little annual change. Shanghai is located on an alluvial plain, as such the vast majority of its land area is flat, with an average elevation of 4 m (13 ft). Therefore, it is not normal to see a red panda in Shanghai outside of a zoo.
+Final Answer: No.
+
+Question: Would costumes with robes and pointy hats be helpful for Macbeth?
+Thoughts:
+Macbeth features scenes with three witches throughout the play. However, witches are often displayed with pointy hats and long black robes. Therefore, costumes with robes and pointy hats would be helpful for Macbeth.
+Final Answer: Yes.
+
+Question: Would food made with black salt smell of sulfur?
+Thoughts:
+Black salt has is a kiln-fired rock salt that contains sulfur. When black salt is cooked with, it smells similar to rotten eggs. Rotten eggs smell like sulfur. Therefore, food made with black salt would smell of sulfur.
+Final Answer: Yes.
+
+-------------------------------------
+{'CORRECT': 8, 'INCORRECT': 2}
+Runtime: 205.65615701675415 seconds

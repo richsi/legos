@@ -63,14 +63,17 @@ class EvalAgent(BaseAgent):
     )
 
     start_time = time.time()
+    counter = 0
     while not self.done():
       print(f"STARTING TASK {self.task_idx}\n")
       self.step(**kwargs)
-      break
+      if counter == 1:
+        break
+      counter += 1
     end_time = time.time()
     self.runtime = end_time - start_time
 
-    EM = self.stats["CORRECT"] / (self.stats["CORRECT"] + self.stats["INCORRECT"]) * 100
+    EM = self.stats["CORRECT"] / (self.stats["CORRECT"] + self.stats["INCORRECT"]) * 100 
 
     results_dict = {
       "matches": [self.stats["CORRECT"]],
@@ -118,20 +121,20 @@ class EvalAgent(BaseAgent):
       self.task_idx += 1
 
     kwargs["test_data"] = "\n---\n".join(batch_prompts)
+    # print(kwargs["test_data"])
 
     # kwargs["test_data"] = self.all_test_exemplars[self.task_idx]
     prompt = utils.format_prompt(self.phase, self.benchmark, **kwargs)
 
     llm_output = utils.query(self.model, prompt)
 
-    print(len(prompt), len(llm_output))
     print("SPLICED:\n",llm_output[len(prompt):])
 
-    batch_final_answers = re.findall(r"^Final Answer:\s(.*)$", llm_output[len(prompt):], re.MULTILINE) # get only final answers and thought results
-    print(batch_final_answers)
+    batch_final_answers = re.findall(r"^Final Answer:\s(.*?)(?:\.)?$", llm_output[len(prompt):], re.MULTILINE)
+    print("\nFinal answers: ", batch_final_answers)
 
     # recording stats
-    print(batch_real_answers)
+    print("Real answers: ", batch_real_answers)
     for final_answer, real_answer in zip(batch_final_answers, batch_real_answers):
       key = "CORRECT" if final_answer.strip() == real_answer.strip() else "INCORRECT"
       self.stats[key] += 1

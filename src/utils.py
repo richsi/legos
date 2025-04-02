@@ -16,7 +16,7 @@ def save_logs(
   log_history: list, 
   stats: dict, 
   runtime: float, 
-  results_dict: dict
+  results_dict: dict=None
 ):
   """
   Saves two versions of the logs:
@@ -69,10 +69,11 @@ def save_logs(
 
   # CSV Logging
   
-  import pandas as pd
-  csv_logfile = os.path.join(os.getenv("LOGS"), "results.csv")
-  pd.DataFrame(results_dict).to_csv(csv_logfile, mode='a', index=False, header=False)
-  print(f"CSV file has been saved to {csv_logfile}")
+  if phase == "eval":
+    import pandas as pd
+    csv_logfile = os.path.join(os.getenv("LOGS"), "results.csv")
+    pd.DataFrame(results_dict).to_csv(csv_logfile, mode='a', index=False, header=False)
+    print(f"CSV file has been saved to {csv_logfile}")
 
 
 
@@ -85,7 +86,7 @@ def format_prompt(phase: str, benchmark: str, **kwargs):
   elif phase == "insight_extraction":
     full_prompt = base_prompt.format(kwargs["exemplars"])
   elif phase == "eval":
-    full_prompt = base_prompt.format(kwargs["exemplars"], kwargs["insights"], kwargs["test_data"])
+    full_prompt = base_prompt.format(kwargs["insights"], kwargs["test_data"])
   return full_prompt
 
 
