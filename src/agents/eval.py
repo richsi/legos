@@ -144,6 +144,9 @@ class EvalAgent(BaseAgent):
     # Save and print the experience log
     self.log_history.append(experience_log)
 
+  def done(self):
+    return self.tasks_idx >= self.num_tasks
+
   def get_prompt(self, exemplar):
     string = "Facts: "
     for fact in exemplar["facts"]:

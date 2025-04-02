@@ -194,5 +194,227 @@ Black salt has is a kiln-fired rock salt that contains sulfur. When black salt i
 Final Answer: Yes.
 
 -------------------------------------
-{'CORRECT': 8, 'INCORRECT': 2}
-Runtime: 205.65615701675415 seconds
+Mistral7B Tasks [10, 11, 12, 13, 14]:
+
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with a batch of evaluation questions. Each question in the batch comes with its set of supporting facts (and may include an answer field in guided examples) but does NOT include sub-questions. For each question, your task is to:
+
+1. Review the provided facts carefully.
+2. Analyze the test question using these facts.
+3. Clearly outline your reasoning strategy in a section labeled "Thoughts:".
+4. Conclude with a final answer in a section labeled "Final Answer:". The final answer can only be 'Yes' or 'No'.
+
+Your response for each question in the batch must be formatted exactly as follows, in the same order as the input:
+Question: [The original test question]
+Thoughts: [Your concise, structured reasoning here]
+Final Answer: [Yes or No]
+
+Here are extracted insights and guidelines from the provided examples to ensure proper reasoning:
+1. Generally applicable to tasks involving a Question, Facts, Answer, and Decomposition.
+2. Clear and concise, focusing on how to break down the question, leverage the facts, and verify the final answer.
+3. Helpful in ensuring the reasoning steps are valid and that the final answer is accurate.
+1. When answering a question, consider the context of the question and the facts provided to ensure that the answer is relevant and accurate.
+2. When decomposing a question, identify the key elements of the question and the facts provided to ensure that the answer is complete and comprehensive.
+3. When answering a question, consider the potential implications of the answer and how it may impact the decision-making process.
+4. When decomposing a question, identify any potential biases or assumptions that may impact the decision-making process and ensure that the answer is unbiased.
+5. When answering a question, consider the potential consequences of the answer and how it may impact the decision-making process.
+6. When decomposing a question, identify any potential risks or uncertainties that may impact the decision-making process and ensure that the answer is realistic.
+7. When answering a question, consider the potential benefits and drawbacks of the answer and how it may impact the decision-making process.
+8. When decomposing a question, identify any potential trade-offs or compromises that may impact the decision-making process and ensure that the answer is balanced.
+9. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the goals and objectives.
+10. When decomposing a question, identify any potential constraints or limitations that may impact the decision-making process and ensure that the answer is feasible.
+11. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the values and principles.
+12. When decomposing a question, identify any potential ethical or moral considerations that may impact the decision-making process and ensure that the answer is ethical.
+13. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the legal or regulatory requirements.
+14. When decomposing a question, identify any potential cultural or societal considerations that may impact the decision-making process and ensure that the answer is culturally sensitive.
+15. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the scientific or technical standards.
+
+For each question in the batch, produce your answer in the following format:
+Question: [the original test question]
+Thoughts: [whatever thoughts or reasoning steps are needed to arrive at your conclusion]
+Final Answer: Yes/No
+
+Now, you will be provided with a batch of evaluation questions below.
+Facts: ['WWE Raw debuted on TV January 11, 1993.', 'Bruiser Brody was a wrestler that was stabbed to death in 1988.']
+Question: Did Bruiser Brody wrestle on WWE Raw?
+---
+Facts: ["Steven Spielberg's 1998 film, Saving Private Ryan, takes place during World War II.", 'World War II took place from 1939-1945.', 'The 2011 movie War Horse takes place during World War I.', 'World War I took place from 1914-1918.']
+Question: Does Steven Spielberg's 1998 film take place in a period after War Horse setting?
+---
+Facts: ['"Dominic The Donkey" is a popular Christmas song.', '"Nestor The Ling Eared Christmas Donkey" is a popular Christmas Movie.']
+Question: Are Donkeys part of Christmas celebrations?
+---
+Facts: ['Glycol is a commonly used de-icing fluid for commercial planes.', 'American Airlines flies all year round, including throughout the winter.']
+Question: Is Glycol something United Airlines would buy?
+---
+Facts: ['Law & Order is a television show.', 'Television shows cannot be tasted, only viewed. ']
+Question: Can you taste Law & Order?
+---
+
+Ensure that each of the evaluation questions gets answered.
+(TEMPLATE END)
+
+---
+
+Question: Did Bruiser Brody wrestle on WWE Raw?
+Thoughts:
+1. Bruiser Brody was a wrestler that was stabbed to death in 1988.
+2. WWE Raw debuted on TV January 11, 1993.
+3. Since Bruiser Brody was killed in 1988, he could not have wrestled on WWE Raw, which debuted in 1993.
+Final Answer: No.
+
+---
+
+Question: Does Steven Spielberg's 1998 film take place in a period after War Horse setting?
+Thoughts:
+1. Steven Spielberg's 1998 film, Saving Private Ryan, takes place during World War II.
+2. The 2011 movie War Horse takes place during World War I.
+3. Since Saving Private Ryan was released in 1998, it takes place after the end of World War I, which ended in 1918.
+Final Answer: Yes.
+
+---
+
+Question: Are Donkeys part of Christmas celebrations?
+Thoughts:
+1. "Dominic The Donkey" is a popular Christmas song.
+2. "Nestor The Ling Eared Christmas Donkey" is a popular Christmas movie.
+3. Donkeys are often associated with Christmas celebrations, as seen in popular culture.
+Final Answer: Yes.
+
+---
+
+Question: Is Glycol something United Airlines would buy?
+Thoughts:
+1. Glycol is a commonly used de-icing fluid for commercial planes.
+2. American Airlines flies all year round, including throughout the winter.
+3. Since American Airlines flies all year round, they would likely purchase glycol to de-ice their planes during the winter months.
+Final Answer: Yes.
+
+---
+
+Question: Can you taste Law & Order?
+Thoughts:
+1. Law & Order is a television show.
+2. Television shows cannot be tasted, only viewed.
+3. Since Law & Order is a television show, it cannot be tasted.
+Final Answer: No.
+
+-------------------------------------
+Mistral7B Tasks [15, 16, 17, 18, 19]:
+
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with a batch of evaluation questions. Each question in the batch comes with its set of supporting facts (and may include an answer field in guided examples) but does NOT include sub-questions. For each question, your task is to:
+
+1. Review the provided facts carefully.
+2. Analyze the test question using these facts.
+3. Clearly outline your reasoning strategy in a section labeled "Thoughts:".
+4. Conclude with a final answer in a section labeled "Final Answer:". The final answer can only be 'Yes' or 'No'.
+
+Your response for each question in the batch must be formatted exactly as follows, in the same order as the input:
+Question: [The original test question]
+Thoughts: [Your concise, structured reasoning here]
+Final Answer: [Yes or No]
+
+Here are extracted insights and guidelines from the provided examples to ensure proper reasoning:
+1. Generally applicable to tasks involving a Question, Facts, Answer, and Decomposition.
+2. Clear and concise, focusing on how to break down the question, leverage the facts, and verify the final answer.
+3. Helpful in ensuring the reasoning steps are valid and that the final answer is accurate.
+1. When answering a question, consider the context of the question and the facts provided to ensure that the answer is relevant and accurate.
+2. When decomposing a question, identify the key elements of the question and the facts provided to ensure that the answer is complete and comprehensive.
+3. When answering a question, consider the potential implications of the answer and how it may impact the decision-making process.
+4. When decomposing a question, identify any potential biases or assumptions that may impact the decision-making process and ensure that the answer is unbiased.
+5. When answering a question, consider the potential consequences of the answer and how it may impact the decision-making process.
+6. When decomposing a question, identify any potential risks or uncertainties that may impact the decision-making process and ensure that the answer is realistic.
+7. When answering a question, consider the potential benefits and drawbacks of the answer and how it may impact the decision-making process.
+8. When decomposing a question, identify any potential trade-offs or compromises that may impact the decision-making process and ensure that the answer is balanced.
+9. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the goals and objectives.
+10. When decomposing a question, identify any potential constraints or limitations that may impact the decision-making process and ensure that the answer is feasible.
+11. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the values and principles.
+12. When decomposing a question, identify any potential ethical or moral considerations that may impact the decision-making process and ensure that the answer is ethical.
+13. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the legal or regulatory requirements.
+14. When decomposing a question, identify any potential cultural or societal considerations that may impact the decision-making process and ensure that the answer is culturally sensitive.
+15. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the scientific or technical standards.
+
+For each question in the batch, produce your answer in the following format:
+Question: [the original test question]
+Thoughts: [whatever thoughts or reasoning steps are needed to arrive at your conclusion]
+Final Answer: Yes/No
+
+Now, you will be provided with a batch of evaluation questions below.
+Facts: ['LG Electronics is headquarted in Seoul.', 'The official bird of Seoul is the Korean magpie.', 'The Korean magpie has a purplish/blue colored tail.']
+Question: Is LG Electronics located in a city with an official bird that has a purplish/blue tail?
+---
+Facts: ['Aldi cuts costs by charging for bags, buying in bulk, and by avoiding brand name items. ', 'Aldi removes spoiled or expired foods from their shelves immediately upon identification.']
+Question: Are Aldi's foods discounted due to being out of date?
+---
+Facts: ['Olive oil is a fat used in cooking.', 'Olive oil is made up of palmitic acid which is a weak acid found in plants and animals.', 'Rabies is a disease from an infected animal bite.', 'Rabies is treated by a shot containing immunoglobuin, a protein that is found in plasma cells.', 'Plasma cells are found in the bone marrow of humans.']
+Question: Can olive oil kill rabies?
+---
+Facts: ['Europa (moon) gets its name from the Greek Classical Mythology story.', 'Europa was a woman that Zeus was in love with, and he changed into a bull to deceive her.', 'Amunet is a primordial goddess in Ancient Egyptian religion.']
+Question: Is Europa (moon) name origin related to Amunet?
+---
+Facts: ['More boys were named Michael in the United States than any other name between 1954 and 1998.', 'Michael and its foreign variants were within the top 20 names in Canada, Australia, UK, and Europe in the 2010s.']
+Question: Is Michael an unpopular name in the United States?
+---
+
+Ensure that each of the evaluation questions gets answered.
+(TEMPLATE END)
+
+---
+
+Question: Is LG Electronics located in a city with an official bird that has a purplish/blue tail?
+Thoughts:
+1. LG Electronics is headquartered in Seoul.
+2. The official bird of Seoul is the Korean magpie.
+3. The Korean magpie has a purplish/blue colored tail.
+4. Therefore, LG Electronics is located in a city with an official bird that has a purplish/blue tail.
+Final Answer: Yes
+
+---
+
+Question: Are Aldi's foods discounted due to being out of date?
+Thoughts:
+1. Aldi cuts costs by charging for bags, buying in bulk, and by avoiding brand name items.
+2. Aldi removes spoiled or expired foods from their shelves immediately upon identification.
+3. Therefore, Aldi's foods are not discounted due to being out of date.
+Final Answer: No
+
+---
+
+Question: Can olive oil kill rabies?
+Thoughts:
+1. Olive oil is a fat used in cooking.
+2. Olive oil is made up of palmitic acid which is a weak acid found in plants and animals.
+3. Rabies is a disease from an infected animal bite.
+4. Rabies is treated by a shot containing immunoglobuin, a protein that is found in plasma cells.
+5. Plasma cells are found in the bone marrow of humans.
+6. However, olive oil does not contain immunoglobuin or any other substance that can kill rabies.
+7. Therefore, olive oil cannot kill rabies.
+Final Answer: No
+
+---
+
+Question: Is Europa (moon) name origin related to Amunet?
+Thoughts:
+1. Europa (moon) gets its name from the Greek Classical Mythology story.
+2. Europa was a woman that Zeus was in love with, and he changed into a bull to deceive her.
+3. Amunet is a primordial goddess in Ancient Egyptian religion.
+4. However, there is no direct connection between Europa (moon) and Amunet.
+5. Europa (moon) is named after Europa, the woman in the Greek myth, while Amunet is a primordial goddess in Ancient Egyptian religion.
+6. Therefore, Europa (moon) name origin is not related to Amunet.
+Final Answer: No
+
+---
+
+Question: Is Michael an unpopular name in the United States?
+Thoughts:
+1. More boys were named Michael in the United States than any other name between 1954 and 1998.
+2. Michael and its foreign variants were within the top 20 names in Canada, Australia, UK, and Europe in the 2010s.
+3. However, the popularity of the name Michael has declined in recent years.
+4. According to the Social Security Administration, Michael was the 12th most popular name for boys in the United States in 2020, down from its peak of 1st in 1967.
+5. Therefore, Michael is not an unpopular name in the United States.
+Final Answer: No
+
+-------------------------------------
+{'CORRECT': 18, 'INCORRECT': 2}
+Runtime: 425.26163625717163 seconds

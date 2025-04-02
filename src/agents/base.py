@@ -9,8 +9,9 @@ class BaseAgent(ABC):
   def step(self):
     pass
 
+  @abstractmethod
   def done(self):
-    return self.task_idx >= 20
+    pass
   
   def reset(self):
     self.log_history = []
