@@ -50,8 +50,7 @@ Set your run configuration in the configs yaml file.
 
 Pass in the configuration name as an argument when running the script.
 
-**Example Configuration**:
-`config.py`:
+**Example ** `config.py`:
 ```
 configuration_name:
   model: "Mistral7B"
