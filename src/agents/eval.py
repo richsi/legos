@@ -41,19 +41,40 @@ class EvalAgent(BaseAgent):
     if reset:
       self.reset()
 
-    all_train_exemplars = []
+    # Dict mapping to correct exemplar getter function
+    exemplar_getter = {
+      "StrategyQA": self.get_strategyqa_exemplars,
+      "GSM8K": self.get_gsm8k_exemplars,
+    }.get(self.benchmark)
 
-    for idx, row in self.train_exemplars.iterrows(): # ensure the exemplars are from the train dataset
-      all_train_exemplars.append(self.get_prompt(row))
+    # Check that benchmark is valid and function exists
+    if exemplar_getter is None:
+      raise ValueError(f"Unsupported benchmark: {self.benchmark}")
 
-    eval_path = os.path.join(os.getenv("DATA"), self.benchmark.lower(), self.eval_file)
+    # Formatting the exemplar to pass into prompt
+    all_exemplars = [exemplar_getter(row) for _, row in self.train_exemplars.iterrows()]
+    train_data = "\n---\n".join(all_exemplars)
+
+    # Getting the eval file path
+    eval_path = os.path.join(os.getenv(self.benchmark.upper()), self.eval_file)
+    # Getting eval file contents
     self.eval_df = pd.read_csv(eval_path)
-    for idx, row in self.eval_df.iterrows(): # ensure the exemplars are from the eval dataset
-      self.all_test_exemplars.append(self.get_prompt_test(row))
-    self.num_tasks = len(self.all_test_exemplars) # setting num_tasks for task_idx
 
-    train_data = "\n---\n".join(all_train_exemplars)
-    # LLM api call to get model output
+    # Dict mapping to correct test exemplar getter function
+    test_exemplar_getter = {
+      "StrategyQA": self.get_strategyqa_test_exemplars,
+      "GSM8K": self.get_gsm8k_exemplars,
+    }.get(self.benchmark)
+
+    if test_exemplar_getter is None:
+      raise ValueError(f"Unsupported benchmark: {self.benchmark}")
+
+    # Formatting the test exemplars to pass into prompt
+    self.all_test_exemplars = [test_exemplar_getter(row) for _, row in self.eval_df.iterrows()]
+    # Assigning num tasks
+    self.num_tasks = len(self.all_test_exemplars) 
+
+    # Getting insights from same run_name from logs/insight_extraction
     insights = utils.get_insights(self.model, self.benchmark, self.run_name)
     print(f"INSIGHTS:\n{insights}")
 
@@ -76,7 +97,7 @@ class EvalAgent(BaseAgent):
       "matches": [self.stats["CORRECT"]],
       "mismatches": [self.stats["INCORRECT"] + self.stats["FAILED"]],
       "EM": [EM],
-      "train_data_len": [len(all_train_exemplars)],
+      "train_data_len": [len(all_exemplars)],
       "test_data_len": [len(self.all_test_exemplars)],
       "model": [self.model],
       "dataset": [self.benchmark],
@@ -103,11 +124,9 @@ class EvalAgent(BaseAgent):
       - Generated insights from the exemplars
       - Final evaluation answers
     """
-
-    batch_prompts = []
-    batch_real_answers = []
-    batch_indices = []
-
+    # batch_prompts = []
+    # batch_real_answers = []
+    # batch_indices = []
     # batching the data
     # for i in range(kwargs["batch_size"]):
     #   if self.done():
@@ -120,37 +139,13 @@ class EvalAgent(BaseAgent):
     #   self.task_idx += 1
 
     kwargs["test_data"] = self.all_test_exemplars[self.task_idx]
+    # Formatting prompt for LLM
     prompt = utils.format_prompt(self.phase, self.benchmark, **kwargs) 
-
+    # Querying the LLM
     llm_output = utils.query(self.model, prompt)
-    print(len(prompt), len(llm_output))
     print("SPLICED:\n",llm_output[len(prompt):])
-
-    final_answer = None
-    output_lines = llm_output[len(prompt):].splitlines()
-    for line in output_lines:
-      lower_line = line.lower()
-      if "final" in lower_line and "answer" in lower_line:
-        if "yes" in lower_line:
-          final_answer = "Yes"
-        elif "no" in lower_line:
-          final_answer = "No"
-        if final_answer is not None:
-          break
-
-    print("\nFinal answer: ", final_answer)
-    # recording stats
-    real_answer = self.eval_df.iloc[self.task_idx]["answer"]
-    print("Real answer: ", real_answer)
-
-    if final_answer is None:
-      key = "FAILED"
-    elif final_answer == real_answer:
-      key = "CORRECT"
-    else:
-      key = "INCORRECT"
-    self.stats[key] += 1
-
+    # Recording the stats
+    self.record_stats(llm_output, len(prompt))
     # Combine all elements into an experience log entry
     experience_log = (
         f"{self.model} Task {self.task_idx}:\n{llm_output}\n\n"
@@ -162,10 +157,10 @@ class EvalAgent(BaseAgent):
     self.task_idx += 1
 
   def done(self):
-    return self.task_idx >= self.num_tasks
-    # return self.task_idx >= 5
+    # return self.task_idx >= self.num_tasks
+    return self.task_idx >= 5
 
-  def get_prompt(self, exemplar):
+  def get_strategyqa_exemplars(self, exemplar):
     string = "Facts: "
     for fact in exemplar["facts"]:
       string += fact
@@ -177,11 +172,17 @@ class EvalAgent(BaseAgent):
     string += "The answer is: " + exemplar["answer"]
     return string
   
-  def get_prompt_test(self, exemplar):
+  def get_strategyqa_test_exemplars(self, exemplar):
     string = "Facts: "
     for fact in exemplar["facts"]:
       string += fact
     string += "\nQuestion: " + exemplar["question"]
+    return string
+
+  def get_gsm8k_exemplars(self, exemplar):
+    answer = re.sub("<<.*?>>", "", exemplar["answer"])
+    answer = answer.replace("####", "Final Answer:")
+    string = "Question: " + exemplar["question"] + "\n" + answer + "\n\n"
     return string
 
   def get_final_answer(self, text):
@@ -191,3 +192,42 @@ class EvalAgent(BaseAgent):
       final_answer = match.group(1)
     else:
       raise Exception(f"No final answer for task: {self.task_idx}")
+
+  def record_stats(self, output, prompt_len):
+    final_answer = None
+    output_lines = output[prompt_len:].splitlines()
+
+    def _update_stats(final_answer, real_answer):
+      if final_answer is None:
+        key = "FAILED"
+      elif final_answer == real_answer:
+        key = "CORRECT"
+      else:
+        key = "INCORRECT"
+      self.stats[key] += 1
+
+    if self.benchmark == "StrategyQA":
+      for line in output_lines:
+        lower_line = line.lower()
+        if "final" in lower_line and "answer" in lower_line:
+          if "yes" in lower_line:
+            final_answer = "Yes"
+          elif "no" in lower_line:
+            final_answer = "No"
+          if final_answer is not None:
+            break
+      real_answer = self.eval_df.iloc[self.task_idx]["answer"]
+      print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
+      _update_stats(final_answer, real_answer)
+    elif self.benchmark == "GSM8K":
+      for line in output_lines:
+        lower_line = line.lower()
+        if "final" in lower_line and "answer" in lower_line:
+          final_answer = line.partition(":")[2].strip() # getting the half after the colon
+        if final_answer is not None:
+          break
+      real_answer_raw = self.eval_df.iloc[self.task_idx]["answer"]
+      matches = re.search(r"####\s*(\d+)", real_answer_raw)
+      real_answer = matches.group(1)
+      print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
+      _update_stats(final_answer, real_answer)

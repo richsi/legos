@@ -1,5 +1,6 @@
 import time
 import pandas as pd
+import re
 from src.agents.base import BaseAgent
 import src.utils as utils
 import ast
@@ -61,9 +62,15 @@ class InsightAgent(BaseAgent):
       - Generated insights from the exemplars
     """
 
-    all_exemplars = []
-    for idx, row in self.exemplars.iterrows():
-      all_exemplars.append(self.get_prompt(row))
+    exemplar_getter = {
+      "StrategyQA": self.get_strategyqa_exemplars,
+      "GSM8K": self.get_gsm8k_exemplars,
+    }.get(self.benchmark)
+
+    if exemplar_getter is None:
+      raise ValueError(f"Unsupported benchmark: {self.benchmark}")
+
+    all_exemplars = [exemplar_getter(row) for _, row in self.exemplars.iterrows()]
     exemplars = "\n---\n".join(all_exemplars)
 
     # LLM api call to get model output
@@ -85,7 +92,7 @@ class InsightAgent(BaseAgent):
     self.log_history.append(experience_log)
 
   
-  def get_prompt(self, exemplar):
+  def get_strategyqa_exemplars(self, exemplar):
     string = "Facts: "
     for fact in exemplar["facts"]:
       string += fact
@@ -97,6 +104,11 @@ class InsightAgent(BaseAgent):
     string += "The answer is: " + exemplar["answer"]
     return string
 
+  def get_gsm8k_exemplars(self, exemplar):
+    answer = re.sub("<<.*?>>", "", exemplar["answer"])
+    answer = answer.replace("####", "Final Answer:")
+    string = "Question: " + exemplar["question"] + "\n" + answer + "\n\n"
+    return string
 
   def done(self):
     """

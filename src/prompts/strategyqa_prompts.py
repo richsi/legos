@@ -29,9 +29,8 @@ Here is your existing rule set:
 RULE 1: Break the question into its fundamental components by isolating key sub-questions and identifying the underlying assumptions or facts required to solve each step.
 RULE 2: When decomposing a question, identify the key elements of the question and the facts provided to ensure Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
 RULE 3: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
-...
------
-Now, you are given a StrategyQA task. Each task has:
+
+Now, you are given StrategyQA dataset tasks. Each task has:
 • A Question
 • A set of Facts
 • An Answer
@@ -44,9 +43,8 @@ Your job is to generate between 5 and 15 concise new insights (i.e., rules or di
 3. Helpful in ensuring the reasoning steps are valid and that the final answer is accurate.
 
 Examples:
-(START OF EXAMPLES)
 {}
-(END OF EXAMPLES)
+
 
 Based on the provided task description and examples, generate between 5 and 15 new or updated rules.
 Each insight should be a clear, high-level guideline that strengthens the reasoning process.

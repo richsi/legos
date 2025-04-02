@@ -21,5 +21,10 @@ llama1b-strategyqa:
 
 llama1b-gsm8k:
   model: "Llama1B"
-  benchmark: "GSM8k"
+  benchmark: "GSM8K"
   exemplars: "gsm8k_static_subset_selection.csv"
+
+llama1b-tabmwp:
+  model: "Llama1B"
+  benchmark: "TABMWP"
+  exemplars: "tabmwp_static_subset_selection_mistral.csv"

@@ -5,6 +5,9 @@ export BASE_DIR
 export CONFIGS_DIR="$BASE_DIR/configs"
 
 export DATA="$BASE_DIR/data"
-export GSM8K="$DATA/gsm8k"
 export STRATEGYQA="$DATA/strategyqa"
+export GSM8K="$DATA/gsm8k"
+export TABMWP="$DATA/tabmwp"
+export AQUARAT="$DATA/aquarat"
+
 export LOGS="$BASE_DIR/logs"

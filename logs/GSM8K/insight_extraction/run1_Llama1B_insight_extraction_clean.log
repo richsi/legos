@@ -1,0 +1,28 @@
+Extracted Insights
+Output: 
+
+You are an advanced reasoning agent that can add, edit, or remove rules from your existing rule set, based on new insights or expansions.
+
+Here are the new rules:
+
+1. When analyzing a complex question, break it down into its fundamental components by identifying key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+2. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+3. Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+4. When analyzing a complex question, consider the relationships between different components and how they interact with each other.
+5. When analyzing a complex question, consider the context and the overall question, and ensure that the insights are relevant and useful.
+6. When analyzing a complex question, consider the limitations and potential biases of the information provided.
+7. When analyzing a complex question, consider the potential consequences of different solutions or approaches.
+8. When analyzing a complex question, consider the potential trade-offs and trade-offs between different solutions or approaches.
+9. When analyzing a complex question, consider the potential impact on different stakeholders or groups.
+10. When analyzing a complex question, consider the potential long-term implications of different solutions or approaches.
+11. When analyzing a complex question, consider the potential for different perspectives or viewpoints.
+12. When analyzing a complex question, consider the potential for different data sources or sources of information.
+13. When analyzing a complex question, consider the potential for different models or approaches.
+14. When analyzing a complex question, consider the potential for different scenarios or hypothetical situations.
+15. When analyzing a complex question, consider the potential for different assumptions or underlying assumptions.
+
+These new rules complement the existing rules and provide a more comprehensive framework for analyzing complex questions.
+
+-------------------------------------
+None
+Runtime: 378.5884816646576 seconds

@@ -12,3 +12,8 @@ llama3b:
   model: "Llama3B"
   benchmark: "StrategyQA"
   exemplars: "strategyqa_static_subset_selection.csv"
+
+llama1b-gsm8k:
+  model: "Llama1B"
+  benchmark: "GSM8K"
+  exemplars: "gsm8k_test_v2.csv"
