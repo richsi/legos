@@ -9,24 +9,19 @@ import src.utils as utils
 class EvalAgent(BaseAgent):
   def __init__(
     self,
-    model: str,
-    phase: str,
-    benchmark: str,
-    run_name: str,
     **kwargs
   ):
     # Default variables
-    self.model = model
-    self.phase = phase
-    self.benchmark = benchmark
-    self.run_name = run_name
-    self.train_exemplars = kwargs["exemplars"]
-    self.num_tasks = 0
+    self.model = kwargs["model"]
+    self.phase = kwargs["phase"]
+    self.benchmark = kwargs["benchmark"]
+    self.run_name = kwargs["run_name"]
+    self.train_exemplars = pd.read_csv(os.path.join(os.getenv(kwargs["benchmark"].upper()), kwargs["train"])) # pd.DataFrame type
 
+    self.num_tasks = 0
     self.log_history = []          
     self.task_idx = 0                 # Tracks current task index 
     self.runtime = 0
-    self.gpu_usage = []
     self.stats = {"CORRECT": 0, "INCORRECT": 0, "FAILED":0}
 
     self.eval_file = kwargs["eval"]
@@ -45,6 +40,7 @@ class EvalAgent(BaseAgent):
     exemplar_getter = {
       "StrategyQA": self.get_strategyqa_exemplars,
       "GSM8K": self.get_gsm8k_exemplars,
+      "TabMWP": self.get_tabmwp_exemplars,
     }.get(self.benchmark)
 
     # Check that benchmark is valid and function exists
@@ -52,8 +48,8 @@ class EvalAgent(BaseAgent):
       raise ValueError(f"Unsupported benchmark: {self.benchmark}")
 
     # Formatting the exemplar to pass into prompt
-    all_exemplars = [exemplar_getter(row) for _, row in self.train_exemplars.iterrows()]
-    train_data = "\n---\n".join(all_exemplars)
+    all_train_exemplars = [exemplar_getter(row) for _, row in self.train_exemplars.iterrows()]
+    train_data = "\n---\n".join(all_train_exemplars)
 
     # Getting the eval file path
     eval_path = os.path.join(os.getenv(self.benchmark.upper()), self.eval_file)
@@ -64,6 +60,7 @@ class EvalAgent(BaseAgent):
     test_exemplar_getter = {
       "StrategyQA": self.get_strategyqa_test_exemplars,
       "GSM8K": self.get_gsm8k_exemplars,
+      "TabMWP": self.get_tabmwp_exemplars,
     }.get(self.benchmark)
 
     if test_exemplar_getter is None:
@@ -97,7 +94,7 @@ class EvalAgent(BaseAgent):
       "matches": [self.stats["CORRECT"]],
       "mismatches": [self.stats["INCORRECT"] + self.stats["FAILED"]],
       "EM": [EM],
-      "train_data_len": [len(all_exemplars)],
+      "train_data_len": [len(all_train_exemplars)],
       "test_data_len": [len(self.all_test_exemplars)],
       "model": [self.model],
       "dataset": [self.benchmark],
@@ -113,7 +110,7 @@ class EvalAgent(BaseAgent):
       self.stats, 
       self.runtime,
       results_dict
-    )  # Once done with all tasks, save logs to txt file
+    )  
 
 
   def step(self, **kwargs):
@@ -143,7 +140,7 @@ class EvalAgent(BaseAgent):
     prompt = utils.format_prompt(self.phase, self.benchmark, **kwargs) 
     # Querying the LLM
     llm_output = utils.query(self.model, prompt)
-    print("SPLICED:\n",llm_output[len(prompt):])
+    # print("SPLICED:\n",llm_output[len(prompt):])
     # Recording the stats
     self.record_stats(llm_output, len(prompt))
     # Combine all elements into an experience log entry
@@ -185,6 +182,14 @@ class EvalAgent(BaseAgent):
     string = "Question: " + exemplar["question"] + "\n" + answer + "\n\n"
     return string
 
+  def get_tabmwp_exemplars(self, exemplar):
+    choices_str = "Please select from the following options: " + exemplar["choices"] \
+                  if type(exemplar["choices"]) == str else ""
+    string = "\nTable:\n" + exemplar["table"] + "\nQuestion:" + exemplar["question"] \
+              + choices_str + "\nAnswer:" + exemplar["solution"] + "\nThe answer is:" \
+              + exemplar["answer"]
+    return string
+
   def get_final_answer(self, text):
     pattern = r"Final Answer:\s*(.*)"
     match = re.search(pattern, text)
@@ -195,7 +200,9 @@ class EvalAgent(BaseAgent):
 
   def record_stats(self, output, prompt_len):
     final_answer = None
-    output_lines = output[prompt_len:].splitlines()
+    output_lines = output[prompt_len:].splitlines()[::-1] # start backwards since final answer is more likely to be towards end
+
+    print("OUTPUT_LINES: ", output_lines)
 
     def _update_stats(final_answer, real_answer):
       if final_answer is None:
@@ -207,7 +214,7 @@ class EvalAgent(BaseAgent):
       self.stats[key] += 1
 
     if self.benchmark == "StrategyQA":
-      for line in output_lines:
+      for line in output_lines: 
         lower_line = line.lower()
         if "final" in lower_line and "answer" in lower_line:
           if "yes" in lower_line:
@@ -229,5 +236,15 @@ class EvalAgent(BaseAgent):
       real_answer_raw = self.eval_df.iloc[self.task_idx]["answer"]
       matches = re.search(r"####\s*(\d+)", real_answer_raw)
       real_answer = matches.group(1)
+      print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
+      _update_stats(final_answer, real_answer)
+    elif self.benchmark == "TabMWP":
+      for line in output_lines:
+        lower_line = line.lower()
+        if "final" in lower_line and "answer" in lower_line:
+          final_answer = line.partition(":")[2].strip() # getting the half after the colon
+        if final_answer is not None:
+          break
+      real_answer= self.eval_df.iloc[self.task_idx]["answer"]
       print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)

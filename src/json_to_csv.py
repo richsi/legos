@@ -15,8 +15,13 @@ if __name__ == "__main__":
     data = json.load(f)
 
   
-  df = pd.DataFrame(data)
 
+  if args[0] == "tabmwp":
+    df = pd.DataFrame.from_dict(data, orient='index')
+  else:
+    df = pd.DataFrame(data)
+
+  
   save_file_name = json_file[:-4] + "csv"
   save_file_path = os.path.join(env_path, save_file_name)
 

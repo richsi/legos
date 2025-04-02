@@ -1,5 +1,4 @@
-from . import strategyqa_prompts
-from . import gsm8k_prompts
+from . import strategyqa_prompts, gsm8k_prompts, tabmwp_prompts
 
 PROMPTS = dict(
   # StrategyQA
@@ -10,4 +9,8 @@ PROMPTS = dict(
   # GSM8K
   GSM8K_insight_extraction=gsm8k_prompts.GSM8K_IE_PROMPT,
   GSM8K_eval=gsm8k_prompts.GSM8K_EVAL_PROMPT,
+
+  # TabMWP
+  TabMWP_insight_extraction=tabmwp_prompts.TABMWP_IE_PROMPT,
+  TabMWP_eval=tabmwp_prompts.TABMWP_EVAL_PROMPT,
 )

@@ -7,11 +7,11 @@ RULE 1: Break the question into its fundamental components by isolating key sub-
 RULE 2: When decomposing a question, identify the key elements of the question and the facts provided to ensure Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
 RULE 3: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
 
-Now, you are given GSM8K dataset tasks. Each task has:
+Now, you are given mathematical tasks from the GSM8K dataset. Each task has:
 • A Question
 • An Answer
 
-Your job is to generate between 5 and 15 concise new insights (i.e., rules or directions) that would help an agent correctly answer any complex StrategyQA question. Each new rule should be:
+Your job is to generate between 5 and 15 concise new insights (i.e., rules or directions) that would help an agent correctly answer any complex GSM8K question. Each new rule should be:
 Examples: 
 {}
 

@@ -1,3 +1,4 @@
+import os
 import time
 import pandas as pd
 import re
@@ -7,27 +8,18 @@ import ast
 from src.models import QUERY
 
 class InsightAgent(BaseAgent):
-  def __init__(
-    self,
-    model: str,
-    phase: str,
-    benchmark: str,
-    run_name: str,
-    **kwargs
-  ):
+  def __init__(self, **kwargs):
     # Default variables
-    self.model = model
-    self.phase = phase
-    self.benchmark = benchmark
-    self.run_name = run_name
-    self.exemplars = kwargs["exemplars"]
-    self.num_tasks = len(kwargs["exemplars"])
+    self.model = kwargs["model"]
+    self.phase = kwargs["phase"]
+    self.benchmark = kwargs["benchmark"]
+    self.run_name = kwargs["run_name"]
+    self.exemplars = pd.read_csv(os.path.join(os.getenv(kwargs["benchmark"].upper()), kwargs["train"])) # pd.DataFrame type
 
+    self.num_tasks = len(kwargs["train"])
     self.log_history = []          
     self.task_idx = 0                 # Tracks current task index 
-    self.reflection_idx = 0           # Tracks current reflection index
     self.runtime = 0
-    self.gpu_usage = []
     self.stats = None
 
 
@@ -65,6 +57,7 @@ class InsightAgent(BaseAgent):
     exemplar_getter = {
       "StrategyQA": self.get_strategyqa_exemplars,
       "GSM8K": self.get_gsm8k_exemplars,
+      "TabMWP": self.get_tabmwp_exemplars,
     }.get(self.benchmark)
 
     if exemplar_getter is None:
@@ -108,6 +101,14 @@ class InsightAgent(BaseAgent):
     answer = re.sub("<<.*?>>", "", exemplar["answer"])
     answer = answer.replace("####", "Final Answer:")
     string = "Question: " + exemplar["question"] + "\n" + answer + "\n\n"
+    return string
+
+  def get_tabmwp_exemplars(self, exemplar):
+    choices_str = "Please select from the following options: " + exemplar["choices"] \
+                  if type(exemplar["choices"]) == str else ""
+    string = "\nTable:\n" + exemplar["table"] + "\nQuestion:" + exemplar["question"] \
+              + choices_str + "\nAnswer:" + exemplar["solution"] + "\nThe answer is:" \
+              + exemplar["answer"]
     return string
 
   def done(self):
