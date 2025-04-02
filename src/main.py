@@ -33,16 +33,15 @@ def main():
   kwargs["exemplars"] = pd.read_csv(exemplars_file)
 
   # Initializing model
-  insight_agent = AGENT[phase](
+  agent = AGENT[phase](
     model=model,
     phase=phase,
     benchmark=benchmark,
     run_name=run_name,
-    # num_reflections=num_reflections
     **kwargs
   )
 
-  insight_agent.run()
+  agent.run()
 
 if __name__ == "__main__":
   main()

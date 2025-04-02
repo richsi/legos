@@ -1,3 +1,7 @@
 strategyqa: 
   train: "strategyqa_static_subset_selection.csv"
   eval: "strategyqa_test.csv"
+
+gsm8k:
+  train: "gsm8k_static_subset_selection.csv"
+  eval: "gsm8k_test_v2.csv"
