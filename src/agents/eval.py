@@ -63,13 +63,9 @@ class EvalAgent(BaseAgent):
     )
 
     start_time = time.time()
-    counter = 0
     while not self.done():
       print(f"STARTING TASK {self.task_idx}\n")
       self.step(**kwargs)
-      if counter == 1:
-        break
-      counter += 1
     end_time = time.time()
     self.runtime = end_time - start_time
 
