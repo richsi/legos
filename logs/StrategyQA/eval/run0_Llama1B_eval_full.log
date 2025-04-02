@@ -1,0 +1,473 @@
+Llama1B Task 0:
+
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+1. When analyzing a complex question, break it down into its fundamental components by identifying key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+2. Verify that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+3. Ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+4. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+5. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+6. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+7. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+8. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+9. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+10. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+11. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+12. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+13. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+14. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+15. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Now, you will be provided with the evaluation question and fact(s) below.
+Facts: ['Human overpopulation results from the birthrate exceeding the death rate in a country.', 'Rusev is a professional wrestler who was born in Bulgaria.', 'The population of Bulgaria decreased by.7% in 2018.']
+Question: Does Rusev have to worry about human overpopulation in his homeland?
+(TEMPLATE END)
+Please provide your response in the specified format.
+
+## Step 1: Break down the question into its fundamental components
+The question is: Does Rusev have to worry about human overpopulation in his homeland?
+
+## Step 2: Identify the underlying assumptions or facts required to solve each step
+- The first fact is about human overpopulation: This implies that the population of Bulgaria is increasing.
+- The second fact is about Rusev's birthplace: Rusev was born in Bulgaria.
+- The third fact is about the population decrease in Bulgaria: The population of Bulgaria decreased by.7% in 2018.
+
+## Step 3: Analyze the relationship between the facts and the question
+- The fact that the population of Bulgaria decreased by.7% in 2018 suggests that the population is not growing, which is a key indicator of human overpopulation.
+- The fact that Rusev was born in Bulgaria implies that he is a Bulgarian citizen, which could be relevant to the question of whether he has to worry about human overpopulation in his homeland.
+
+## Step 4: Verify that the final answer is consistent with the step-by-step decomposition
+- The final answer is: Yes
+
+The final answer is: Yes.
+
+-------------------------------------
+Llama1B Task 1:
+
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+1. When analyzing a complex question, break it down into its fundamental components by identifying key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+2. Verify that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+3. Ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+4. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+5. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+6. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+7. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+8. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+9. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+10. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+11. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+12. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+13. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+14. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+15. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Now, you will be provided with the evaluation question and fact(s) below.
+Facts: ['God made Eve from a bone he removed from Adam.', 'Since Eve was made from Adam, they would have had similar DNA and been considered twins or at least siblings.', 'As the only humans at the time, they ended up starting a family together.']
+Question: Was Eve involved in an incestuous relationship?
+(TEMPLATE END)
+Please provide your response in the specified format.
+
+## Step 1: Break down the question into its fundamental components
+The question asks whether Eve was involved in an incestuous relationship. To answer this, we need to analyze the given facts and identify the key sub-questions.
+
+## Step 2: Identify the underlying assumptions or facts required to solve each step
+From the given facts, we can infer that Eve was made from Adam's bone. This implies that Eve and Adam were siblings or at least had a close genetic relationship.
+
+## Step 3: Verify that the final answer is consistent with the step-by-step decomposition
+Since Eve and Adam were siblings, it is possible that they could have had a close relationship, including an incestuous one. However, the given facts do not provide any direct evidence to support this conclusion.
+
+## Step 4: Cross-verify each reasoning step
+We need to verify that the final answer is consistent with the step-by-step decomposition. Since we have not yet identified any evidence to support an incestuous relationship, we cannot cross-verify any steps.
+
+## Step 5: Identify the underlying assumptions or facts required to solve each step
+From the given facts, we can infer that Eve and Adam were siblings. This implies that they had a close genetic relationship, which could potentially include an incestuous one.
+
+## Step 6: Verify that the final answer is consistent with the step-by-step decomposition
+Since we have identified that Eve and Adam were siblings, it is possible that they could have had a close relationship, including an incestuous one. However, the given facts do not provide any direct evidence to support this conclusion.
+
+## Step 7: Cross-verify each reasoning step
+We need to verify that the final answer is consistent with the step-by-step decomposition. Since we have not yet identified any evidence to support an incestuous relationship, we cannot cross-verify any steps.
+
+## Step 8: Identify the underlying assumptions or facts required to solve each step
+From the given facts, we can infer that Eve and Adam were siblings. This implies that they had a close genetic relationship, which could potentially include an incestuous one.
+
+## Step 9: Verify that the final answer is consistent with the step-by-step decomposition
+Since we have identified that Eve and Adam were siblings, it is possible that they could have had a close relationship, including an incestuous one. However, the given facts do not provide any direct evidence to support this conclusion.
+
+## Step 10: Cross-verify each reasoning step
+We need to verify that the final answer is consistent with the step-by-step decomposition. Since we have not yet identified any evidence to support an incestuous relationship, we cannot cross-verify any steps.
+
+## Step 11: Identify the underlying assumptions or facts required to solve each step
+From the given facts, we can infer that Eve and Adam were siblings. This implies that they had a close genetic relationship, which could potentially include an incestuous one.
+
+## Step 12: Verify that the final answer is consistent with the step-by-step decomposition
+Since we have identified that Eve and Adam were siblings, it is possible that they could have had a close relationship, including an incestuous one. However, the given facts do not provide any direct evidence to support this conclusion.
+
+## Step 13: Cross-verify each reasoning step
+We need to verify that the final answer is consistent with the step-by-step decomposition. Since we have not yet identified any evidence to support an incestuous relationship, we cannot cross-verify any steps.
+
+## Step 14: Identify the underlying assumptions or facts required to solve each step
+From the given facts, we can infer that Eve and Adam were siblings. This implies that they had a close genetic relationship, which could potentially include an incestuous one.
+
+## Step 15: Verify that the final answer is consistent with the step-by-step decomposition
+Since we have identified that Eve and Adam were siblings, it is possible that they could have had a close relationship, including an incestuous one. However, the given facts do not provide any direct evidence to support this conclusion.
+
+The final answer is: $\boxed{No}$
+
+-------------------------------------
+Llama1B Task 2:
+
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+1. When analyzing a complex question, break it down into its fundamental components by identifying key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+2. Verify that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+3. Ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+4. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+5. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+6. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+7. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+8. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+9. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+10. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+11. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+12. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+13. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+14. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+15. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Now, you will be provided with the evaluation question and fact(s) below.
+Facts: ['The Hague is in the Netherlands. ', 'The Hague is in the Western part of the Netherlands. ', 'The Netherlands borders the North Sea to its west. ']
+Question: Does The Hague border multiple bodies of water?
+(TEMPLATE END)
+Please provide your response in the specified format.
+
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+1. When analyzing a complex question, break it down into its fundamental components by identifying key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+2. Verify that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+3. Ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+4. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+5. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+6. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+7. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+8. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+9. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+10. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+11. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+12. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+13. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+14. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+15. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Now, you will be provided with the evaluation question and fact(s) below.
+Facts: ['The Hague is in the Netherlands. ', 'The Hague is in the Western part of the Netherlands. ', 'The Netherlands borders the North Sea to its west. ']
+Question: Does The Hague border multiple bodies of water?
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+1. When analyzing a complex question, break it down into its fundamental components by identifying key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+2. Verify that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+3. Ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+4. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+5. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+6. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+7. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+8. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+9. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+10. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+11. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+12. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+13. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+14. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+15. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: Does The Hague border multiple bodies of water?
+Thoughts: The fact that The Hague is in the Western part of the Netherlands suggests that it is likely to border multiple bodies of water. The fact that The Hague is in the Netherlands implies that it is a country with a coastline. The fact that The Netherlands borders the North Sea to its west supports the conclusion that The Hague borders multiple bodies of water.
+Final Answer: Yes
+
+(TEMPLATE END)
+
+-------------------------------------
+Llama1B Task 3:
+
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+1. When analyzing a complex question, break it down into its fundamental components by identifying key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+2. Verify that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+3. Ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+4. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+5. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+6. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+7. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+8. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+9. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+10. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+11. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+12. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+13. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+14. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+15. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Now, you will be provided with the evaluation question and fact(s) below.
+Facts: ['The deadliest war in history was World War II.', 'Over 56 million people died during World War II.', 'The population of France as of 2019 is 66 million.']
+Question: Could casualties from deadliest war rival France's population?
+(TEMPLATE END)
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+1. When analyzing a complex question, break it down into its fundamental components by identifying key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+2. Verify that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+3. Ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+4. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+5. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+6. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+7. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+8. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+9. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+10. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+11. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+12. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+13. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+14. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+15. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+(TEMPLATE START)
+Facts: ['The deadliest war in history was World War II.', 'Over 56 million people died during World War II.', 'The population of France as of 2019 is 66 million.']
+Question: Could casualties from deadliest war rival France's population?
+(TEMPLATE END)
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+1. When analyzing a complex question, break it down into its fundamental components by identifying key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+2. Verify that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+3. Ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+4. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+5. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+6. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+7. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+8. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+9. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+10. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+11. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+12. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+13. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+14. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+15. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+(TEMPLATE START)
+Facts: ['The deadliest war in history was World War II.', 'Over 56 million people died during World War II.', 'The population of France as of 2019 is 66 million.']
+Question: Could casualties from deadliest war rival France's population?
+(TEMPLATE END)
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+1. When analyzing a complex question, break it down into its fundamental components by identifying key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+2. Verify that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+3. Ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+4. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+5. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+6. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+7. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+8. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+9. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+10. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+11. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+12. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+13. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+14. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+15. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+(TEMPLATE START)
+Facts: ['The deadliest war in history was World War II.', 'Over 56 million people died during World War II.', 'The population of France as of 2019 is 66 million.']
+Question: Could casualties from deadliest war rival France's population?
+(TEMPLATE END)
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+1. When analyzing a complex question, break it down into its fundamental components by identifying key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+2. Verify that the final
+
+-------------------------------------
+Llama1B Task 4:
+
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+1. When analyzing a complex question, break it down into its fundamental components by identifying key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+2. Verify that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+3. Ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+4. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+5. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+6. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+7. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+8. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+9. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+10. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+11. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+12. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+13. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+14. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+15. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Now, you will be provided with the evaluation question and fact(s) below.
+Facts: ['The most common word in the English language is "the".', 'The second most common word in the English language is "be".']
+Question: Is letter C crucial to spelling the two most common words in English language?
+(TEMPLATE END)
+Please provide your response in the specified format.
+
+Question: Is letter C crucial to spelling the two most common words in English language?
+
+Thoughts: 
+- The most common word in the English language is "the".
+- The second most common word in the English language is "be".
+- Letter C is not a common word in the English language.
+- Letter C is not a crucial factor in spelling the two most common words in English language.
+
+Final Answer: No
+
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+1. When analyzing a complex question, break it down into its fundamental components by identifying key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+2. Verify that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+3. Ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+4. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+5. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+6. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+7. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+8. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+9. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+10. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+11. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+12. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+13. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+14. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+15. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Now, you will be provided with the evaluation question and fact(s) below.
+Facts: ['The most common word in the English language is "the".', 'The second most common word in the English language is "be".']
+Question: Is letter C crucial to spelling the two most common words in English language?
+
+Thoughts: 
+- The most common word in the English language is "the".
+- The second most common word in the English language is "be".
+- Letter C is not a common word in the English language.
+- Letter C is not a crucial factor in spelling the two most common words in English language.
+
+Final Answer: No
+
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+1. When analyzing a complex question, break it down into its fundamental components by identifying key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+2. Verify that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+3. Ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+4. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+5. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+6. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+7. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+8. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+9. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+10. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+11. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+12. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+13. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+14. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+15. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Now, you will be provided with the evaluation question and fact(s) below.
+Facts: ['The most common word in the English language is "the".', 'The second most common word in the English language is "be".']
+Question: Is letter C crucial to spelling the two most common words in English language?
+
+Thoughts: 
+- The most common word in the English language is "the".
+- The second most common word in the English language is "be".
+- Letter C is not a common word in the English language.
+- Letter C is not a crucial factor in spelling the two most common words in English language.
+
+Final Answer: No
+
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+1. When analyzing a complex question, break it down into its fundamental components by identifying key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+2. Verify that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+3. Ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+4. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+5. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+6. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+7. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+8. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+9. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+10. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+11. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+12. Use the facts to verify that the final answer is consistent with the step-by-step decomposition, confirming that all parts contribute coherently to the final conclusion.
+13. Use the facts to ensure that the reasoning steps are valid and that the final answer aligns with the available evidence and the overall question context.
+14. Use the facts to identify the underlying assumptions or facts required to solve each step, ensuring that the reasoning is sound and logical.
+15. Use the facts to verify that the final answer
+
+-------------------------------------
+{'CORRECT': 1, 'INCORRECT': 4, 'FAILED': 0}
+Runtime: 83.71505331993103 seconds

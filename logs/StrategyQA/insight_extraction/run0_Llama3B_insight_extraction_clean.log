@@ -1,0 +1,13 @@
+Extracted Insights
+Output: 
+
+(START OF NEW RULES)
+RULE 1: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+RULE 2: When decomposing a question, identify the key elements of the question and the facts provided to ensure Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+RULE 3: Break the question into its fundamental components by isolating key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+RULE 4: Verify that the reasoning steps are valid by checking that each step is logically connected to the previous and next steps, and that the final answer is not contradicted by any previous steps.
+RULE 5: When evaluating the answer, consider the context in which the question was asked and the specific requirements of the question, such as any constraints or assumptions that
+
+-------------------------------------
+None
+Runtime: 13.10611605644226 seconds

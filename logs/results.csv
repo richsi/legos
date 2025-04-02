@@ -1,1 +1,1 @@
-matches,mismatches,EM,train_data_len,test_data_len,model,dataset,run_name3,2,60.0,50,490,Mistral7B,StrategyQA,run03,2,60.0,50,490,Mistral7B,StrategyQA,run018,2,90.0,50,490,Mistral7B,StrategyQA,run0
+matches,mismatches,EM,train_data_len,test_data_len,model,dataset,run_name

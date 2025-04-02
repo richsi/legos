@@ -7,3 +7,8 @@ llama1b:
   model: "Llama1B"
   benchmark: "StrategyQA"
   exemplars: "strategyqa_static_subset_selection.csv"
+
+llama3b:
+  model: "Llama3B"
+  benchmark: "StrategyQA"
+  exemplars: "strategyqa_static_subset_selection.csv"

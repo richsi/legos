@@ -30,7 +30,7 @@ Sub-question 1: What do people with celiac disease have to avoid?
 Sub-question 2: Is #1 absent from all purpose flour?
 The answer is: No
 ---
-Facts: ['Adam Mickiewicz was a Polish poet. ', "Adam Mickiewicz 's sonnet sequence focuses heavily on the culture and Islamic religion of the Crimean Tatars."]
+Facts: ['Adam Mickiewicz was a Polish poet. ', "Adam Mickiewicz's sonnet sequence focuses heavily on the culture and Islamic religion of the Crimean Tatars."]
 Question: Did a Polish poet write sonnets about Islamic religion?
 Answer:
 Sub-question 1: What were the major focus of Adam Mickiewicz's sonnets?
@@ -363,7 +363,7 @@ Sub-question 1: Where is Mount Sharp located?
 Sub-question 2: Does #1 have enough atmospheric oxygen to support the life of animals, such as mountain goats?
 The answer is: No
 ---
-Facts: ["ABBA was a 1970's music group that specialized in Disco music.", 'Pop artist Dua Lipa\'s 2020 album, Future Nostalgia, was described by Rolling Stone as , "The Disco Liberation We Need."', 'Magnetic Magazine released an article in 2020 entitled, "The Best Disco and Funk Tracks of 2020."']
+Facts: ["ABBA was a 1970's music group that specialized in Disco music.", 'Pop artist Dua Lipa\'s 2020 album, Future Nostalgia, was described by Rolling Stone as, "The Disco Liberation We Need."', 'Magnetic Magazine released an article in 2020 entitled, "The Best Disco and Funk Tracks of 2020."']
 Question: Is ABBA's 1970's genre still relevant today?
 Answer:
 Sub-question 1: What genre of music did music group ABBA specialize in in the 1970's?
@@ -417,23 +417,13 @@ Ensure that there are no empty rules.
 Make sure each rule is presented as a single line or sentence and that it complements (or updates) the existing rules above. Avoid repetition.
 Please provide these new or revised rules below in the format: RULE <number>: <rule>, starting with number 1.
 (TEMPLATE END)
-
-RULE 1: Understand the context of the question before applying any existing rules.
-RULE 2: Identify the key sub-questions and underlying assumptions before drawing any conclusions.
-RULE 3: Use logical deduction to draw inferences from the given information.
-RULE 4: Verify that the reasoning process is consistent with the question context and all available information.
-RULE 5: Ensure that the final answer is a logical conclusion based on the step-by-step reasoning process.
-RULE 6: Use analogies and similarities to draw connections between seemingly unrelated concepts.
-RULE 7: Consider the potential implications of different scenarios and their impact on the overall question context.
-RULE 8: Use counter-examples to test the validity of assumptions and conclusions.
-RULE 9: Evaluate the reliability and credibility of sources when using external information.
-RULE 10: Use common sense and intuition to guide the reasoning process when necessary.
-RULE 11: Consider the potential biases and limitations of the given information.
-RULE 12: Use analogical reasoning to draw connections between seemingly unrelated concepts.
-RULE 13: Use logical deduction to draw inferences from the given information.
-RULE 14: Verify that the reasoning process is consistent with the question context and all available information.
-RULE 15: Ensure that the final answer is a logical conclusion based on the step-by-step reasoning process.
+(START OF NEW RULES)
+RULE 1: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+RULE 2: When decomposing a question, identify the key elements of the question and the facts provided to ensure Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+RULE 3: Break the question into its fundamental components by isolating key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+RULE 4: Verify that the reasoning steps are valid by checking that each step is logically connected to the previous and next steps, and that the final answer is not contradicted by any previous steps.
+RULE 5: When evaluating the answer, consider the context in which the question was asked and the specific requirements of the question, such as any constraints or assumptions that
 
 -------------------------------------
 None
-Runtime: 74.78394389152527 seconds
+Runtime: 13.10611605644226 seconds

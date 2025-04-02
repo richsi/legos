@@ -95,19 +95,22 @@ def query(model: str, prompt: str):
   return QUERY[model](prompt)
 
 
-
 def get_insights(model: str, benchmark: str, run_name: str):
   import os
   import re
-  file_name = "_".join([run_name, model, "insight_extraction", "clean.log"])
+  file_name = f"{run_name}_{model}_insight_extraction_clean.log"
   insights_path = os.path.join("logs", benchmark, "insight_extraction", file_name)
-  
+  # Pattern to match lines that start with "RULE" or a digit (e.g., "1." or "2.")
+  rule_pattern = re.compile(r'^(RULE|\d+\.)', re.IGNORECASE)
+    
   with open(insights_path, "r") as f:
-     insights = []
-     for line in f:
-        if re.match(r'^\d+\.\s', line):
-          insights.append(line.strip())
+    insights = []
+    for line in f:
+      # Check if the line starts with "RULE" or a digit.
+      if rule_pattern.match(line.lstrip()):
+        insights.append(line.strip())
   return "\n".join(insights)
+
 
 
 def self_consistency():

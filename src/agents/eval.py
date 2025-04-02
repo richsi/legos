@@ -27,7 +27,7 @@ class EvalAgent(BaseAgent):
     self.task_idx = 0                 # Tracks current task index 
     self.runtime = 0
     self.gpu_usage = []
-    self.stats = {"CORRECT": 0, "INCORRECT": 0}
+    self.stats = {"CORRECT": 0, "INCORRECT": 0, "FAILED":0}
 
     self.eval_file = kwargs["eval"]
     self.eval_df = None
@@ -55,6 +55,7 @@ class EvalAgent(BaseAgent):
     train_data = "\n---\n".join(all_train_exemplars)
     # LLM api call to get model output
     insights = utils.get_insights(self.model, self.benchmark, self.run_name)
+    print(f"INSIGHTS:\n{insights}")
 
     kwargs = dict(
       exemplars=train_data,
@@ -69,11 +70,11 @@ class EvalAgent(BaseAgent):
     end_time = time.time()
     self.runtime = end_time - start_time
 
-    EM = self.stats["CORRECT"] / (self.stats["CORRECT"] + self.stats["INCORRECT"]) * 100 
+    EM = self.stats["CORRECT"] / (self.stats["CORRECT"] + self.stats["INCORRECT"] + self.stats["FAILED"]) * 100 
 
     results_dict = {
       "matches": [self.stats["CORRECT"]],
-      "mismatches": [self.stats["INCORRECT"]],
+      "mismatches": [self.stats["INCORRECT"] + self.stats["FAILED"]],
       "EM": [EM],
       "train_data_len": [len(all_train_exemplars)],
       "test_data_len": [len(self.all_test_exemplars)],
@@ -108,44 +109,61 @@ class EvalAgent(BaseAgent):
     batch_indices = []
 
     # batching the data
-    for i in range(kwargs["batch_size"]):
-      if self.done():
-        break
-      batch_prompts.append(self.all_test_exemplars[self.task_idx])
-      batch_real_answers.append(self.eval_df.iloc[self.task_idx]["answer"])
-      batch_indices.append(self.task_idx)
-      self.task_idx += 1
+    # for i in range(kwargs["batch_size"]):
+    #   if self.done():
+    #     break
+    #   kwargs["test_data"] = self.all_test_exemplars[self.task_idx]
+    #   subprompt = utils.format_prompt(self.phase, self.benchmark, **kwargs)
+    #   batch_prompts.append(subprompt)
+    #   batch_real_answers.append(self.eval_df.iloc[self.task_idx]["answer"])
+    #   batch_indices.append(self.task_idx)
+    #   self.task_idx += 1
 
-    kwargs["test_data"] = "\n---\n".join(batch_prompts)
-    # print(kwargs["test_data"])
-
-    # kwargs["test_data"] = self.all_test_exemplars[self.task_idx]
-    prompt = utils.format_prompt(self.phase, self.benchmark, **kwargs)
+    kwargs["test_data"] = self.all_test_exemplars[self.task_idx]
+    prompt = utils.format_prompt(self.phase, self.benchmark, **kwargs) 
 
     llm_output = utils.query(self.model, prompt)
-
+    print(len(prompt), len(llm_output))
     print("SPLICED:\n",llm_output[len(prompt):])
 
-    batch_final_answers = re.findall(r"^Final Answer:\s(.*?)(?:\.)?$", llm_output[len(prompt):], re.MULTILINE)
-    print("\nFinal answers: ", batch_final_answers)
+    final_answer = None
+    output_lines = llm_output[len(prompt):].splitlines()
+    for line in output_lines:
+      lower_line = line.lower()
+      if "final" in lower_line and "answer" in lower_line:
+        if "yes" in lower_line:
+          final_answer = "Yes"
+        elif "no" in lower_line:
+          final_answer = "No"
+        if final_answer is not None:
+          break
 
+    print("\nFinal answer: ", final_answer)
     # recording stats
-    print("Real answers: ", batch_real_answers)
-    for final_answer, real_answer in zip(batch_final_answers, batch_real_answers):
-      key = "CORRECT" if final_answer.strip() == real_answer.strip() else "INCORRECT"
-      self.stats[key] += 1
+    real_answer = self.eval_df.iloc[self.task_idx]["answer"]
+    print("Real answer: ", real_answer)
+
+    if final_answer is None:
+      key = "FAILED"
+    elif final_answer == real_answer:
+      key = "CORRECT"
+    else:
+      key = "INCORRECT"
+    self.stats[key] += 1
 
     # Combine all elements into an experience log entry
     experience_log = (
-        f"{self.model} Tasks {batch_indices}:\n{llm_output}\n\n"
+        f"{self.model} Task {self.task_idx}:\n{llm_output}\n\n"
         "-------------------------------------"
     )
-
     # Save and print the experience log
     self.log_history.append(experience_log)
+    # increment task index
+    self.task_idx += 1
 
   def done(self):
     return self.task_idx >= self.num_tasks
+    # return self.task_idx >= 5
 
   def get_prompt(self, exemplar):
     string = "Facts: "

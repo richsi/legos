@@ -1,420 +1,236 @@
-Mistral7B Tasks [0, 1, 2, 3, 4]:
+Mistral7B Task 0:
 
 (TEMPLATE START)
-You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with a batch of evaluation questions. Each question in the batch comes with its set of supporting facts (and may include an answer field in guided examples) but does NOT include sub-questions. For each question, your task is to:
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with a batch of evaluation questions. Each question in the batch comes with its set of supporting facts (and may include an answer field in guided examples) but does NOT include sub-questions. 
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+RULE 1: Understand the context of the question before applying any existing rules.
+RULE 2: Identify the key sub-questions and underlying assumptions before drawing any conclusions.
+RULE 3: Use logical deduction to draw inferences from the given information.
+RULE 4: Verify that the reasoning process is consistent with the question context and all available information.
+RULE 5: Ensure that the final answer is a logical conclusion based on the step-by-step reasoning process.
+RULE 6: Use analogies and similarities to draw connections between seemingly unrelated concepts.
+RULE 7: Consider the potential implications of different scenarios and their impact on the overall question context.
+RULE 8: Use counter-examples to test the validity of assumptions and conclusions.
+RULE 9: Evaluate the reliability and credibility of sources when using external information.
+RULE 10: Use common sense and intuition to guide the reasoning process when necessary.
+RULE 11: Consider the potential biases and limitations of the given information.
+RULE 12: Use analogical reasoning to draw connections between seemingly unrelated concepts.
+RULE 13: Use logical deduction to draw inferences from the given information.
+RULE 14: Verify that the reasoning process is consistent with the question context and all available information.
+RULE 15: Ensure that the final answer is a logical conclusion based on the step-by-step reasoning process.
 
-1. Review the provided facts carefully.
-2. Analyze the test question using these facts.
-3. Clearly outline your reasoning strategy in a section labeled "Thoughts:".
-4. Conclude with a final answer in a section labeled "Final Answer:". The final answer can only be 'Yes' or 'No'.
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
 
-Your response for each question in the batch must be formatted exactly as follows, in the same order as the input:
-Question: [The original test question]
-Thoughts: [Your concise, structured reasoning here]
-Final Answer: [Yes or No]
-
-Here are extracted insights and guidelines from the provided examples to ensure proper reasoning:
-1. Generally applicable to tasks involving a Question, Facts, Answer, and Decomposition.
-2. Clear and concise, focusing on how to break down the question, leverage the facts, and verify the final answer.
-3. Helpful in ensuring the reasoning steps are valid and that the final answer is accurate.
-1. When answering a question, consider the context of the question and the facts provided to ensure that the answer is relevant and accurate.
-2. When decomposing a question, identify the key elements of the question and the facts provided to ensure that the answer is complete and comprehensive.
-3. When answering a question, consider the potential implications of the answer and how it may impact the decision-making process.
-4. When decomposing a question, identify any potential biases or assumptions that may impact the decision-making process and ensure that the answer is unbiased.
-5. When answering a question, consider the potential consequences of the answer and how it may impact the decision-making process.
-6. When decomposing a question, identify any potential risks or uncertainties that may impact the decision-making process and ensure that the answer is realistic.
-7. When answering a question, consider the potential benefits and drawbacks of the answer and how it may impact the decision-making process.
-8. When decomposing a question, identify any potential trade-offs or compromises that may impact the decision-making process and ensure that the answer is balanced.
-9. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the goals and objectives.
-10. When decomposing a question, identify any potential constraints or limitations that may impact the decision-making process and ensure that the answer is feasible.
-11. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the values and principles.
-12. When decomposing a question, identify any potential ethical or moral considerations that may impact the decision-making process and ensure that the answer is ethical.
-13. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the legal or regulatory requirements.
-14. When decomposing a question, identify any potential cultural or societal considerations that may impact the decision-making process and ensure that the answer is culturally sensitive.
-15. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the scientific or technical standards.
-
-For each question in the batch, produce your answer in the following format:
-Question: [the original test question]
-Thoughts: [whatever thoughts or reasoning steps are needed to arrive at your conclusion]
-Final Answer: Yes/No
-
-Now, you will be provided with a batch of evaluation questions below.
+Now, you will be provided with the evaluation question and fact(s) below.
 Facts: ['Human overpopulation results from the birthrate exceeding the death rate in a country.', 'Rusev is a professional wrestler who was born in Bulgaria.', 'The population of Bulgaria decreased by .7% in 2018.']
 Question: Does Rusev have to worry about human overpopulation in his homeland?
----
-Facts: ['God made Eve from a bone he removed from Adam.', 'Since Eve was made from Adam, they would have had similar DNA and been considered twins or at least siblings.', 'As the only humans at the time, they ended up starting a family together.']
-Question: Was Eve involved in an incestuous relationship?
----
-Facts: ['The Hague is in the Netherlands. ', 'The Hague is in the Western part of the Netherlands. ', 'The Netherlands borders the North Sea to its west. ']
-Question: Does The Hague border multiple bodies of water?
----
-Facts: ['The deadliest war in history was World War II.', 'Over 56 million people died during World War II.', 'The population of France as of 2019 is 66 million.']
-Question: Could casualties from deadliest war rival France's population?
----
-Facts: ['The most common word in the English language is "the".', 'The second most common word in the English language is "be".']
-Question: Is letter C crucial to spelling the two most common words in English language?
----
-
-Ensure that each of the evaluation questions gets answered.
 (TEMPLATE END)
-
----
-
 Question: Does Rusev have to worry about human overpopulation in his homeland?
 Thoughts:
-1. Rusev is a professional wrestler and not directly related to the birthrate or death rate in Bulgaria.
-2. The population of Bulgaria decreased by .7% in 2018, which suggests that the birthrate is lower than the death rate.
-3. Therefore, Rusev does not have to worry about human overpopulation in his homeland.
+1. First, we need to understand the context of the question. We are asked if Rusev has to worry about human overpopulation in his homeland.
+2. Next, we need to identify the key sub-questions and underlying assumptions. In this case, the sub-questions are:
+   - Is Rusev's homeland experiencing human overpopulation?
+   - Does Rusev live in his homeland?
+3. We can use logical deduction to draw inferences from the given information. From the facts provided, we know that:
+   - Human overpopulation results from the birthrate exceeding the death rate in a country.
+   - The population of Bulgaria decreased by .7% in 2018.
+   - Rusev is a professional wrestler who was born in Bulgaria.
+   - Rusev is not mentioned as living in Bulgaria.
+4. Based on this information, we can conclude that:
+   - Bulgaria is not experiencing human overpopulation (since the population decreased in 2018).
+   - Rusev is not mentioned as living in Bulgaria, so he does not have to worry about human overpopulation in his homeland.
 Final Answer: No.
 
----
+-------------------------------------
+Mistral7B Task 1:
 
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with a batch of evaluation questions. Each question in the batch comes with its set of supporting facts (and may include an answer field in guided examples) but does NOT include sub-questions. 
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+RULE 1: Understand the context of the question before applying any existing rules.
+RULE 2: Identify the key sub-questions and underlying assumptions before drawing any conclusions.
+RULE 3: Use logical deduction to draw inferences from the given information.
+RULE 4: Verify that the reasoning process is consistent with the question context and all available information.
+RULE 5: Ensure that the final answer is a logical conclusion based on the step-by-step reasoning process.
+RULE 6: Use analogies and similarities to draw connections between seemingly unrelated concepts.
+RULE 7: Consider the potential implications of different scenarios and their impact on the overall question context.
+RULE 8: Use counter-examples to test the validity of assumptions and conclusions.
+RULE 9: Evaluate the reliability and credibility of sources when using external information.
+RULE 10: Use common sense and intuition to guide the reasoning process when necessary.
+RULE 11: Consider the potential biases and limitations of the given information.
+RULE 12: Use analogical reasoning to draw connections between seemingly unrelated concepts.
+RULE 13: Use logical deduction to draw inferences from the given information.
+RULE 14: Verify that the reasoning process is consistent with the question context and all available information.
+RULE 15: Ensure that the final answer is a logical conclusion based on the step-by-step reasoning process.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Now, you will be provided with the evaluation question and fact(s) below.
+Facts: ['God made Eve from a bone he removed from Adam.', 'Since Eve was made from Adam, they would have had similar DNA and been considered twins or at least siblings.', 'As the only humans at the time, they ended up starting a family together.']
+Question: Was Eve involved in an incestuous relationship?
+(TEMPLATE END)
 Question: Was Eve involved in an incestuous relationship?
 Thoughts:
-1. Eve was made from a bone removed from Adam, and they would have had similar DNA and been considered twins or at least siblings.
-2. As the only humans at the time, they ended up starting a family together.
-3. However, incestuous relationships are generally considered taboo and unethical, even in biblical times.
-4. Therefore, Eve was not involved in an incestuous relationship.
+RULE 1: Understand the context of the question before applying any existing rules.
+RULE 2: Identify the key sub-questions and underlying assumptions before drawing any conclusions.
+RULE 3: Use logical deduction to draw inferences from the given information.
+RULE 4: Verify that the reasoning process is consistent with the question context and all available information.
+RULE 5: Ensure that the final answer is a logical conclusion based on the step-by-step reasoning process.
+RULE 6: Use analogies and similarities to draw connections between seemingly unrelated concepts.
+RULE 7: Consider the potential implications of different scenarios and their impact on the overall question context.
+RULE 8: Use counter-examples to test the validity of assumptions and conclusions.
+RULE 9: Evaluate the reliability and credibility of sources when using external information.
+RULE 10: Use common sense and intuition to guide the reasoning process when necessary.
+RULE 11: Consider the potential biases and limitations of the given information.
+RULE 12: Use analogical reasoning to draw connections between seemingly unrelated concepts.
+RULE 13: Use logical deduction to draw inferences from the given information.
+RULE 14: Verify that the reasoning process is consistent with the question context and all available information.
+RULE 15: Ensure that the final answer is a logical conclusion based on the step-by-step reasoning process.
+
+Given the facts, we can infer that Eve and Adam were the only humans at the time and started a family together. Since they were made from the same bone and had similar DNA, they would have been considered twins or at least siblings. However, the fact that they started a family together does not necessarily imply that they were involved in an incestuous relationship. It is possible that they were not related by blood and were simply considered siblings due to their similar DNA. Therefore, we cannot definitively say whether Eve was involved in an incestuous relationship based on the given information.
+
 Final Answer: No.
 
----
+-------------------------------------
+Mistral7B Task 2:
 
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with a batch of evaluation questions. Each question in the batch comes with its set of supporting facts (and may include an answer field in guided examples) but does NOT include sub-questions. 
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+RULE 1: Understand the context of the question before applying any existing rules.
+RULE 2: Identify the key sub-questions and underlying assumptions before drawing any conclusions.
+RULE 3: Use logical deduction to draw inferences from the given information.
+RULE 4: Verify that the reasoning process is consistent with the question context and all available information.
+RULE 5: Ensure that the final answer is a logical conclusion based on the step-by-step reasoning process.
+RULE 6: Use analogies and similarities to draw connections between seemingly unrelated concepts.
+RULE 7: Consider the potential implications of different scenarios and their impact on the overall question context.
+RULE 8: Use counter-examples to test the validity of assumptions and conclusions.
+RULE 9: Evaluate the reliability and credibility of sources when using external information.
+RULE 10: Use common sense and intuition to guide the reasoning process when necessary.
+RULE 11: Consider the potential biases and limitations of the given information.
+RULE 12: Use analogical reasoning to draw connections between seemingly unrelated concepts.
+RULE 13: Use logical deduction to draw inferences from the given information.
+RULE 14: Verify that the reasoning process is consistent with the question context and all available information.
+RULE 15: Ensure that the final answer is a logical conclusion based on the step-by-step reasoning process.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Now, you will be provided with the evaluation question and fact(s) below.
+Facts: ['The Hague is in the Netherlands. ', 'The Hague is in the Western part of the Netherlands. ', 'The Netherlands borders the North Sea to its west. ']
+Question: Does The Hague border multiple bodies of water?
+(TEMPLATE END)
 Question: Does The Hague border multiple bodies of water?
 Thoughts:
-1. The Hague is in the Western part of the Netherlands.
-2. The Netherlands borders the North Sea to its west.
-3. Therefore, The Hague borders only one body of water, the North Sea.
-Final Answer: No.
-
----
-
-Question: Could casualties from deadliest war rival France's population?
-Thoughts:
-1. The deadliest war in history was World War II, and over 56 million people died during it.
-2. The population of France as of 2019 is 66 million.
-3. However, casualties from a war are not the same as the population of a country.
-4. Therefore, casualties from the deadliest war could not rival France's population.
-Final Answer: No.
-
----
-
-Question: Is letter C crucial to spelling the two most common words in English language?
-Thoughts:
-1. The most common word in the English language is "the", and the second most common word is "be".
-2. Both words can be spelled without the letter C.
-3. Therefore, letter C is not crucial to spelling the two most common words in the English language.
-Final Answer: No.
-
--------------------------------------
-Mistral7B Tasks [5, 6, 7, 8, 9]:
-
-(TEMPLATE START)
-You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with a batch of evaluation questions. Each question in the batch comes with its set of supporting facts (and may include an answer field in guided examples) but does NOT include sub-questions. For each question, your task is to:
-
-1. Review the provided facts carefully.
-2. Analyze the test question using these facts.
-3. Clearly outline your reasoning strategy in a section labeled "Thoughts:".
-4. Conclude with a final answer in a section labeled "Final Answer:". The final answer can only be 'Yes' or 'No'.
-
-Your response for each question in the batch must be formatted exactly as follows, in the same order as the input:
-Question: [The original test question]
-Thoughts: [Your concise, structured reasoning here]
-Final Answer: [Yes or No]
-
-Here are extracted insights and guidelines from the provided examples to ensure proper reasoning:
-1. Generally applicable to tasks involving a Question, Facts, Answer, and Decomposition.
-2. Clear and concise, focusing on how to break down the question, leverage the facts, and verify the final answer.
-3. Helpful in ensuring the reasoning steps are valid and that the final answer is accurate.
-1. When answering a question, consider the context of the question and the facts provided to ensure that the answer is relevant and accurate.
-2. When decomposing a question, identify the key elements of the question and the facts provided to ensure that the answer is complete and comprehensive.
-3. When answering a question, consider the potential implications of the answer and how it may impact the decision-making process.
-4. When decomposing a question, identify any potential biases or assumptions that may impact the decision-making process and ensure that the answer is unbiased.
-5. When answering a question, consider the potential consequences of the answer and how it may impact the decision-making process.
-6. When decomposing a question, identify any potential risks or uncertainties that may impact the decision-making process and ensure that the answer is realistic.
-7. When answering a question, consider the potential benefits and drawbacks of the answer and how it may impact the decision-making process.
-8. When decomposing a question, identify any potential trade-offs or compromises that may impact the decision-making process and ensure that the answer is balanced.
-9. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the goals and objectives.
-10. When decomposing a question, identify any potential constraints or limitations that may impact the decision-making process and ensure that the answer is feasible.
-11. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the values and principles.
-12. When decomposing a question, identify any potential ethical or moral considerations that may impact the decision-making process and ensure that the answer is ethical.
-13. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the legal or regulatory requirements.
-14. When decomposing a question, identify any potential cultural or societal considerations that may impact the decision-making process and ensure that the answer is culturally sensitive.
-15. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the scientific or technical standards.
-
-For each question in the batch, produce your answer in the following format:
-Question: [the original test question]
-Thoughts: [whatever thoughts or reasoning steps are needed to arrive at your conclusion]
-Final Answer: Yes/No
-
-Now, you will be provided with a batch of evaluation questions below.
-Facts: ['A sonnet is a form of poetry that sticks to a strict 14 line rule.', 'The Rime of the Ancient Mariner is a story by Samuel Taylor Coleridge and contains over thirty lines.']
-Question: Would Rime of the Ancient Mariner make a good sonnet?
----
-Facts: ['Rabbis are spiritual leaders of the Jewish community.', 'Baptism is a necessary Christian ritual for salvation.', "Any non-Christian can perform an emergency baptism if someone's life is in danger."]
-Question: Can a rabbi save the soul of a Christian?
----
-Facts: ['The red panda is endemic to the temperate forests of the Himalayas, and ranges from the foothills of western Nepal to China in the east.', 'The red panda lives between 2,200 and 4,800 m (7,200 and 15,700 ft) altitude, inhabiting areas of moderate temperature between 10 and 25 °C (50 and 77 °F) with little annual change.', 'Shanghai is located on an alluvial plain, as such the vast majority of its land area is flat, with an average elevation of 4 m (13 ft).']
-Question: Is it normal to see a red panda in Shanghai outside of a zoo?
----
-Facts: ['Macbeth features scenes with three witches throughout the play. ', 'Witches are often displayed with pointy hats and long black robes.']
-Question: Would costumes with robes and pointy hats be helpful for Macbeth?
----
-Facts: ['Black Salt has is a kiln-fired rock salt that contains sulfur.', 'When black salt is cooked with, it smells similar to rotten eggs. ', 'Rotten eggs smell like sulfur.']
-Question: Would food made with black salt smell of sulfur?
----
-
-Ensure that each of the evaluation questions gets answered.
-(TEMPLATE END)
-
----
-
-Question: Would Rime of the Ancient Mariner make a good sonnet?
-Thoughts:
-The Rime of the Ancient Mariner is a story by Samuel Taylor Coleridge and contains over thirty lines. However, it does not adhere to the strict 14-line rule of a sonnet. Therefore, it would not make a good sonnet.
-Final Answer: No.
-
-Question: Can a rabbi save the soul of a Christian?
-Thoughts:
-Rabbis are spiritual leaders of the Jewish community, and baptism is a necessary Christian ritual for salvation. However, a non-Christian can perform an emergency baptism if someone's life is in danger. Therefore, a rabbi cannot save the soul of a Christian.
-Final Answer: No.
-
-Question: Is it normal to see a red panda in Shanghai outside of a zoo?
-Thoughts:
-The red panda is endemic to the temperate forests of the Himalayas and ranges from the foothills of western Nepal to China in the east. It lives between 2,200 and 4,800 m (7,200 and 15,700 ft) altitude, inhabiting areas of moderate temperature between 10 and 25 °C (50 and 77 °F) with little annual change. Shanghai is located on an alluvial plain, as such the vast majority of its land area is flat, with an average elevation of 4 m (13 ft). Therefore, it is not normal to see a red panda in Shanghai outside of a zoo.
-Final Answer: No.
-
-Question: Would costumes with robes and pointy hats be helpful for Macbeth?
-Thoughts:
-Macbeth features scenes with three witches throughout the play. However, witches are often displayed with pointy hats and long black robes. Therefore, costumes with robes and pointy hats would be helpful for Macbeth.
-Final Answer: Yes.
-
-Question: Would food made with black salt smell of sulfur?
-Thoughts:
-Black salt has is a kiln-fired rock salt that contains sulfur. When black salt is cooked with, it smells similar to rotten eggs. Rotten eggs smell like sulfur. Therefore, food made with black salt would smell of sulfur.
-Final Answer: Yes.
-
--------------------------------------
-Mistral7B Tasks [10, 11, 12, 13, 14]:
-
-(TEMPLATE START)
-You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with a batch of evaluation questions. Each question in the batch comes with its set of supporting facts (and may include an answer field in guided examples) but does NOT include sub-questions. For each question, your task is to:
-
-1. Review the provided facts carefully.
-2. Analyze the test question using these facts.
-3. Clearly outline your reasoning strategy in a section labeled "Thoughts:".
-4. Conclude with a final answer in a section labeled "Final Answer:". The final answer can only be 'Yes' or 'No'.
-
-Your response for each question in the batch must be formatted exactly as follows, in the same order as the input:
-Question: [The original test question]
-Thoughts: [Your concise, structured reasoning here]
-Final Answer: [Yes or No]
-
-Here are extracted insights and guidelines from the provided examples to ensure proper reasoning:
-1. Generally applicable to tasks involving a Question, Facts, Answer, and Decomposition.
-2. Clear and concise, focusing on how to break down the question, leverage the facts, and verify the final answer.
-3. Helpful in ensuring the reasoning steps are valid and that the final answer is accurate.
-1. When answering a question, consider the context of the question and the facts provided to ensure that the answer is relevant and accurate.
-2. When decomposing a question, identify the key elements of the question and the facts provided to ensure that the answer is complete and comprehensive.
-3. When answering a question, consider the potential implications of the answer and how it may impact the decision-making process.
-4. When decomposing a question, identify any potential biases or assumptions that may impact the decision-making process and ensure that the answer is unbiased.
-5. When answering a question, consider the potential consequences of the answer and how it may impact the decision-making process.
-6. When decomposing a question, identify any potential risks or uncertainties that may impact the decision-making process and ensure that the answer is realistic.
-7. When answering a question, consider the potential benefits and drawbacks of the answer and how it may impact the decision-making process.
-8. When decomposing a question, identify any potential trade-offs or compromises that may impact the decision-making process and ensure that the answer is balanced.
-9. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the goals and objectives.
-10. When decomposing a question, identify any potential constraints or limitations that may impact the decision-making process and ensure that the answer is feasible.
-11. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the values and principles.
-12. When decomposing a question, identify any potential ethical or moral considerations that may impact the decision-making process and ensure that the answer is ethical.
-13. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the legal or regulatory requirements.
-14. When decomposing a question, identify any potential cultural or societal considerations that may impact the decision-making process and ensure that the answer is culturally sensitive.
-15. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the scientific or technical standards.
-
-For each question in the batch, produce your answer in the following format:
-Question: [the original test question]
-Thoughts: [whatever thoughts or reasoning steps are needed to arrive at your conclusion]
-Final Answer: Yes/No
-
-Now, you will be provided with a batch of evaluation questions below.
-Facts: ['WWE Raw debuted on TV January 11, 1993.', 'Bruiser Brody was a wrestler that was stabbed to death in 1988.']
-Question: Did Bruiser Brody wrestle on WWE Raw?
----
-Facts: ["Steven Spielberg's 1998 film, Saving Private Ryan, takes place during World War II.", 'World War II took place from 1939-1945.', 'The 2011 movie War Horse takes place during World War I.', 'World War I took place from 1914-1918.']
-Question: Does Steven Spielberg's 1998 film take place in a period after War Horse setting?
----
-Facts: ['"Dominic The Donkey" is a popular Christmas song.', '"Nestor The Ling Eared Christmas Donkey" is a popular Christmas Movie.']
-Question: Are Donkeys part of Christmas celebrations?
----
-Facts: ['Glycol is a commonly used de-icing fluid for commercial planes.', 'American Airlines flies all year round, including throughout the winter.']
-Question: Is Glycol something United Airlines would buy?
----
-Facts: ['Law & Order is a television show.', 'Television shows cannot be tasted, only viewed. ']
-Question: Can you taste Law & Order?
----
-
-Ensure that each of the evaluation questions gets answered.
-(TEMPLATE END)
-
----
-
-Question: Did Bruiser Brody wrestle on WWE Raw?
-Thoughts:
-1. Bruiser Brody was a wrestler that was stabbed to death in 1988.
-2. WWE Raw debuted on TV January 11, 1993.
-3. Since Bruiser Brody was killed in 1988, he could not have wrestled on WWE Raw, which debuted in 1993.
-Final Answer: No.
-
----
-
-Question: Does Steven Spielberg's 1998 film take place in a period after War Horse setting?
-Thoughts:
-1. Steven Spielberg's 1998 film, Saving Private Ryan, takes place during World War II.
-2. The 2011 movie War Horse takes place during World War I.
-3. Since Saving Private Ryan was released in 1998, it takes place after the end of World War I, which ended in 1918.
-Final Answer: Yes.
-
----
-
-Question: Are Donkeys part of Christmas celebrations?
-Thoughts:
-1. "Dominic The Donkey" is a popular Christmas song.
-2. "Nestor The Ling Eared Christmas Donkey" is a popular Christmas movie.
-3. Donkeys are often associated with Christmas celebrations, as seen in popular culture.
-Final Answer: Yes.
-
----
-
-Question: Is Glycol something United Airlines would buy?
-Thoughts:
-1. Glycol is a commonly used de-icing fluid for commercial planes.
-2. American Airlines flies all year round, including throughout the winter.
-3. Since American Airlines flies all year round, they would likely purchase glycol to de-ice their planes during the winter months.
-Final Answer: Yes.
-
----
-
-Question: Can you taste Law & Order?
-Thoughts:
-1. Law & Order is a television show.
-2. Television shows cannot be tasted, only viewed.
-3. Since Law & Order is a television show, it cannot be tasted.
-Final Answer: No.
-
--------------------------------------
-Mistral7B Tasks [15, 16, 17, 18, 19]:
-
-(TEMPLATE START)
-You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with a batch of evaluation questions. Each question in the batch comes with its set of supporting facts (and may include an answer field in guided examples) but does NOT include sub-questions. For each question, your task is to:
-
-1. Review the provided facts carefully.
-2. Analyze the test question using these facts.
-3. Clearly outline your reasoning strategy in a section labeled "Thoughts:".
-4. Conclude with a final answer in a section labeled "Final Answer:". The final answer can only be 'Yes' or 'No'.
-
-Your response for each question in the batch must be formatted exactly as follows, in the same order as the input:
-Question: [The original test question]
-Thoughts: [Your concise, structured reasoning here]
-Final Answer: [Yes or No]
-
-Here are extracted insights and guidelines from the provided examples to ensure proper reasoning:
-1. Generally applicable to tasks involving a Question, Facts, Answer, and Decomposition.
-2. Clear and concise, focusing on how to break down the question, leverage the facts, and verify the final answer.
-3. Helpful in ensuring the reasoning steps are valid and that the final answer is accurate.
-1. When answering a question, consider the context of the question and the facts provided to ensure that the answer is relevant and accurate.
-2. When decomposing a question, identify the key elements of the question and the facts provided to ensure that the answer is complete and comprehensive.
-3. When answering a question, consider the potential implications of the answer and how it may impact the decision-making process.
-4. When decomposing a question, identify any potential biases or assumptions that may impact the decision-making process and ensure that the answer is unbiased.
-5. When answering a question, consider the potential consequences of the answer and how it may impact the decision-making process.
-6. When decomposing a question, identify any potential risks or uncertainties that may impact the decision-making process and ensure that the answer is realistic.
-7. When answering a question, consider the potential benefits and drawbacks of the answer and how it may impact the decision-making process.
-8. When decomposing a question, identify any potential trade-offs or compromises that may impact the decision-making process and ensure that the answer is balanced.
-9. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the goals and objectives.
-10. When decomposing a question, identify any potential constraints or limitations that may impact the decision-making process and ensure that the answer is feasible.
-11. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the values and principles.
-12. When decomposing a question, identify any potential ethical or moral considerations that may impact the decision-making process and ensure that the answer is ethical.
-13. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the legal or regulatory requirements.
-14. When decomposing a question, identify any potential cultural or societal considerations that may impact the decision-making process and ensure that the answer is culturally sensitive.
-15. When answering a question, consider the potential impact of the answer on the decision-making process and ensure that it is aligned with the scientific or technical standards.
-
-For each question in the batch, produce your answer in the following format:
-Question: [the original test question]
-Thoughts: [whatever thoughts or reasoning steps are needed to arrive at your conclusion]
-Final Answer: Yes/No
-
-Now, you will be provided with a batch of evaluation questions below.
-Facts: ['LG Electronics is headquarted in Seoul.', 'The official bird of Seoul is the Korean magpie.', 'The Korean magpie has a purplish/blue colored tail.']
-Question: Is LG Electronics located in a city with an official bird that has a purplish/blue tail?
----
-Facts: ['Aldi cuts costs by charging for bags, buying in bulk, and by avoiding brand name items. ', 'Aldi removes spoiled or expired foods from their shelves immediately upon identification.']
-Question: Are Aldi's foods discounted due to being out of date?
----
-Facts: ['Olive oil is a fat used in cooking.', 'Olive oil is made up of palmitic acid which is a weak acid found in plants and animals.', 'Rabies is a disease from an infected animal bite.', 'Rabies is treated by a shot containing immunoglobuin, a protein that is found in plasma cells.', 'Plasma cells are found in the bone marrow of humans.']
-Question: Can olive oil kill rabies?
----
-Facts: ['Europa (moon) gets its name from the Greek Classical Mythology story.', 'Europa was a woman that Zeus was in love with, and he changed into a bull to deceive her.', 'Amunet is a primordial goddess in Ancient Egyptian religion.']
-Question: Is Europa (moon) name origin related to Amunet?
----
-Facts: ['More boys were named Michael in the United States than any other name between 1954 and 1998.', 'Michael and its foreign variants were within the top 20 names in Canada, Australia, UK, and Europe in the 2010s.']
-Question: Is Michael an unpopular name in the United States?
----
-
-Ensure that each of the evaluation questions gets answered.
-(TEMPLATE END)
-
----
-
-Question: Is LG Electronics located in a city with an official bird that has a purplish/blue tail?
-Thoughts:
-1. LG Electronics is headquartered in Seoul.
-2. The official bird of Seoul is the Korean magpie.
-3. The Korean magpie has a purplish/blue colored tail.
-4. Therefore, LG Electronics is located in a city with an official bird that has a purplish/blue tail.
+1. The Hague is in the Netherlands.
+2. The Hague is in the Western part of the Netherlands.
+3. The Netherlands borders the North Sea to its west.
+4. Therefore, The Hague borders the North Sea.
 Final Answer: Yes
 
----
+-------------------------------------
+Mistral7B Task 3:
 
-Question: Are Aldi's foods discounted due to being out of date?
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with a batch of evaluation questions. Each question in the batch comes with its set of supporting facts (and may include an answer field in guided examples) but does NOT include sub-questions. 
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+RULE 1: Understand the context of the question before applying any existing rules.
+RULE 2: Identify the key sub-questions and underlying assumptions before drawing any conclusions.
+RULE 3: Use logical deduction to draw inferences from the given information.
+RULE 4: Verify that the reasoning process is consistent with the question context and all available information.
+RULE 5: Ensure that the final answer is a logical conclusion based on the step-by-step reasoning process.
+RULE 6: Use analogies and similarities to draw connections between seemingly unrelated concepts.
+RULE 7: Consider the potential implications of different scenarios and their impact on the overall question context.
+RULE 8: Use counter-examples to test the validity of assumptions and conclusions.
+RULE 9: Evaluate the reliability and credibility of sources when using external information.
+RULE 10: Use common sense and intuition to guide the reasoning process when necessary.
+RULE 11: Consider the potential biases and limitations of the given information.
+RULE 12: Use analogical reasoning to draw connections between seemingly unrelated concepts.
+RULE 13: Use logical deduction to draw inferences from the given information.
+RULE 14: Verify that the reasoning process is consistent with the question context and all available information.
+RULE 15: Ensure that the final answer is a logical conclusion based on the step-by-step reasoning process.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Now, you will be provided with the evaluation question and fact(s) below.
+Facts: ['The deadliest war in history was World War II.', 'Over 56 million people died during World War II.', 'The population of France as of 2019 is 66 million.']
+Question: Could casualties from deadliest war rival France's population?
+(TEMPLATE END)
+Question: Could casualties from deadliest war rival France's population?
 Thoughts:
-1. Aldi cuts costs by charging for bags, buying in bulk, and by avoiding brand name items.
-2. Aldi removes spoiled or expired foods from their shelves immediately upon identification.
-3. Therefore, Aldi's foods are not discounted due to being out of date.
-Final Answer: No
-
----
-
-Question: Can olive oil kill rabies?
-Thoughts:
-1. Olive oil is a fat used in cooking.
-2. Olive oil is made up of palmitic acid which is a weak acid found in plants and animals.
-3. Rabies is a disease from an infected animal bite.
-4. Rabies is treated by a shot containing immunoglobuin, a protein that is found in plasma cells.
-5. Plasma cells are found in the bone marrow of humans.
-6. However, olive oil does not contain immunoglobuin or any other substance that can kill rabies.
-7. Therefore, olive oil cannot kill rabies.
-Final Answer: No
-
----
-
-Question: Is Europa (moon) name origin related to Amunet?
-Thoughts:
-1. Europa (moon) gets its name from the Greek Classical Mythology story.
-2. Europa was a woman that Zeus was in love with, and he changed into a bull to deceive her.
-3. Amunet is a primordial goddess in Ancient Egyptian religion.
-4. However, there is no direct connection between Europa (moon) and Amunet.
-5. Europa (moon) is named after Europa, the woman in the Greek myth, while Amunet is a primordial goddess in Ancient Egyptian religion.
-6. Therefore, Europa (moon) name origin is not related to Amunet.
-Final Answer: No
-
----
-
-Question: Is Michael an unpopular name in the United States?
-Thoughts:
-1. More boys were named Michael in the United States than any other name between 1954 and 1998.
-2. Michael and its foreign variants were within the top 20 names in Canada, Australia, UK, and Europe in the 2010s.
-3. However, the popularity of the name Michael has declined in recent years.
-4. According to the Social Security Administration, Michael was the 12th most popular name for boys in the United States in 2020, down from its peak of 1st in 1967.
-5. Therefore, Michael is not an unpopular name in the United States.
-Final Answer: No
+1. First, we need to understand the context of the question. The question is asking if the casualties from the deadliest war (World War II) could rival the population of France as of 2019.
+2. Next, we need to identify the key sub-questions and underlying assumptions. The sub-questions are:
+   - What was the total number of casualties from World War II?
+   - What was the population of France as of 2019?
+   - Could the total number of casualties from World War II be equal to or greater than the population of France as of 2019?
+   - If yes, would it be possible for the casualties to exceed the population?
+   - If no, would it be possible for the casualties to be equal to the population?
+   - If yes, would it be possible for the casualties to be less than the population?
+   - If no, would it be possible for the casualties to be less than the population?
+3. We can use logical deduction to draw inferences from the given information. The total number of casualties from World War II was over 56 million, and the population of France as of 2019 was 66 million. Therefore, the casualties from the deadliest war could not rival France's population.
+4. We need to verify that the reasoning process is consistent with the question context and all available information. The question asks if the casualties from the deadliest war could rival the population of France as of 2019. We have determined that the casualties from the deadliest war could not rival France's population.
+5. The final answer is a logical conclusion based on the step-by-step reasoning process. No, the casualties from the deadliest war could not rival France's population.
+Final Answer: No.
 
 -------------------------------------
-{'CORRECT': 18, 'INCORRECT': 2}
-Runtime: 425.26163625717163 seconds
+Mistral7B Task 4:
+
+(TEMPLATE START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with a batch of evaluation questions. Each question in the batch comes with its set of supporting facts (and may include an answer field in guided examples) but does NOT include sub-questions. 
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+RULE 1: Understand the context of the question before applying any existing rules.
+RULE 2: Identify the key sub-questions and underlying assumptions before drawing any conclusions.
+RULE 3: Use logical deduction to draw inferences from the given information.
+RULE 4: Verify that the reasoning process is consistent with the question context and all available information.
+RULE 5: Ensure that the final answer is a logical conclusion based on the step-by-step reasoning process.
+RULE 6: Use analogies and similarities to draw connections between seemingly unrelated concepts.
+RULE 7: Consider the potential implications of different scenarios and their impact on the overall question context.
+RULE 8: Use counter-examples to test the validity of assumptions and conclusions.
+RULE 9: Evaluate the reliability and credibility of sources when using external information.
+RULE 10: Use common sense and intuition to guide the reasoning process when necessary.
+RULE 11: Consider the potential biases and limitations of the given information.
+RULE 12: Use analogical reasoning to draw connections between seemingly unrelated concepts.
+RULE 13: Use logical deduction to draw inferences from the given information.
+RULE 14: Verify that the reasoning process is consistent with the question context and all available information.
+RULE 15: Ensure that the final answer is a logical conclusion based on the step-by-step reasoning process.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Now, you will be provided with the evaluation question and fact(s) below.
+Facts: ['The most common word in the English language is "the".', 'The second most common word in the English language is "be".']
+Question: Is letter C crucial to spelling the two most common words in English language?
+(TEMPLATE END)
+Question: Is letter C crucial to spelling the two most common words in English language?
+Thoughts:
+1. First, we need to understand the context of the question. We are asked if letter C is crucial to spelling the two most common words in English language.
+2. Next, we need to identify the key sub-questions and underlying assumptions. In this case, the sub-questions are:
+   - What are the two most common words in English language?
+   - Is letter C present in these words?
+   - Is letter C crucial to spelling these words?
+   - Is letter C present in the most common word?
+   - Is letter C present in the second most common word?
+   - Is letter C crucial to spelling the most common word?
+   - Is letter C crucial to spelling the second most common word?
+   - Is letter C present in any of the two most common words?
+3. We can use logical deduction to draw inferences from the given information. The most common word in English language is "the" and the second most common word is "be". Both of these words do not contain letter C. Therefore, letter C is not crucial to spelling the two most common words in English language.
+4. We need to verify that the reasoning process is consistent with the question context and all available information. We have identified the two most common words in English language and checked if letter C is present in them. We have also checked if letter C is crucial to spelling these words.
+5. The final answer is No, letter C is not crucial to spelling the two most common words in English language.
+Final Answer: No.
+
+-------------------------------------
+{'CORRECT': 3, 'INCORRECT': 2, 'FAILED': 0}
+Runtime: 315.2869336605072 seconds
