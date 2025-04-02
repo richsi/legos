@@ -3,15 +3,15 @@
 Exploration of improving benchmark performance with reduced computational overhead through coordination of an ensemble of smaller LLM models.
 
 ## TODO
-[ ] Only exemplars (EXPLORA baseline)
-[x] Only Insight (based on exemplars)
-[ ] Exemplar + Insight 
-[ ] Insight + Exemplar 
-[ ] Reduced Exemplar list (based on cosine similarity) + Exemplar
-[ ] Repeat using FP=16 and FP=32
-[ ] Additional measurements
-[x] Training time
-[ ] Token / context size
+- [x] Only Insight (based on exemplars)
+- [x] Training time
+- [ ] Only exemplars (EXPLORA baseline)
+- [ ] Exemplar + Insight 
+- [ ] Insight + Exemplar 
+- [ ] Reduced Exemplar list (based on cosine similarity) + Exemplar
+- [ ] Repeat using FP=16 and FP=32
+- [ ] Additional measurements
+- [ ] Token / context size
 
 
 ## Components
