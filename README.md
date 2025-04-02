@@ -9,8 +9,7 @@ Exploration of improving benchmark performance with reduced computational overhe
 - [ ] Exemplar + Insight 
 - [ ] Insight + Exemplar 
 - [ ] Reduced Exemplar list (based on cosine similarity) + Exemplar
-- [ ] Repeat using FP=16 and FP=32
-- [ ] Additional measurements
+- [ ] Repeat using FP16 and FP32
 - [ ] Token / context size
 
 
@@ -38,30 +37,30 @@ Exploration of improving benchmark performance with reduced computational overhe
 ### Setup
 
 #### Python venv
-1. Ensure python version is equal to 3.9.17 with `python3 --version`.
+1. Ensure python version is 3.9.17 with `python3 --version`.
 2. Create virtual environment `python3 -m venv .venv`.
 3. Activate virtual environment `source .venv/bin/activate`.
 4. Run `source env.sh` to set environment variables.
 5. Set up huggingface token with `huggingface-cli login`.
 6. `pip install -r requirements.txt`
 
-## Usage Info:
-Set your run configuration in the configs yaml file.
+## Usage
+Set your run configuration in the `configs.yaml` file.
 
 Pass in the configuration name as an argument when running the script.
 
-**Example** `config.py`:
+**Example** `configs.yaml`:
 ```
-configuration_name:
+mistral-strategyqa:
   model: "Mistral7B"
   benchmark: StrategyQA"
   train: "exemplars_subset_file_name.csv"
   eval: "test_file_name.csv"
 ```
 
-Insight Extraction: `python3 -m src.main -p insight_extraction -c <config_name> -n <run_name>`
+Insight Extraction: `python3 -m src.main -p insight_extraction -c mistral-strategyqa -n <run_name>`
 
-Evaluation: `python3 -m src.main -p eval -c <config_name> -n <run_name>`
+Evaluation: `python3 -m src.main -p eval -c mistral-strategyqa -n <run_name>`
 
 * `--phase, -p` - choose train, insight_extraction, or eval
 * `--config, -c` - select which configuration in your yaml file you want to use
