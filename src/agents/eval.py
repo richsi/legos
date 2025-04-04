@@ -138,9 +138,10 @@ class EvalAgent(BaseAgent):
     kwargs["test_data"] = self.all_test_exemplars[self.task_idx]
     # Formatting prompt for LLM
     prompt = utils.format_prompt(self.phase, self.benchmark, **kwargs) 
+    print(prompt)
     # Querying the LLM
     llm_output = utils.query(self.model, prompt)
-    # print("SPLICED:\n",llm_output[len(prompt):])
+    print("SPLICED:\n",llm_output[len(prompt):])
     # Recording the stats
     self.record_stats(llm_output, len(prompt))
     # Combine all elements into an experience log entry
@@ -155,7 +156,7 @@ class EvalAgent(BaseAgent):
 
   def done(self):
     # return self.task_idx >= self.num_tasks
-    return self.task_idx >= 5
+    return self.task_idx >= 2
 
   def get_strategyqa_exemplars(self, exemplar):
     string = "Facts: "
@@ -201,8 +202,6 @@ class EvalAgent(BaseAgent):
   def record_stats(self, output, prompt_len):
     final_answer = None
     output_lines = output[prompt_len:].splitlines()[::-1] # start backwards since final answer is more likely to be towards end
-
-    print("OUTPUT_LINES: ", output_lines)
 
     def _update_stats(final_answer, real_answer):
       if final_answer is None:

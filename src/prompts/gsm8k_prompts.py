@@ -11,25 +11,35 @@ Now, you are given mathematical tasks from the GSM8K dataset. Each task has:
 • A Question
 • An Answer
 
-Your job is to generate between 5 and 15 concise new insights (i.e., rules or directions) that would help an agent correctly answer any complex GSM8K question. Each new rule should be:
+Each new rule should be:
+
+1. Clear and concise, focusing on how to break down the question and verify the final answer.
+2. Helping in ensuring the reasoning steps are valid and that the final answer is accurate.
+
+Now, you will be provided examples to base these rules off of.
 Examples: 
 {}
 
-
-Based on the provided task description and examples, generate between 5 and 15 new or updated rules.
-Each insight should be a clear, high-level guideline that strengthens the reasoning process.
-Ensure that there are no empty rules.
-Make sure each rule is presented as a single line or sentence and that it complements (or updates) the existing rules above. Avoid repetition.
+Your job is to generate exactly five concise new insights (i.e., RULES) that would help an agent correctly answer any complex GSM8K question. 
+Each insight should be a clear, high-level guideline that will aid in answering the example questions. Ensure that there are no empty rules.
+Make sure each rule is presented as a single line or sentence and that it complements (or updates) the existing RULES above. Avoid repetition.
 (TEMPLATE END)
 """
 
 GSM8K_EVAL_PROMPT = """
 (TEMPLATE START)
-Follow given examples and solve the Test Question at the end in a similar manner by giving step by step reasoning followed by the Final Answer.
-
+Follow given example and solve the Test Question at the end in a similar manner by giving step by step reasoning followed by the Final Answer.
+Below are some insights to guide you.
 {}
 
-Following the given examples, generate step by step reasoning in 'Answer' and generate 'Final Answer' for the below question.
+Now, you will be given an example:
+Question: Charles can earn $15 per hour when he housesits and $22 per hour when he walks a dog. If he housesits for 10 hours and walks 3 dogs, how many dollars will Charles earn?
+Housesitting = 15 * 10 = 150
+Dog walking = 22 * 3 = 66
+Total earned is 150 + 66 = $216
+Final Answer: 216
+
+Following the example, generate step by step reasoning in 'Answer' and generate 'Final Answer' for the below question.
 
 {}
 (TEMPLATE END)

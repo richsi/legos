@@ -25,6 +25,18 @@ llama1b-strategyqa:
 
 
 # GSM8K:
+mistral-gsm8k:
+  model: "Mistral7B"
+  benchmark: "GSM8K"
+  train: "gsm8k_static_subset_selection.csv"
+  eval: "gsm8k_test_v2.csv"
+
+llama3b-gsm8k:
+  model: "Llama3B"
+  benchmark: "GSM8K"
+  train: "gsm8k_static_subset_selection.csv"
+  eval: "gsm8k_test_v2.csv"
+
 llama1b-gsm8k:
   model: "Llama1B"
   benchmark: "GSM8K"
