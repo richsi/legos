@@ -1,9 +1,37 @@
 # StrategyQA:
-mistral-strategyqa:
+## Mistral
+
+mistral7b-strategyqa:
+  train: "strategyqa_static_subset_selection.csv"
+  eval: "strategyqa_test.csv"
+
+mistral7b-gsm8k:
+  train: "gsm8k_static_subset_selection.csv"
+  eval: "gsm8k_test_v2.csv"
+
+
+mistral-strategyqa-insight:
   model: "Mistral7B"
   benchmark: "StrategyQA"
   train: "strategyqa_static_subset_selection.csv"
   eval: "strategyqa_test.csv"
+  eval_type: "insight"
+
+mistral-strategyqa-exemplar:
+  model: "Mistral7B"
+  benchmark: "StrategyQA"
+  train: "strategyqa_static_subset_selection.csv"
+  eval: "strategyqa_test.csv"
+  eval_type: "exemplar"
+
+mistral-strategyqa-exemplar:
+  model: "Mistral7B"
+  benchmark: "StrategyQA"
+  train: "strategyqa_static_subset_selection.csv"
+  eval: "strategyqa_test.csv"
+  eval_type: "insight_exemplar"
+
+##llama3b
 
 llama8b-strategyqa:
   model: "Llama8B"
@@ -25,12 +53,6 @@ llama1b-strategyqa:
 
 
 # GSM8K:
-mistral-gsm8k:
-  model: "Mistral7B"
-  benchmark: "GSM8K"
-  train: "gsm8k_static_subset_selection.csv"
-  eval: "gsm8k_test_v2.csv"
-
 llama3b-gsm8k:
   model: "Llama3B"
   benchmark: "GSM8K"

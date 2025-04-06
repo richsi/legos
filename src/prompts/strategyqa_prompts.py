@@ -1,28 +1,5 @@
-STRATEGYQA_PROMPT = """(TEMPLATE START)
-You are a concise, multi-step question answering system. For each task, you are provided with three fields: a Question, a list of Facts, and a Decomposition that breaks the Question into multiple reasoning steps. Your job is to use the Decomposition to structure your reasoning and to use the Facts to support your answer.
-
-For example:
-Task:
-Question: Has Drew Carey outshined Doug Davidson's tenure?
-Facts: ["Drew Carey has been the host of the Price is Right for over 13 years.", "Doug Davidson hosted the Price is Right from 1994-1995."]
-Decomposition: ["How long has Drew Carey hosted the Price is Right?", "How long did Doug Davidson host the Price is Right?", "Is #1 longer than #2?"]
-
-Expected Output:
-Thought: The decomposition shows that Drew Carey’s tenure is significantly longer than Doug Davidson's. The Facts confirm Drew Carey hosted for over 13 years while Doug Davidson hosted for only about one year.
-Final Answer: Yes
-
-Now, using the provided Question, Facts, and Decomposition fields, answer the question following the above format.
-
-When responding, your output must contain only two lines exactly in the format below:
-
-Thought: <your concise reasoning here, incorporating the decomposition steps and the facts>
-Final Answer: <your concise final answer here>
-(TEMPLATE END)
-
-"""
-
 STRATEGYQA_IE_PROMPT = """
-(TEMPLATE START)
+(PROMPT START)
 You are an advanced reasoning agent that can add, edit, or remove rules from your existing rule set, based on new insights or expansions.
 
 Here is your existing rule set:
@@ -51,13 +28,13 @@ Each insight should be a clear, high-level guideline that strengthens the reason
 Ensure that there are no empty rules.
 Make sure each rule is presented as a single line or sentence and that it complements (or updates) the existing rules above. Avoid repetition.
 Please provide these new or revised rules below in the format: RULE <number>: <rule>, starting with number 1.
-(TEMPLATE END)
+(PROMPT END)
 """
 
 
 # Note batch size
-STRATEGYQA_EVAL_PROMPT = """
-(TEMPLATE START)
+STRATEGYQA_EVAL_INSIGHT_PROMPT = """
+(PROMPT START)
 You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
 Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
 {}
@@ -69,11 +46,46 @@ Final Answer: <Yes or No>
 
 Now, you will be provided with the evaluation question and fact(s) below.
 {}
-(TEMPLATE END)
+(PROMPT END)
 """
 
+STRATEGYQA_EVAL_EXEMPLAR_PROMPT = """
+(PROMPT START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Follow the given examples that use the facts to answer a question by decomposing into sub questions first and then predicting the final answer as "Yes" or "No" only.
+{}
+
+Now, you will be provided with the evaluation question and fact(s) below.
+{}
+(PROMPT END)
+"""
+
+STRATEGYQA_EVAL_INSIGHT_EXEMPLAR_PROMPT = """
+(PROMPT START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+{}
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Follow the given examples that use the facts to answer a question by decomposing into sub questions first and then predicting the final answer as "Yes" or "No" only.
+{}
+
+Now, you will be provided with the evaluation question and fact(s) below.
+{}
+(PROMPT END)
+"""
 # STRATEGYQA_EVAL_PROMPT = """
-# (TEMPLATE START)
+# (PROMPT START)
 
 # You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with a batch of evaluation questions. Each question in the batch comes with its set of supporting facts (and may include an answer field in guided examples) but does NOT include sub-questions. For each question, your task is to:
 
@@ -123,5 +135,5 @@ Now, you will be provided with the evaluation question and fact(s) below.
 # Ensure that each of the questions below gets answered.
 # {}
 # ---
-# (TEMPLATE END)
+# (PROMPT END)
 # """

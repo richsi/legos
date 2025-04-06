@@ -1,5 +1,5 @@
 GSM8K_IE_PROMPT = """
-(TEMPLATE START)
+(PROMPT START)
 You are an advanced reasoning agent that can add, edit, or remove rules from your existing rule set, based on new insights or expansions.
 
 Here is your existing rule set:
@@ -23,11 +23,11 @@ Examples:
 Your job is to generate exactly five concise new insights (i.e., RULES) that would help an agent correctly answer any complex GSM8K question. 
 Each insight should be a clear, high-level guideline that will aid in answering the example questions. Ensure that there are no empty rules.
 Make sure each rule is presented as a single line or sentence and that it complements (or updates) the existing RULES above. Avoid repetition.
-(TEMPLATE END)
+(PROMPT END)
 """
 
-GSM8K_EVAL_PROMPT = """
-(TEMPLATE START)
+GSM8K_EVAL_INSIGHT_PROMPT = """
+(PROMPT START)
 Follow given example and solve the Test Question at the end in a similar manner by giving step by step reasoning followed by the Final Answer.
 Below are some insights to guide you.
 {}
@@ -42,5 +42,31 @@ Final Answer: 216
 Following the example, generate step by step reasoning in 'Answer' and generate 'Final Answer' for the below question.
 
 {}
-(TEMPLATE END)
+(PROMPT END)
+"""
+
+GSM8K_EVAL_EXEMPLAR_PROMPT = """
+(PROMPT START)
+Follow given example and solve the Test Question at the end in a similar manner by giving step by step reasoning followed by the Final Answer.
+Now, you will be given an examples:
+{}
+
+Following the example, generate step by step reasoning in 'Answer' and generate 'Final Answer' for the below question.
+{}
+(PROMPT END)
+"""
+
+GSM8K_EVAL_INSIGHT_EXEMPLAR_PROMPT = """
+(PROMPT START)
+Follow given example and solve the Test Question at the end in a similar manner by giving step by step reasoning followed by the Final Answer.
+Below are some insights to guide you.
+{}
+
+Now, you will be given an examples:
+{}
+
+Following the example, generate step by step reasoning in 'Answer' and generate 'Final Answer' for the below question.
+
+{}
+(PROMPT END)
 """

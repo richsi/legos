@@ -1,5 +1,5 @@
 TABMWP_IE_PROMPT = """
-(TEMPLATE START)
+(PROMPT START)
 You are an advanced reasoning agent that can add, edit, or remove rules from your existing rule set, based on new insights or expansions.
 
 Here is your existing rule set:
@@ -23,19 +23,44 @@ Based on the provided task description and examples, generate exactly 10 new or 
 Each insight should be a clear, high-level guideline that strengthens the reasoning process.
 Ensure that there are no empty rules.
 Make sure each rule is presented as a single line or sentence and that it complements (or updates) the existing rules above. Avoid repetition.
-(TEMPLATE END)
+(PROMPT END)
 """
 
-TABMWP_EVAL_PROMPT = """
-(TEMPLATE START)
+TABMWP_EVAL_INSIGHT_PROMPT = """
+(PROMPT START)
+Follow each of the given examples by using its Table to find the answer for its Question with the reasoning after Answer: and final answer after The answer is:.
+
+Now, you will be provided with extracted insights and rules to help you answer the evaluation questions.
+{}
+
+Following the given examples, generate step by step reasoning in 'Answer' and generate 'Final Answer' for the below question.
+{}
+(PROMPT END)
+"""
+
+TABMWP_EVAL_EXEMPLAR_PROMPT = """
+(PROMPT START)
 Follow each of the given examples by using its Table to find the answer for its Question with the reasoning after Answer: and final answer after The answer is:.
 
 Examples:
 {}
 
+Following the given examples, generate step by step reasoning in 'Answer' and generate 'Final Answer' for the below question.
+{}
+(PROMPT END)
+"""
+
+TABMWP_EVAL_INSIGHT_EXEMPLAR_PROMPT = """
+(PROMPT START)
+Follow each of the given examples by using its Table to find the answer for its Question with the reasoning after Answer: and final answer after The answer is:.
+
+Now, you will be provided with extracted insights and rules to help you answer the evaluation questions.
+{}
+
+Examples:
+{}
 
 Following the given examples, generate step by step reasoning in 'Answer' and generate 'Final Answer' for the below question.
-
 {}
-(TEMPLATE END)
+(PROMPT END)
 """

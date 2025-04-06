@@ -1,7 +1,9 @@
 # src.utils
 
-def load_config(config_file, config_name):
+def load_config(config_file, model, dataset):
   import yaml
+  config_name = "-".join([model, dataset])
+  print(config_name)
   with open(config_file, "r") as f:
     all_configs = yaml.safe_load(f)
     assert(all_configs.get(config_name, {}) != {})
@@ -27,10 +29,10 @@ def save_logs(
   def _remove_template_prompt_from_log(log_text: str) -> str:
     """
     Removes all occurrences of the staple prompt block from the log text.
-    Assumes each staple block starts with "(TEMPLATE START)." and ends with "(TEMPLATE END)".
+    Assumes each staple block starts with "(PROMPT START)." and ends with "(PROMPT END)".
     """
-    start_marker = "(TEMPLATE START)"
-    end_marker = "(TEMPLATE END)"
+    start_marker = "(PROMPT START)"
+    end_marker = "(PROMPT END)"
     
     # Continue removing until no complete staple block remains.
     while start_marker in log_text and end_marker in log_text:
