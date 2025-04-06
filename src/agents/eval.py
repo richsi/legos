@@ -266,3 +266,13 @@ class EvalAgent(BaseAgent):
       real_answer= self.eval_df.iloc[self.task_idx]["correct"]
       print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)
+    elif self.dataset == "finqa":
+      for line in output_lines:
+        lower_line = line.lower()
+        if "final" in lower_line and "answer" in lower_line:
+          final_answer = line.partition(":")[2].strip() # getting the half after the colon
+        if final_answer is not None:
+          break
+      real_answer= self.eval_df.iloc[self.task_idx]["correct"]
+      print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
+      _update_stats(final_answer, real_answer)

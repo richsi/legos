@@ -33,7 +33,7 @@ FINQA_EVAL_INSIGHT_PROMPT = """
 You will be provided with some insights and guidelines to help you answer the evaluation question.
 {}
 
-Now, you will be provided with the evaluation question.
+Now, you will be provided with the evaluation question. Provide your final answer in a newline following "Final answer: ".
 {}
 (PROMPT END)
 """
@@ -46,7 +46,7 @@ You will be provided with some example questions. Do not generate answers for th
 Now, you will be provided with some insights and guidelines to help you answer the evaluation question.
 {}
 
-Now, you will be provided with the evaluation question.
+Now, you will be provided with the evaluation question. Provide your final answer in a newline following "Final answer: ".
 {}
 (PROMPT END)
 """
@@ -59,7 +59,7 @@ Now, you will be provided with some example questions. Do not generate answers f
 Now, you will be provided with some insights and guidelines to help you answer the evaluation question.
 {}
 
-Now, you will be provided with the evaluation question.
+Now, you will be provided with the evaluation question. Provide your final answer in a newline following "Final answer: ".
 {}
 (PROMPT END)
 """
