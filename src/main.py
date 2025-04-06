@@ -10,14 +10,14 @@ def main():
   parser = argparse.ArgumentParser()
   parser.add_argument("--phase", "-p", type=str, default="eval", 
                       help="insight_extraction or eval")
+  parser.add_argument("--eval_type", "-e", type=str, required=False, 
+                      help="insight, exemplar, insight_exemplar")
   parser.add_argument("--model", "-m", type=str, required=True, 
                       help="mistral7b, llama3b, llama1b")
   parser.add_argument("--dataset", "-d", type=str, required=True, 
                       help="strategyqa, gsm8k, tabmwp, aquarat, finqa")
   parser.add_argument("--run_name", "-n", type=str, required=True, 
                       help="Name your run")
-  parser.add_argument("--eval_type", "-e", type=str, required=False, 
-                      help="insight, exemplar, insight_exemplar")
 
   args = parser.parse_args()
 

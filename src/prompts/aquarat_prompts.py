@@ -35,7 +35,7 @@ You are a helpful, respectful and honest assistant helping to solve math word pr
 Now, you will be provided with some insights and guidelines to help you answer the evaluation question.
 {}
 
-Now, you will be provided with the evaluation question.
+Now, you will be provided with the evaluation question. Provide your final answer in a newline following "Final answer: ".
 {}
 (PROMPT END)
 """
@@ -47,7 +47,7 @@ You are a helpful, respectful and honest assistant helping to solve math word pr
 Now, you will be provided with some example questions.
 {}
 
-Now, you will be provided with the evaluation question.
+Now, you will be provided with the evaluation question. Provide your final answer in a newline following "Final answer: ".
 {}
 (PROMPT END)
 """
@@ -62,7 +62,7 @@ Now, you will be provided with some example questions.
 Now, you will be provided with some insights and guidelines to help you answer the evaluation question.
 {}
 
-Now, you will be provided with the evaluation question.
+Now, you will be provided with the evaluation question. Provide your final answer in a newline following "Final answer: ".
 {}
 (PROMPT END)
 """

@@ -3,7 +3,6 @@
 def load_config(config_file, model, dataset):
   import yaml
   config_name = "-".join([model, dataset])
-  print(config_name)
   with open(config_file, "r") as f:
     all_configs = yaml.safe_load(f)
     assert(all_configs.get(config_name, {}) != {})

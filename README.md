@@ -52,16 +52,16 @@ Pass in the configuration name as an argument when running the script.
 **Example** `configs.yaml`:
 ```
 mistral-strategyqa:
-  model: "Mistral7B"
-  benchmark: StrategyQA"
-  train: "exemplars_subset_file_name.csv"
-  eval: "test_file_name.csv"
+  train: "strategyqa_train.csv"
+  eval: "strategyqa_test.csv"
 ```
 
-Insight Extraction: `python3 -m src.main -p insight_extraction -c mistral-strategyqa -n <run_name>`
+Insight Extraction: `python3 -m src.main -p insight_extraction -m mistral7b -d strategyqa -n <run_name>`
 
-Evaluation: `python3 -m src.main -p eval -c mistral-strategyqa -n <run_name>`
+Evaluation: `python3 -m src.main -p eval -e <eval_type> -m mistral7b -d strategyqa -n <run_name>`
 
 * `--phase, -p` - choose train, insight_extraction, or eval
-* `--config, -c` - select which configuration in your yaml file you want to use
+* `--eval, -e` - which evaluation setting (insight, exemplar, insight_exemplar) NOTE: only use flag for eval phase
+* `--model, -m` - which model do you want to run (mistral7b, llama3b, llama1b)
+* `--dataset, -d` - which dataset to use (strategyqa, gsm8k, etc)
 * `--run_name, -n` - name your run, will also be your log file name

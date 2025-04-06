@@ -147,9 +147,10 @@ class EvalAgent(BaseAgent):
 
   def get_strategyqa_exemplars(self, exemplar):
     string = "Facts: "
-    for fact in exemplar["facts"]:
-      string += "\n" + str(fact)
-    string += "\nQuestion: " + exemplar["question"]
+    facts_list = ast.literal_eval(exemplar["facts"])
+    for fact in facts_list:
+      string += "\n" + fact
+    string += "\n\nQuestion: " + exemplar["question"]
     string += "\nAnswer:\n"
     decomp_list = ast.literal_eval(exemplar["decomposition"])
     for idx, question in enumerate(decomp_list):
@@ -159,9 +160,10 @@ class EvalAgent(BaseAgent):
   
   def get_strategyqa_test_exemplars(self, exemplar):
     string = "Facts: "
-    for fact in exemplar["facts"]:
-      string += "\n" + str(fact)
-    string += "\nQuestion: " + exemplar["question"]
+    facts_list = ast.literal_eval(exemplar["facts"])
+    for fact in facts_list:
+      string += "\n" + fact
+    string += "\n\nQuestion: " + exemplar["question"]
     return string
 
   def get_gsm8k_exemplars(self, exemplar):
@@ -252,5 +254,15 @@ class EvalAgent(BaseAgent):
         if final_answer is not None:
           break
       real_answer= self.eval_df.iloc[self.task_idx]["answer"]
+      print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
+      _update_stats(final_answer, real_answer)
+    elif self.dataset == "aquarat":
+      for line in output_lines:
+        lower_line = line.lower()
+        if "final" in lower_line and "answer" in lower_line:
+          final_answer = line.partition(":")[2].strip() # getting the half after the colon
+        if final_answer is not None:
+          break
+      real_answer= self.eval_df.iloc[self.task_idx]["correct"]
       print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)
