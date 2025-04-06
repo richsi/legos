@@ -12,12 +12,13 @@ def load_config(config_file, model, dataset):
 
 def save_logs(
   model: str,
-  benchmark: str, 
+  dataset: str, 
   run_name: str, 
   phase: str, 
   log_history: list, 
   stats: dict, 
   runtime: float, 
+  eval_type: str=None,
   results_dict: dict=None
 ):
   """
@@ -45,13 +46,19 @@ def save_logs(
     return log_text
 
   os.makedirs("logs", exist_ok=True)
-  benchmark_log_path = os.path.join("logs", benchmark)
-  os.makedirs(benchmark_log_path, exist_ok=True)
-  phase_log_path = os.path.join(benchmark_log_path, phase)
+  dataset_log_path = os.path.join("logs", dataset)
+  os.makedirs(dataset_log_path, exist_ok=True)
+  phase_log_path = os.path.join(dataset_log_path, phase)
   os.makedirs(phase_log_path, exist_ok=True)
+
   full_log_path = os.path.join(phase_log_path, f"{run_name}_{model}_{phase}_full.log")
   clean_log_path = os.path.join(phase_log_path, f"{run_name}_{model}_{phase}_clean.log")
-    
+  if eval_type:
+    eval_type_log_path = os.path.join(phase_log_path, eval_type)
+    os.makedirs(eval_type_log_path, exist_ok=True)
+    full_log_path = os.path.join(eval_type_log_path, f"{run_name}_{model}_{phase}_{eval_type}_full.log")
+    clean_log_path = os.path.join(eval_type_log_path, f"{run_name}_{model}_{phase}_{eval_type}_clean.log")
+
   # Join all experience entries (each step) into one string
   full_log_text = "\n".join(log_history)
   # Process the log to remove the staple prompt blocks
@@ -79,16 +86,21 @@ def save_logs(
 
 
 
-def format_prompt(phase: str, benchmark: str, **kwargs):
+def format_prompt(phase: str, dataset: str, **kwargs):
   from src.prompts import PROMPTS
-  base_prompt = PROMPTS[benchmark + "_" + phase]
 
-  if phase == "train":
-    full_prompt = base_prompt
-  elif phase == "insight_extraction":
+  if phase == "insight_extraction":
+    base_prompt = PROMPTS["_".join([dataset, phase])]
     full_prompt = base_prompt.format(kwargs["exemplars"])
   elif phase == "eval":
-    full_prompt = base_prompt.format(kwargs["insights"], kwargs["test_data"])
+    base_prompt = PROMPTS["_".join([dataset, phase, kwargs["eval_type"]])]
+    if kwargs["eval_type"] == "insight":
+      full_prompt = base_prompt.format(kwargs["insights"], kwargs["test_data"])
+    elif kwargs["eval_type"] == "exemplar":
+      full_prompt = base_prompt.format(kwargs["exemplars"], kwargs["test_data"])
+    elif kwargs["eval_type"] == "insight_exemplar":
+      full_prompt = base_prompt.format(kwargs["exemplars"], kwargs["insights"],kwargs["test_data"])
+
   return full_prompt
 
 
@@ -97,11 +109,11 @@ def query(model: str, prompt: str):
   return QUERY[model](prompt)
 
 
-def get_insights(model: str, benchmark: str, run_name: str):
+def get_insights(model: str, dataset: str, run_name: str):
   import os
   import re
   file_name = f"{run_name}_{model}_insight_extraction_clean.log"
-  insights_path = os.path.join("logs", benchmark, "insight_extraction", file_name)
+  insights_path = os.path.join("logs", dataset, "insight_extraction", file_name)
   # Pattern to match lines that start with "RULE" or a digit (e.g., "1." or "2.")
   rule_pattern = re.compile(r'^(RULE|\d+\.)', re.IGNORECASE)
     

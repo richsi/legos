@@ -33,6 +33,8 @@ def main():
   if args.phase == "eval":
     assert(args.eval_type != None)
     kwargs["eval_type"] = args.eval_type
+  else:
+    assert(args.eval_type == None)
 
   # Initializing model
   agent = AGENT[args.phase](**kwargs)

@@ -12,9 +12,9 @@ class InsightAgent(BaseAgent):
     # Default variables
     self.model = kwargs["model"]
     self.phase = kwargs["phase"]
-    self.benchmark = kwargs["benchmark"]
+    self.dataset = kwargs["dataset"]
     self.run_name = kwargs["run_name"]
-    self.exemplars = pd.read_csv(os.path.join(os.getenv(kwargs["benchmark"].upper()), kwargs["train"])) # pd.DataFrame type
+    self.exemplars = pd.read_csv(os.path.join(os.getenv(kwargs["dataset"].upper()), kwargs["train"])) # pd.DataFrame type
 
     self.num_tasks = len(kwargs["train"])
     self.log_history = []          
@@ -38,7 +38,7 @@ class InsightAgent(BaseAgent):
 
     utils.save_logs(
       self.model,
-      self.benchmark, 
+      self.dataset, 
       self.run_name, 
       self.phase,
       self.log_history, 
@@ -55,20 +55,20 @@ class InsightAgent(BaseAgent):
     """
 
     exemplar_getter = {
-      "StrategyQA": self.get_strategyqa_exemplars,
-      "GSM8K": self.get_gsm8k_exemplars,
-      "TabMWP": self.get_tabmwp_exemplars,
-    }.get(self.benchmark)
+      "strategyqa": self.get_strategyqa_exemplars,
+      "gsm8k": self.get_gsm8k_exemplars,
+      "tabmwp": self.get_tabmwp_exemplars,
+    }.get(self.dataset)
 
     if exemplar_getter is None:
-      raise ValueError(f"Unsupported benchmark: {self.benchmark}")
+      raise ValueError(f"Unsupported dataset: {self.dataset}")
 
     all_exemplars = [exemplar_getter(row) for _, row in self.exemplars.iterrows()]
-    exemplars = "\n---\n".join(all_exemplars)
+    exemplars = "\n\n".join(all_exemplars)
 
     # LLM api call to get model output
     kwargs = dict(exemplars=exemplars)
-    formatted_prompt = utils.format_prompt(self.phase, self.benchmark, **kwargs) # formatting the prompt
+    formatted_prompt = utils.format_prompt(self.phase, self.dataset, **kwargs) # formatting the prompt
     llm_output = QUERY[self.model](formatted_prompt) # querying the LLM model
     print(llm_output)
 

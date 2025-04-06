@@ -6,3 +6,4 @@ matches,mismatches,EM,train_data_len,test_data_len,model,dataset,run_name
 0,5,0.0,50,1319,Llama1B,GSM8K,run1
 0,2,0.0,50,1319,Mistral7B,GSM8K,run1
 0,2,0.0,50,1319,Llama1B,GSM8K,run1
+2,0,100.0,50,490,mistral7b,strategyqa,test

@@ -14,9 +14,10 @@ class EvalAgent(BaseAgent):
     # Default variables
     self.model = kwargs["model"]
     self.phase = kwargs["phase"]
-    self.benchmark = kwargs["benchmark"]
+    self.dataset = kwargs["dataset"]
     self.run_name = kwargs["run_name"]
-    self.train_exemplars = pd.read_csv(os.path.join(os.getenv(kwargs["benchmark"].upper()), kwargs["train"])) # pd.DataFrame type
+    self.eval_type = kwargs["eval_type"]
+    self.train_exemplars = pd.read_csv(os.path.join(os.getenv(kwargs["dataset"].upper()), kwargs["train"])) # pd.DataFrame type
 
     self.num_tasks = 0
     self.log_history = []          
@@ -33,38 +34,36 @@ class EvalAgent(BaseAgent):
     """
     Starts new run
     """
-    if reset:
-      self.reset()
-
     # Dict mapping to correct exemplar getter function
     exemplar_getter = {
-      "StrategyQA": self.get_strategyqa_exemplars,
-      "GSM8K": self.get_gsm8k_exemplars,
-      "TabMWP": self.get_tabmwp_exemplars,
-    }.get(self.benchmark)
+      "strategyqa": self.get_strategyqa_exemplars,
+      "gsm8k": self.get_gsm8k_exemplars,
+      "tabmwp": self.get_tabmwp_exemplars,
+      "aquarat": self.get_aquarat_exemplars,
+    }.get(self.dataset)
 
-    # Check that benchmark is valid and function exists
+    # Check that dataset is valid and function exists
     if exemplar_getter is None:
-      raise ValueError(f"Unsupported benchmark: {self.benchmark}")
+      raise ValueError(f"Unsupported dataset: {self.dataset}")
 
     # Formatting the exemplar to pass into prompt
     all_train_exemplars = [exemplar_getter(row) for _, row in self.train_exemplars.iterrows()]
-    train_data = "\n---\n".join(all_train_exemplars)
+    train_data = "\n\n".join(all_train_exemplars)
 
     # Getting the eval file path
-    eval_path = os.path.join(os.getenv(self.benchmark.upper()), self.eval_file)
+    eval_path = os.path.join(os.getenv(self.dataset.upper()), self.eval_file)
     # Getting eval file contents
     self.eval_df = pd.read_csv(eval_path)
 
     # Dict mapping to correct test exemplar getter function
     test_exemplar_getter = {
-      "StrategyQA": self.get_strategyqa_test_exemplars,
-      "GSM8K": self.get_gsm8k_exemplars,
-      "TabMWP": self.get_tabmwp_exemplars,
-    }.get(self.benchmark)
+      "strategyqa": self.get_strategyqa_test_exemplars,
+      "gsm8k": self.get_gsm8k_exemplars,
+      "tabmwp": self.get_tabmwp_exemplars,
+    }.get(self.dataset)
 
     if test_exemplar_getter is None:
-      raise ValueError(f"Unsupported benchmark: {self.benchmark}")
+      raise ValueError(f"Unsupported dataset: {self.dataset}")
 
     # Formatting the test exemplars to pass into prompt
     self.all_test_exemplars = [test_exemplar_getter(row) for _, row in self.eval_df.iterrows()]
@@ -72,13 +71,13 @@ class EvalAgent(BaseAgent):
     self.num_tasks = len(self.all_test_exemplars) 
 
     # Getting insights from same run_name from logs/insight_extraction
-    insights = utils.get_insights(self.model, self.benchmark, self.run_name)
+    insights = utils.get_insights(self.model, self.dataset, self.run_name)
     print(f"INSIGHTS:\n{insights}")
 
     kwargs = dict(
       exemplars=train_data,
       insights=insights,
-      batch_size=5
+      eval_type=self.eval_type,
     )
 
     start_time = time.time()
@@ -97,18 +96,19 @@ class EvalAgent(BaseAgent):
       "train_data_len": [len(all_train_exemplars)],
       "test_data_len": [len(self.all_test_exemplars)],
       "model": [self.model],
-      "dataset": [self.benchmark],
+      "dataset": [self.dataset],
       "run_name": [self.run_name]
     }
 
     utils.save_logs(
       self.model,
-      self.benchmark, 
+      self.dataset, 
       self.run_name, 
       self.phase,
       self.log_history, 
       self.stats, 
       self.runtime,
+      self.eval_type,
       results_dict
     )  
 
@@ -121,23 +121,10 @@ class EvalAgent(BaseAgent):
       - Generated insights from the exemplars
       - Final evaluation answers
     """
-    # batch_prompts = []
-    # batch_real_answers = []
-    # batch_indices = []
-    # batching the data
-    # for i in range(kwargs["batch_size"]):
-    #   if self.done():
-    #     break
-    #   kwargs["test_data"] = self.all_test_exemplars[self.task_idx]
-    #   subprompt = utils.format_prompt(self.phase, self.benchmark, **kwargs)
-    #   batch_prompts.append(subprompt)
-    #   batch_real_answers.append(self.eval_df.iloc[self.task_idx]["answer"])
-    #   batch_indices.append(self.task_idx)
-    #   self.task_idx += 1
 
     kwargs["test_data"] = self.all_test_exemplars[self.task_idx]
     # Formatting prompt for LLM
-    prompt = utils.format_prompt(self.phase, self.benchmark, **kwargs) 
+    prompt = utils.format_prompt(self.phase, self.dataset, **kwargs) 
     print(prompt)
     # Querying the LLM
     llm_output = utils.query(self.model, prompt)
@@ -161,7 +148,7 @@ class EvalAgent(BaseAgent):
   def get_strategyqa_exemplars(self, exemplar):
     string = "Facts: "
     for fact in exemplar["facts"]:
-      string += fact
+      string += "\n" + str(fact)
     string += "\nQuestion: " + exemplar["question"]
     string += "\nAnswer:\n"
     decomp_list = ast.literal_eval(exemplar["decomposition"])
@@ -173,7 +160,7 @@ class EvalAgent(BaseAgent):
   def get_strategyqa_test_exemplars(self, exemplar):
     string = "Facts: "
     for fact in exemplar["facts"]:
-      string += fact
+      string += "\n" + str(fact)
     string += "\nQuestion: " + exemplar["question"]
     return string
 
@@ -186,10 +173,31 @@ class EvalAgent(BaseAgent):
   def get_tabmwp_exemplars(self, exemplar):
     choices_str = "Please select from the following options: " + exemplar["choices"] \
                   if type(exemplar["choices"]) == str else ""
-    string = "\nTable:\n" + exemplar["table"] + "\nQuestion:" + exemplar["question"] \
-              + choices_str + "\nAnswer:" + exemplar["solution"] + "\nThe answer is:" \
-              + exemplar["answer"]
+    return "Table: \n{}\nQuestion: {}\n{}\nAnswer: {}\nThe answer is: {}".format(
+      exemplar["table"],
+      exemplar["question"],
+      choices_str,
+      exemplar["solution"],
+      exemplar["answer"]
+    )
+    
     return string
+
+  def get_aquarat_exemplars(self, exemplar):
+    return "Question: {}\nOptions: {}\nReasoning: {}. The correct option is {}.".format(
+      exemplar["question"],
+      exemplar["options"],
+      exemplar["rationale"],
+      exemplar["correct"]
+    )
+    
+  def get_finqa_exemplars(self, exemplar):
+    return "Read the following table, and then answer the question: \nTable: {}\nQuestion: {}\nEquation: {}\n. The answer is {}.".format(
+      exemplar["table"],
+      exemplar["question"],
+      exemplar["program"],
+      exemplar["answer"],
+    )
 
   def get_final_answer(self, text):
     pattern = r"Final Answer:\s*(.*)"
@@ -200,9 +208,6 @@ class EvalAgent(BaseAgent):
       raise Exception(f"No final answer for task: {self.task_idx}")
 
   def record_stats(self, output, prompt_len):
-    final_answer = None
-    output_lines = output[prompt_len:].splitlines()[::-1] # start backwards since final answer is more likely to be towards end
-
     def _update_stats(final_answer, real_answer):
       if final_answer is None:
         key = "FAILED"
@@ -212,7 +217,9 @@ class EvalAgent(BaseAgent):
         key = "INCORRECT"
       self.stats[key] += 1
 
-    if self.benchmark == "StrategyQA":
+    final_answer = None
+    output_lines = output[prompt_len:].splitlines()[::-1] # start backwards since final answer is more likely to be towards end
+    if self.dataset == "strategyqa":
       for line in output_lines: 
         lower_line = line.lower()
         if "final" in lower_line and "answer" in lower_line:
@@ -225,7 +232,7 @@ class EvalAgent(BaseAgent):
       real_answer = self.eval_df.iloc[self.task_idx]["answer"]
       print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)
-    elif self.benchmark == "GSM8K":
+    elif self.dataset == "gsm8k":
       for line in output_lines:
         lower_line = line.lower()
         if "final" in lower_line and "answer" in lower_line:
@@ -237,7 +244,7 @@ class EvalAgent(BaseAgent):
       real_answer = matches.group(1)
       print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)
-    elif self.benchmark == "TabMWP":
+    elif self.dataset == "tabmwp":
       for line in output_lines:
         lower_line = line.lower()
         if "final" in lower_line and "answer" in lower_line:

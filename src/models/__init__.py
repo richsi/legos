@@ -4,8 +4,7 @@ from .llama3b import query_llama3b
 from .llama1b import query_llama1b
 
 QUERY = dict(
-  Mistral7B=query_mistral7b,
-  Llama8B=query_llama8b,
-  Llama3B=query_llama3b,
-  Llama1B=query_llama1b
+  mistral7b=query_mistral7b,
+  llama3b=query_llama3b,
+  llama1b=query_llama1b
 )

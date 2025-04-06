@@ -1,74 +1,64 @@
 # StrategyQA:
-## Mistral
-
+## mistral7b
 mistral7b-strategyqa:
-  train: "strategyqa_static_subset_selection.csv"
+  train: "strategyqa_train.csv"
   eval: "strategyqa_test.csv"
 
 mistral7b-gsm8k:
-  train: "gsm8k_static_subset_selection.csv"
-  eval: "gsm8k_test_v2.csv"
+  train: "gsm8k_train.csv"
+  eval: "gsm8k_test.csv"
 
+mistral7b-tabmwp:
+  train: "tabmwp_train.csv"
+  eval: "tabmwp_eval.csv"
 
-mistral-strategyqa-insight:
-  model: "Mistral7B"
-  benchmark: "StrategyQA"
-  train: "strategyqa_static_subset_selection.csv"
-  eval: "strategyqa_test.csv"
-  eval_type: "insight"
+mistral7b-aquarat:
+  train: "aquarat_train.csv"
+  eval: "aquarat_eval.csv"
 
-mistral-strategyqa-exemplar:
-  model: "Mistral7B"
-  benchmark: "StrategyQA"
-  train: "strategyqa_static_subset_selection.csv"
-  eval: "strategyqa_test.csv"
-  eval_type: "exemplar"
+mistral7b-finqa:
+  train: "finqa_train.csv"
+  eval: "finqa_eval.csv"
 
-mistral-strategyqa-exemplar:
-  model: "Mistral7B"
-  benchmark: "StrategyQA"
-  train: "strategyqa_static_subset_selection.csv"
-  eval: "strategyqa_test.csv"
-  eval_type: "insight_exemplar"
-
-##llama3b
-
-llama8b-strategyqa:
-  model: "Llama8B"
-  benchmark: "StrategyQA"
-  train: "strategyqa_static_subset_selection.csv"
-  eval: "strategyqa_test.csv"
-
+## llama3b
 llama3b-strategyqa:
-  model: "Llama3B"
-  benchmark: "StrategyQA"
-  train: "strategyqa_static_subset_selection.csv"
+  train: "strategyqa_train.csv"
   eval: "strategyqa_test.csv"
 
-llama1b-strategyqa:
-  model: "Llama1B"
-  benchmark: "StrategyQA"
-  train: "strategyqa_static_subset_selection.csv"
-  eval: "strategyqa_test.csv"
-
-
-# GSM8K:
 llama3b-gsm8k:
-  model: "Llama3B"
-  benchmark: "GSM8K"
-  train: "gsm8k_static_subset_selection.csv"
-  eval: "gsm8k_test_v2.csv"
+  train: "gsm8k_train.csv"
+  eval: "gsm8k_test.csv"
+
+llama3b-tabmwp:
+  train: "tabmwp_train.csv"
+  eval: "tabmwp_eval.csv"
+
+llama3b-aquarat:
+  train: "aquarat_train.csv"
+  eval: "aquarat_eval.csv"
+
+llama3b-finqa:
+  train: "finqa_train.csv"
+  eval: "finqa_eval.csv"
+
+
+## llama1b
+llama1b-strategyqa:
+  train: "strategyqa_train.csv"
+  eval: "strategyqa_test.csv"
 
 llama1b-gsm8k:
-  model: "Llama1B"
-  benchmark: "GSM8K"
-  train: "gsm8k_static_subset_selection.csv"
-  eval: "gsm8k_test_v2.csv"
+  train: "gsm8k_train.csv"
+  eval: "gsm8k_test.csv"
 
-
-# TabMWP:
 llama1b-tabmwp:
-  model: "Llama1B"
-  benchmark: "TabMWP"
-  train: "tabmwp_static_subset_selection_mistral.csv"
-  eval: "tabmwp_test.csv"
+  train: "tabmwp_train.csv"
+  eval: "tabmwp_eval.csv"
+
+llama1b-aquarat:
+  train: "aquarat_train.csv"
+  eval: "aquarat_eval.csv"
+
+llama1b-finqa:
+  train: "finqa_train.csv"
+  eval: "finqa_eval.csv"
