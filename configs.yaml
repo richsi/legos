@@ -10,15 +10,15 @@ mistral7b-gsm8k:
 
 mistral7b-tabmwp:
   train: "tabmwp_train.csv"
-  eval: "tabmwp_eval.csv"
+  eval: "tabmwp_test.csv"
 
 mistral7b-aquarat:
   train: "aquarat_train.csv"
-  eval: "aquarat_eval.csv"
+  eval: "aquarat_test.csv"
 
 mistral7b-finqa:
   train: "finqa_train.csv"
-  eval: "finqa_eval.csv"
+  eval: "finqa_test.csv"
 
 ## llama3b
 llama3b-strategyqa:
@@ -31,15 +31,15 @@ llama3b-gsm8k:
 
 llama3b-tabmwp:
   train: "tabmwp_train.csv"
-  eval: "tabmwp_eval.csv"
+  eval: "tabmwp_test.csv"
 
 llama3b-aquarat:
   train: "aquarat_train.csv"
-  eval: "aquarat_eval.csv"
+  eval: "aquarat_test.csv"
 
 llama3b-finqa:
   train: "finqa_train.csv"
-  eval: "finqa_eval.csv"
+  eval: "finqa_test.csv"
 
 
 ## llama1b
@@ -53,12 +53,12 @@ llama1b-gsm8k:
 
 llama1b-tabmwp:
   train: "tabmwp_train.csv"
-  eval: "tabmwp_eval.csv"
+  eval: "tabmwp_test.csv"
 
 llama1b-aquarat:
   train: "aquarat_train.csv"
-  eval: "aquarat_eval.csv"
+  eval: "aquarat_test.csv"
 
 llama1b-finqa:
   train: "finqa_train.csv"
-  eval: "finqa_eval.csv"
+  eval: "finqa_test.csv"

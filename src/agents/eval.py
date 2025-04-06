@@ -40,6 +40,7 @@ class EvalAgent(BaseAgent):
       "gsm8k": self.get_gsm8k_exemplars,
       "tabmwp": self.get_tabmwp_exemplars,
       "aquarat": self.get_aquarat_exemplars,
+      "finqa": self.get_finqa_exemplars,
     }.get(self.dataset)
 
     # Check that dataset is valid and function exists
@@ -58,8 +59,10 @@ class EvalAgent(BaseAgent):
     # Dict mapping to correct test exemplar getter function
     test_exemplar_getter = {
       "strategyqa": self.get_strategyqa_test_exemplars,
-      "gsm8k": self.get_gsm8k_exemplars,
-      "tabmwp": self.get_tabmwp_exemplars,
+      "gsm8k": self.get_gsm8k_test_exemplars,
+      "tabmwp": self.get_tabmwp_test_exemplars,
+      "aquarat": self.get_aquarat_test_exemplars,
+      "finqa": self.get_finqa_test_exemplars
     }.get(self.dataset)
 
     if test_exemplar_getter is None:
@@ -172,6 +175,10 @@ class EvalAgent(BaseAgent):
     string = "Question: " + exemplar["question"] + "\n" + answer + "\n\n"
     return string
 
+  def get_gsm8k_test_exemplars(self, exemplar):
+    string = "Question: " + exemplar["question"] + "\n" + answer + "\n\n"
+    return string
+
   def get_tabmwp_exemplars(self, exemplar):
     choices_str = "Please select from the following options: " + exemplar["choices"] \
                   if type(exemplar["choices"]) == str else ""
@@ -182,23 +189,48 @@ class EvalAgent(BaseAgent):
       exemplar["solution"],
       exemplar["answer"]
     )
+
+  def get_tabmwp_test_exemplars(self, exemplar):
+    choices_str = "Please select from the following options: " + exemplar["choices"] \
+                  if type(exemplar["choices"]) == str else ""
+    return "Table: \n{}\nQuestion: {}\n{}".format(
+      exemplar["table"],
+      exemplar["question"],
+      choices_str,
+    )
     
     return string
 
   def get_aquarat_exemplars(self, exemplar):
-    return "Question: {}\nOptions: {}\nReasoning: {}. The correct option is {}.".format(
+    list_options = ast.literal_eval(exemplar["options"])
+    options = "\n".join(list_options)
+    return "Question: {}\nOptions:\n{}\nReasoning: {}. The correct option is {}.".format(
       exemplar["question"],
-      exemplar["options"],
+      options,
       exemplar["rationale"],
       exemplar["correct"]
     )
+
+  def get_aquarat_test_exemplars(self, exemplar):
+    list_options = ast.literal_eval(exemplar["options"])
+    options = "\n".join(list_options)
+    return "Question: {}\nOptions:\n{}\n".format(
+      exemplar["question"],
+      options,
+    )
     
   def get_finqa_exemplars(self, exemplar):
-    return "Read the following table, and then answer the question: \nTable: {}\nQuestion: {}\nEquation: {}\n. The answer is {}.".format(
+    return "Read the following table, and then answer the question: \nTable:\n{}\nQuestion: {}\nEquation: {}\n. The answer is {}.".format(
       exemplar["table"],
       exemplar["question"],
       exemplar["program"],
       exemplar["answer"],
+    )
+
+  def get_finqa_test_exemplars(self, exemplar):
+    return "Read the following table, and then answer the question: \nTable:\n{}\nQuestion: {}.".format(
+      exemplar["table"],
+      exemplar["question"],
     )
 
   def get_final_answer(self, text):

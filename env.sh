@@ -8,5 +8,6 @@ export STRATEGYQA="$DATA/strategyqa"
 export GSM8K="$DATA/gsm8k"
 export TABMWP="$DATA/tabmwp"
 export AQUARAT="$DATA/aquarat"
+export FINQA="$DATA/finqa"
 
 export LOGS="$BASE_DIR/logs"

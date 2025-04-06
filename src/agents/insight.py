@@ -58,6 +58,8 @@ class InsightAgent(BaseAgent):
       "strategyqa": self.get_strategyqa_exemplars,
       "gsm8k": self.get_gsm8k_exemplars,
       "tabmwp": self.get_tabmwp_exemplars,
+      "aquarat": self.get_aquarat_exemplars,
+      "finqa": self.get_finqa_exemplars,
     }.get(self.dataset)
 
     if exemplar_getter is None:
@@ -110,6 +112,25 @@ class InsightAgent(BaseAgent):
               + choices_str + "\nAnswer:" + exemplar["solution"] + "\nThe answer is:" \
               + exemplar["answer"]
     return string
+
+  def get_aquarat_exemplars(self, exemplar):
+    list_options = ast.literal_eval(exemplar["options"])
+    options = "\n".join(list_options)
+    return "Question: {}\nOptions:\n{}\nReasoning: {}. The correct option is {}.".format(
+      exemplar["question"],
+      options,
+      exemplar["rationale"],
+      exemplar["correct"]
+    )
+    
+  def get_finqa_exemplars(self, exemplar):
+    return "Read the following table, and then answer the question: \nTable:\n{}\nQuestion: {}\nEquation: {}\n. The answer is {}.".format(
+      exemplar["table"],
+      exemplar["question"],
+      exemplar["program"],
+      exemplar["answer"],
+    )
+
 
   def done(self):
     """
