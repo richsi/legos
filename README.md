@@ -4,10 +4,9 @@ Exploration of improving benchmark performance with reduced computational overhe
 
 ## TODO
 - [x] Only Insight (based on exemplars)
+- [x] Only exemplars (EXPLORA baseline)
+- [x] Exemplar + Insight 
 - [x] Training time
-- [ ] Only exemplars (EXPLORA baseline)
-- [ ] Exemplar + Insight 
-- [ ] Insight + Exemplar 
 - [ ] Reduced Exemplar list (based on cosine similarity) + Exemplar
 - [ ] Repeat using FP16 and FP32
 - [ ] Token / context size
@@ -27,6 +26,8 @@ Exploration of improving benchmark performance with reduced computational overhe
 * `strategyqa_prompts`: contains insight extraction and evaluation prompts for StrategyQA dataset
 * `gsm8k_prompts`: contains insight extraction and evaluation prompts for GSM8K dataset
 * `tabmwp_prompts`: contains insight extraction and evaluation prompts for TabMWP dataset
+* `aquarat`: contains insight extraction and evaluation prompts for AquaRat dataset
+* `finqa_prompts`: contains insight extraction and evaluation prompts for FinQA dataset
 
 ## Building the Project
 
@@ -45,7 +46,18 @@ Exploration of improving benchmark performance with reduced computational overhe
 6. `pip install -r requirements.txt`
 
 ## Usage
-Set your run configuration in the `configs.yaml` file.
+Insight Extraction: `python3 -m src.main -p insight_extraction -m mistral7b -d strategyqa -n <run_name>`
+Evaluation (insights only): `python3 -m src.main -p eval -e insight -m mistral7b -d strategyqa -n <run_name>`
+Evaluation (exemplars only): `python3 -m src.main -p eval -e exemplars -m mistral7b -d strategyqa -n <run_name>`
+Evaluation (insights and exemplars): `python3 -m src.main -p eval -e insight_exemplar -m mistral7b -d strategyqa -n <run_name>`
+
+* `--phase, -p` - choose train, insight_extraction, or eval
+* `--eval, -e` - which evaluation setting (insight, exemplar, insight_exemplar) NOTE: only use flag for eval phase
+* `--model, -m` - which model do you want to run (mistral7b, llama3b, llama1b)
+* `--dataset, -d` - which dataset to use (strategyqa, gsm8k, etc)
+* `--run_name, -n` - name your run, will also be your log file name
+
+Set your file configurations in the `configs.yaml` file.
 
 Pass in the configuration name as an argument when running the script.
 
@@ -55,13 +67,3 @@ mistral-strategyqa:
   train: "strategyqa_train.csv"
   eval: "strategyqa_test.csv"
 ```
-
-Insight Extraction: `python3 -m src.main -p insight_extraction -m mistral7b -d strategyqa -n <run_name>`
-
-Evaluation: `python3 -m src.main -p eval -e <eval_type> -m mistral7b -d strategyqa -n <run_name>`
-
-* `--phase, -p` - choose train, insight_extraction, or eval
-* `--eval, -e` - which evaluation setting (insight, exemplar, insight_exemplar) NOTE: only use flag for eval phase
-* `--model, -m` - which model do you want to run (mistral7b, llama3b, llama1b)
-* `--dataset, -d` - which dataset to use (strategyqa, gsm8k, etc)
-* `--run_name, -n` - name your run, will also be your log file name
