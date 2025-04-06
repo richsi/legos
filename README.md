@@ -46,10 +46,10 @@ Exploration of improving benchmark performance with reduced computational overhe
 6. `pip install -r requirements.txt`
 
 ## Usage
-Insight Extraction: `python3 -m src.main -p insight_extraction -m mistral7b -d strategyqa -n <run_name>`
-Evaluation (insights only): `python3 -m src.main -p eval -e insight -m mistral7b -d strategyqa -n <run_name>`
-Evaluation (exemplars only): `python3 -m src.main -p eval -e exemplars -m mistral7b -d strategyqa -n <run_name>`
-Evaluation (insights and exemplars): `python3 -m src.main -p eval -e insight_exemplar -m mistral7b -d strategyqa -n <run_name>`
+**Insight Extraction**: ```python3 -m src.main -p insight_extraction -m mistral7b -d strategyqa -n <run_name>```
+**Evaluation (insights only)**: ```python3 -m src.main -p eval -e insight -m mistral7b -d strategyqa -n <run_name>```
+**Evaluation (exemplars only)**: ```python3 -m src.main -p eval -e exemplars -m mistral7b -d strategyqa -n <run_name>```
+**Evaluation (insights and exemplars)**: ```python3 -m src.main -p eval -e insight_exemplar -m mistral7b -d strategyqa -n <run_name>```
 
 * `--phase, -p` - choose train, insight_extraction, or eval
 * `--eval, -e` - which evaluation setting (insight, exemplar, insight_exemplar) NOTE: only use flag for eval phase
