@@ -1,0 +1,36 @@
+cp ../EXPLORA_gatech/output/aquarat_mistral7b_16_selected_exemplar.csv data/aquarat/aquarat_train.csv
+cp ../EXPLORA_gatech/output/finqa_mistral7b_16_selected_exemplar.csv data/finqa/finqa_train.csv
+cp ../EXPLORA_gatech/output/gsm8k_mistral7b_16_selected_exemplar.csv data/gsm8k/gsm8k_train.csv
+cp ../EXPLORA_gatech/output/strategyqa_mistral7b_16_selected_exemplar.csv data/strategyqa/strategyqa_train.csv
+cp ../EXPLORA_gatech/output/tabmwp_mistral7b_16_selected_exemplar.csv data/tabmwp/tabmwp_train.csv
+
+python -m src.main -p insight_extraction -m mistral7b -d aquar -n mistral7b_16_aquar_in && python -m src.main -p eval -e insight -m mistral7b -d aquar -n mistral7b_16_aquar_in_eval && python -m src.main -p eval -e exemplars -m mistral7b -d aquar -n mistral7b_16_aquar_examples && python -m src.main -p eval -e insight_exemplar -m mistral7b -d aquar -n mistral7b_16_aquar_overall
+python -m src.main -p insight_extraction -m mistral7b -d finqa -n mistral7b_16_finqa_in && python -m src.main -p eval -e insight -m mistral7b -d finqa -n mistral7b_16_finqa_in_eval && python -m src.main -p eval -e exemplars -m mistral7b -d finqa -n mistral7b_16_finqa_examples && python -m src.main -p eval -e insight_exemplar -m mistral7b -d finqa -n mistral7b_16_finqa_overall
+python -m src.main -p insight_extraction -m mistral7b -d gsm8k -n mistral7b_16_gsm8k_in && python -m src.main -p eval -e insight -m mistral7b -d gsm8k -n mistral7b_16_gsm8k_in_eval && python -m src.main -p eval -e exemplars -m mistral7b -d gsm8k -n mistral7b_16_gsm8k_examples && python -m src.main -p eval -e insight_exemplar -m mistral7b -d gsm8k -n mistral7b_16_gsm8k_overall
+python -m src.main -p insight_extraction -m mistral7b -d strat -n mistral7b_16_strat_in && python -m src.main -p eval -e insight -m mistral7b -d strat -n mistral7b_16_strat_in_eval && python -m src.main -p eval -e exemplars -m mistral7b -d strat -n mistral7b_16_strat_examples && python -m src.main -p eval -e insight_exemplar -m mistral7b -d strat -n mistral7b_16_strat_overall
+python -m src.main -p insight_extraction -m mistral7b -d tabmw -n mistral7b_16_tabmw_in && python -m src.main -p eval -e insight -m mistral7b -d tabmw -n mistral7b_16_tabmw_in_eval && python -m src.main -p eval -e exemplars -m mistral7b -d tabmw -n mistral7b_16_tabmw_examples && python -m src.main -p eval -e insight_exemplar -m mistral7b -d tabmw -n mistral7b_16_tabmw_overall
+
+cp ../EXPLORA_gatech/output/aquarat_llama3b_16_selected_exemplar.csv data/aquarat/aquarat_train.csv
+cp ../EXPLORA_gatech/output/finqa_llama3b_16_selected_exemplar.csv data/finqa/finqa_train.csv
+cp ../EXPLORA_gatech/output/gsm8k_llama3b_16_selected_exemplar.csv data/gsm8k/gsm8k_train.csv
+cp ../EXPLORA_gatech/output/strategyqa_llama3b_16_selected_exemplar.csv data/strategyqa/strategyqa_train.csv
+cp ../EXPLORA_gatech/output/tabmwp_llama3b_16_selected_exemplar.csv data/tabmwp/tabmwp_train.csv
+
+python -m src.main -p insight_extraction -m llama3b_16 -d aquar -n llama3b_16_16_aquar_in && python -m src.main -p eval -e insight -m llama3b_16 -d aquar -n llama3b_16_16_aquar_in_eval && python -m src.main -p eval -e exemplars -m llama3b_16 -d aquar -n llama3b_16_16_aquar_examples && python -m src.main -p eval -e insight_exemplar -m llama3b_16 -d aquar -n llama3b_16_16_aquar_overall
+python -m src.main -p insight_extraction -m llama3b_16 -d finqa -n llama3b_16_16_finqa_in && python -m src.main -p eval -e insight -m llama3b_16 -d finqa -n llama3b_16_16_finqa_in_eval && python -m src.main -p eval -e exemplars -m llama3b_16 -d finqa -n llama3b_16_16_finqa_examples && python -m src.main -p eval -e insight_exemplar -m llama3b_16 -d finqa -n llama3b_16_16_finqa_overall
+python -m src.main -p insight_extraction -m llama3b_16 -d gsm8k -n llama3b_16_16_gsm8k_in && python -m src.main -p eval -e insight -m llama3b_16 -d gsm8k -n llama3b_16_16_gsm8k_in_eval && python -m src.main -p eval -e exemplars -m llama3b_16 -d gsm8k -n llama3b_16_16_gsm8k_examples && python -m src.main -p eval -e insight_exemplar -m llama3b_16 -d gsm8k -n llama3b_16_16_gsm8k_overall
+python -m src.main -p insight_extraction -m llama3b_16 -d strat -n llama3b_16_16_strat_in && python -m src.main -p eval -e insight -m llama3b_16 -d strat -n llama3b_16_16_strat_in_eval && python -m src.main -p eval -e exemplars -m llama3b_16 -d strat -n llama3b_16_16_strat_examples && python -m src.main -p eval -e insight_exemplar -m llama3b_16 -d strat -n llama3b_16_16_strat_overall
+python -m src.main -p insight_extraction -m llama3b_16 -d tabmw -n llama3b_16_16_tabmw_in && python -m src.main -p eval -e insight -m llama3b_16 -d tabmw -n llama3b_16_16_tabmw_in_eval && python -m src.main -p eval -e exemplars -m llama3b_16 -d tabmw -n llama3b_16_16_tabmw_examples && python -m src.main -p eval -e insight_exemplar -m llama3b_16 -d tabmw -n llama3b_16_16_tabmw_overall
+
+cp ../EXPLORA_gatech/output/aquarat_llama1b_16_selected_exemplar.csv data/aquarat/aquarat_train.csv
+cp ../EXPLORA_gatech/output/finqa_llama1b_16_selected_exemplar.csv data/finqa/finqa_train.csv
+cp ../EXPLORA_gatech/output/gsm8k_llama1b_16_selected_exemplar.csv data/gsm8k/gsm8k_train.csv
+cp ../EXPLORA_gatech/output/strategyqa_llama1b_16_selected_exemplar.csv data/strategyqa/strategyqa_train.csv
+cp ../EXPLORA_gatech/output/tabmwp_llama1b_16_selected_exemplar.csv data/tabmwp/tabmwp_train.csv
+
+python -m src.main -p insight_extraction -m llama1b_16 -d aquar -n llama1b_16_16_aquar_in && python -m src.main -p eval -e insight -m llama1b_16 -d aquar -n llama1b_16_16_aquar_in_eval && python -m src.main -p eval -e exemplars -m llama1b_16 -d aquar -n llama1b_16_16_aquar_examples && python -m src.main -p eval -e insight_exemplar -m llama1b_16 -d aquar -n llama1b_16_16_aquar_overall
+python -m src.main -p insight_extraction -m llama1b_16 -d finqa -n llama1b_16_16_finqa_in && python -m src.main -p eval -e insight -m llama1b_16 -d finqa -n llama1b_16_16_finqa_in_eval && python -m src.main -p eval -e exemplars -m llama1b_16 -d finqa -n llama1b_16_16_finqa_examples && python -m src.main -p eval -e insight_exemplar -m llama1b_16 -d finqa -n llama1b_16_16_finqa_overall
+python -m src.main -p insight_extraction -m llama1b_16 -d gsm8k -n llama1b_16_16_gsm8k_in && python -m src.main -p eval -e insight -m llama1b_16 -d gsm8k -n llama1b_16_16_gsm8k_in_eval && python -m src.main -p eval -e exemplars -m llama1b_16 -d gsm8k -n llama1b_16_16_gsm8k_examples && python -m src.main -p eval -e insight_exemplar -m llama1b_16 -d gsm8k -n llama1b_16_16_gsm8k_overall
+python -m src.main -p insight_extraction -m llama1b_16 -d strat -n llama1b_16_16_strat_in && python -m src.main -p eval -e insight -m llama1b_16 -d strat -n llama1b_16_16_strat_in_eval && python -m src.main -p eval -e exemplars -m llama1b_16 -d strat -n llama1b_16_16_strat_examples && python -m src.main -p eval -e insight_exemplar -m llama1b_16 -d strat -n llama1b_16_16_strat_overall
+python -m src.main -p insight_extraction -m llama1b_16 -d tabmw -n llama1b_16_16_tabmw_in && python -m src.main -p eval -e insight -m llama1b_16 -d tabmw -n llama1b_16_16_tabmw_in_eval && python -m src.main -p eval -e exemplars -m llama1b_16 -d tabmw -n llama1b_16_16_tabmw_examples && python -m src.main -p eval -e insight_exemplar -m llama1b_16 -d tabmw -n llama1b_16_16_tabmw_overall
+
