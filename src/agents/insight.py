@@ -76,8 +76,8 @@ class InsightAgent(BaseAgent):
     formatted_prompt = utils.format_prompt(self.phase, self.dataset, **kwargs) # formatting the prompt
     llm_output = QUERY[self.model](formatted_prompt) # querying the LLM model
     self.total_token_sizes.append(utils.count_tokens(llm_output))
-    print(llm_output)
-    print(f"Total token size: {self.total_token_sizes[self.task_idx]}")
+    # print(llm_output)
+    # print(f"Total token size: {self.total_token_sizes[self.task_idx]}")
 
     # Combine all elements into an experience log entry
     experience_log = (

@@ -137,7 +137,7 @@ class EvalAgent(BaseAgent):
     # Querying the LLM
     llm_output = utils.query(self.model, prompt)
     self.total_token_sizes.append(utils.count_tokens(llm_output))
-    print("SPLICED:\n",llm_output[len(prompt):])
+    # print("SPLICED:\n",llm_output[len(prompt):])
     # Recording the stats
     self.record_stats(llm_output, len(prompt))
     # Combine all elements into an experience log entry
@@ -311,6 +311,6 @@ class EvalAgent(BaseAgent):
           final_answer = line.partition(":")[2].strip() # getting the half after the colon
         if final_answer is not None:
           break
-      real_answer= self.eval_df.iloc[self.task_idx]["correct"]
+      real_answer= self.eval_df.iloc[self.task_idx]["answer"]
       # print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)
