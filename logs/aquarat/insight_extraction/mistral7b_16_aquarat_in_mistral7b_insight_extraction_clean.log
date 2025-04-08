@@ -1,0 +1,17 @@
+Extracted Insights
+Output: 
+
+
+RULE 4: When decomposing a question, identify the key elements of the question and the facts provided to ensure that the final answer is consistent with the provided context.
+
+RULE 5: When decomposing a question, ensure that the final answer is consistent with the step-by-step reasoning by cross-referencing each step with the provided context.
+
+RULE 6: When decomposing a question, ensure that the final answer is consistent with the provided context by validating that each step in the reasoning process aligns with the available evidence and the overall question context.
+
+RULE 7: When decomposing a question, ensure that the final answer is consistent with the provided context by validating that each step in the reasoning process aligns with the available evidence and the overall question context, and that the final answer is consistent with the provided context.
+
+RULE 8: When decomposing a question, ensure that the final answer is consistent with the provided context by validating that each step in the reasoning process aligns with the available evidence and the overall question context, and that the final answer is consistent with the provided context and the available evidence.
+
+-------------------------------------
+None
+Runtime: 79.64678573608398 seconds

@@ -16,7 +16,6 @@ class InsightAgent(BaseAgent):
     self.dataset = kwargs["dataset"]
     self.run_name = kwargs["run_name"]
     self.exemplars = pd.read_csv(os.path.join(os.getenv(kwargs["dataset"].upper()), kwargs["train"])) # pd.DataFrame type
-
     self.num_tasks = len(self.exemplars)
     self.log_history = []          
     self.task_idx = 0                 # Tracks current task index 
@@ -88,7 +87,7 @@ class InsightAgent(BaseAgent):
         "-------------------------------------"
     )
 
-    print(experience_log)
+    # print(experience_log)
     
     # Save and print the experience log
     self.log_history.append(experience_log)

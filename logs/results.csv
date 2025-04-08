@@ -1,2 +1,2 @@
-matches,mismatches,EM,train_data_len,test_data_len,model,dataset,run_name,avg_token_len
-0,2,0.0,50,1147,mistral7b,finqa,tokentest,498.0
+matches,mismatches,EM,train_data_len,test_data_len,model,dataset,run_name,avg_token_len,eval_type
+1,0,100.0,5,1319,mistral7b,gsm8k,tokentest,485.0,insight

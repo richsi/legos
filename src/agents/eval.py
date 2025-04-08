@@ -77,7 +77,7 @@ class EvalAgent(BaseAgent):
 
     # Getting insights from same run_name from logs/insight_extraction
     insights = utils.get_insights(self.model, self.dataset, self.run_name)
-    print(f"INSIGHTS:\n{insights}")
+    # print(f"INSIGHTS:\n{insights}")
 
     kwargs = dict(
       exemplars=train_data,
@@ -87,7 +87,7 @@ class EvalAgent(BaseAgent):
 
     start_time = time.time()
     while not self.done():
-      print(f"STARTING TASK {self.task_idx}\n")
+      # print(f"STARTING TASK {self.task_idx}\n")
       self.step(**kwargs)
     end_time = time.time()
     self.runtime = end_time - start_time
@@ -103,7 +103,8 @@ class EvalAgent(BaseAgent):
       "model": [self.model],
       "dataset": [self.dataset],
       "run_name": [self.run_name],
-      "avg_token_len": [sum(self.total_token_sizes) / len(self.total_token_sizes)]
+      "avg_token_len": [sum(self.total_token_sizes) / len(self.total_token_sizes)],
+      "eval_type": [self.eval_type],
     }
 
     utils.save_logs(
@@ -132,7 +133,7 @@ class EvalAgent(BaseAgent):
     kwargs["test_data"] = self.all_test_exemplars[self.task_idx]
     # Formatting prompt for LLM
     prompt = utils.format_prompt(self.phase, self.dataset, **kwargs) 
-    print(prompt)
+    # print(prompt)
     # Querying the LLM
     llm_output = utils.query(self.model, prompt)
     self.total_token_sizes.append(utils.count_tokens(llm_output))
@@ -141,7 +142,7 @@ class EvalAgent(BaseAgent):
     self.record_stats(llm_output, len(prompt))
     # Combine all elements into an experience log entry
     experience_log = (
-        f"{self.model} Task {self.task_idx}:\n{llm_output}\n\nToken count: {self.total_token_sizes[self.task_idx]}"
+        f"{self.model} Task {self.task_idx}:\n{llm_output}\n\nToken count: {self.total_token_sizes[self.task_idx]}\n"
         "-------------------------------------"
     )
     # Save and print the experience log
@@ -151,7 +152,7 @@ class EvalAgent(BaseAgent):
 
   def done(self):
     return self.task_idx >= self.num_tasks
-    # return self.task_idx >= 2
+    # return self.task_idx >= 1
 
   def get_strategyqa_exemplars(self, exemplar):
     string = "Facts: "
@@ -181,7 +182,7 @@ class EvalAgent(BaseAgent):
     return string
 
   def get_gsm8k_test_exemplars(self, exemplar):
-    string = "Question: " + exemplar["question"] + "\n" + answer + "\n\n"
+    string = "Question: " + exemplar["question"] + "\n"
     return string
 
   def get_tabmwp_exemplars(self, exemplar):
@@ -269,7 +270,7 @@ class EvalAgent(BaseAgent):
           if final_answer is not None:
             break
       real_answer = self.eval_df.iloc[self.task_idx]["answer"]
-      print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
+      # print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)
     elif self.dataset == "gsm8k":
       for line in output_lines:
@@ -281,7 +282,7 @@ class EvalAgent(BaseAgent):
       real_answer_raw = self.eval_df.iloc[self.task_idx]["answer"]
       matches = re.search(r"####\s*(\d+)", real_answer_raw)
       real_answer = matches.group(1)
-      print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
+      # print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)
     elif self.dataset == "tabmwp":
       for line in output_lines:
@@ -291,7 +292,7 @@ class EvalAgent(BaseAgent):
         if final_answer is not None:
           break
       real_answer= self.eval_df.iloc[self.task_idx]["answer"]
-      print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
+      # print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)
     elif self.dataset == "aquarat":
       for line in output_lines:
@@ -301,7 +302,7 @@ class EvalAgent(BaseAgent):
         if final_answer is not None:
           break
       real_answer= self.eval_df.iloc[self.task_idx]["correct"]
-      print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
+      # print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)
     elif self.dataset == "finqa":
       for line in output_lines:
@@ -310,6 +311,6 @@ class EvalAgent(BaseAgent):
           final_answer = line.partition(":")[2].strip() # getting the half after the colon
         if final_answer is not None:
           break
-      real_answer= self.eval_df.iloc[self.task_idx]["answer"]
-      print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
+      real_answer= self.eval_df.iloc[self.task_idx]["correct"]
+      # print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)

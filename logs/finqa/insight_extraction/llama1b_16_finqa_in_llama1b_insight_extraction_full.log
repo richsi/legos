@@ -1,0 +1,99 @@
+Extracted Insights
+Output: 
+(PROMPT START)
+You are an advanced reasoning agent that can add, edit, or remove rules from your existing rule set, based on new insights or expansions.
+
+Here is your existing rule set:
+RULE 1: Break the question into its fundamental components by isolating key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+RULE 2: When decomposing a question, identify the key elements of the question and the facts provided to ensure Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+RULE 3: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+
+Now, you are given mathematical tasks from the FinQA dataset. Each task has:
+• A table containing context 
+• A question
+• An equation
+• An answer
+
+Each new rule should be:
+
+1. Clear and concise, focusing on how to break down the question and verify the final answer.
+2. Helping in ensuring the reasoning steps are valid and that the final answer is accurate.
+
+Now, you will be provided examples to base these rules off of.
+Examples: 
+Read the following table, and then answer the question: 
+Table:
+ | smart plans and other consumer membership | other commercial membership | commercial medical membership | 
+fully-insured | 327900 | 1480700 | 1808600 | 
+aso | 236800 | 1406200 | 1643000 | 
+total commercial medical | 564700 | 2886900 | 3451600 | 
+
+Question: as of december 2007 what was the approximate total of the total commercial medical membership
+Equation: ans=( 564700 / 16.4 )
+. The answer is 3443292.68.
+
+Read the following table, and then answer the question: 
+Table:
+( in millions ) | payments due by period ( 1 ) total | payments due by period ( 1 ) 2006 | payments due by period ( 1 ) 2007 | payments due by period ( 1 ) 2008 | payments due by period ( 1 ) 2009 | payments due by period ( 1 ) 2010 | payments due by period ( 1 ) thereafter | 
+long-term debt obligations | $ 4033 | $ 119 | $ 1222 | $ 200 | $ 2 | $ 529 | $ 1961 | 
+lease obligations | 1150 | 438 | 190 | 134 | 109 | 84 | 195 | 
+purchase obligations | 992 | 418 | 28 | 3 | 2 | 2 | 539 | 
+total contractual obligations | $ 6175 | $ 975 | $ 1440 | $ 337 | $ 113 | $ 615 | $ 2695 | 
+
+Question: what percent of the total contractual obligations should be paid by the end of 2006?
+Equation: ans=( 975 / 6175 )
+. The answer is 15.8%.
+
+Read the following table, and then answer the question: 
+Table:
+2017 | $ 4.5 | 
+2018 | 4.0 | 
+2019 | 4.0 | 
+2020 | 4.6 | 
+2021 | 4.5 | 
+2021-2025 | 44.6 | 
+
+Question: during 2016 what was the average price paid for the shares repurchased by the company?
+Equation: ans=( 662.3 / 7.3 )
+. The answer is 90.73.
+
+Read the following table, and then answer the question: 
+Table:
+ | amount ( in millions ) | 
+2014 net revenue | $ 2224 | 
+nuclear realized price changes | -310 ( 310 ) | 
+vermont yankee shutdown in december 2014 | -305 ( 305 ) | 
+nuclear volume excluding vermont yankee effect | 20 | 
+other | 37 | 
+2015 net revenue | $ 1666 | 
+
+Question: what percentage of 2015 net revenue relates to the nuclear volume impact?
+Equation: ans=( 20 / 1666 )
+. The answer is 1.2%.
+
+Read the following table, and then answer the question: 
+Table:
+ | significant unobservable inputs ( level 3 ) ( in millions ) | 
+fair value december 31 2008 | $ 192 | 
+calls at par | -28 ( 28 ) | 
+recovery of unrealized losses due to issuer calls | 5 | 
+increase in fair value | 11 | 
+fair value december 31 2009 | 180 | 
+calls at par | -94 ( 94 ) | 
+recovery of unrealized losses due to issuer calls | 13 | 
+increase in fair value | 7 | 
+fair value december 31 2010 | $ 106 | 
+
+Question: what is the percentual decrease observed in the fair value of ars investments between 2009 and 2008?
+Equation: x0=( 180 - 192 ),ans=( x0 - 192 )
+. The answer is 6.25%.
+
+Your job is to generate exactly five concise new insights (i.e., RULES) that would help an agent correctly answer any complex FinQA question. 
+Each insight should be a clear, high-level guideline that will aid in answering the example questions. Ensure that there are no empty rules.
+Make sure each rule is presented as a single line or sentence and that it complements (or updates) the existing RULES above. Avoid repetition.
+(PROMPT END)
+Please provide your new insights. I will then provide feedback and I will be able to refine them.
+
+-------------------------------------
+None
+Runtime: 6.64233136177063 seconds
