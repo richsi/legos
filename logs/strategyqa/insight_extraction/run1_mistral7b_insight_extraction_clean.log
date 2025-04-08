@@ -1,0 +1,22 @@
+Extracted Insights
+Output: 
+
+RULE 1: Identify the key elements of the question and the facts provided to ensure that the reasoning process is focused on the most relevant information.
+RULE 2: Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+RULE 3: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+RULE 4: When decomposing a question, consider the context and background knowledge to identify any implicit assumptions or constraints that may affect the reasoning process.
+RULE 5: When building logical connections between steps, consider the relationships between the different elements of the question and the facts provided, such as causality, similarity, or contradiction.
+RULE 6: When validating inferences, ensure that they are based on sound reasoning and that the evidence supports the conclusion.
+RULE 7: When cross-verifying reasoning steps, check for consistency and coherence with the overall question context and the available evidence.
+RULE 8: When identifying implicit assumptions or constraints, consider the cultural, historical, or social context that may influence the reasoning process.
+RULE 9: When building logical connections, consider the potential implications of each inference and how it contributes to the overall answer.
+RULE 10: When validating inferences, ensure that they are consistent with the available evidence and that they do not rely on assumptions or biases that may affect the reasoning process.
+RULE 11: When cross-verifying reasoning steps, consider the potential sources of error or uncertainty that may affect the final answer.
+RULE 12: When identifying implicit assumptions or constraints, consider the potential impact of these factors on the reasoning process and the final answer.
+RULE 13: When building logical connections, consider the potential counterarguments or alternative explanations that may challenge the reasoning process.
+RULE 14: When validating inferences, ensure that they are based on a thorough analysis of the available evidence and that they are not influenced by personal biases or beliefs.
+RULE 15: When cross-verifying reasoning steps, consider the potential limitations or gaps in the available evidence and how they may affect the final answer.
+
+-------------------------------------
+None
+Runtime: 25.366126537322998 seconds

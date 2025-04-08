@@ -1,0 +1,18 @@
+Extracted Insights
+Output: 
+
+
+1. Identify the context of the question to determine the relevant data and relationships.
+2. Use logical deduction to draw inferences from the available data and relationships.
+3. Validate the inferences by checking if they align with the provided evidence and the overall question context.
+4. Cross-verify each reasoning step to ensure that all parts contribute coherently to the final conclusion.
+5. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+6. Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+7. Identify the key elements of the question and the facts provided to ensure that the reasoning process is accurate and complete.
+8. Use the provided context to identify any missing or ambiguous information that may affect the reasoning process.
+9. Use the provided context to identify any potential biases or assumptions that may affect the reasoning process.
+10. Use the provided context to identify any relevant patterns or trends that may affect the reasoning process.
+
+-------------------------------------
+None
+Runtime: 16.520898818969727 seconds

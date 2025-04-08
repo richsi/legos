@@ -12,3 +12,6 @@ matches,mismatches,EM,train_data_len,test_data_len,model,dataset,run_name
 0,2,0.0,5,254,mistral7b,aquarat,run1
 0,2,0.0,5,254,mistral7b,aquarat,run1
 0,2,0.0,5,254,mistral7b,aquarat,run1
+2,0,100.0,5,490,mistral7b,strategyqa,run1,insight
+1,1,50.0,5,490,mistral7b,strategyqa,run1,exemplar
+0,2,0.0,5,7686,mistral7b,tabmwp,run1,insight

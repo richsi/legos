@@ -1,0 +1,87 @@
+mistral7b Task 0:
+
+(PROMPT START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+RULE 1: Identify the key elements of the question and the facts provided to ensure that the reasoning process is focused on the most relevant information.
+RULE 2: Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+RULE 3: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+RULE 4: When decomposing a question, consider the context and background knowledge to identify any implicit assumptions or constraints that may affect the reasoning process.
+RULE 5: When building logical connections between steps, consider the relationships between the different elements of the question and the facts provided, such as causality, similarity, or contradiction.
+RULE 6: When validating inferences, ensure that they are based on sound reasoning and that the evidence supports the conclusion.
+RULE 7: When cross-verifying reasoning steps, check for consistency and coherence with the overall question context and the available evidence.
+RULE 8: When identifying implicit assumptions or constraints, consider the cultural, historical, or social context that may influence the reasoning process.
+RULE 9: When building logical connections, consider the potential implications of each inference and how it contributes to the overall answer.
+RULE 10: When validating inferences, ensure that they are consistent with the available evidence and that they do not rely on assumptions or biases that may affect the reasoning process.
+RULE 11: When cross-verifying reasoning steps, consider the potential sources of error or uncertainty that may affect the final answer.
+RULE 12: When identifying implicit assumptions or constraints, consider the potential impact of these factors on the reasoning process and the final answer.
+RULE 13: When building logical connections, consider the potential counterarguments or alternative explanations that may challenge the reasoning process.
+RULE 14: When validating inferences, ensure that they are based on a thorough analysis of the available evidence and that they are not influenced by personal biases or beliefs.
+RULE 15: When cross-verifying reasoning steps, consider the potential limitations or gaps in the available evidence and how they may affect the final answer.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Now, you will be provided with the evaluation question and fact(s) below.
+Facts: 
+Human overpopulation results from the birthrate exceeding the death rate in a country.
+Rusev is a professional wrestler who was born in Bulgaria.
+The population of Bulgaria decreased by .7% in 2018.
+
+Question: Does Rusev have to worry about human overpopulation in his homeland?
+(PROMPT END)
+Question: Does Rusev have to worry about human overpopulation in his homeland?
+Thoughts:
+1. First, we need to determine whether Bulgaria is experiencing human overpopulation. To do this, we need to compare the birthrate and death rate in Bulgaria.
+2. According to the facts provided, the birthrate in Bulgaria is not mentioned. However, we know that the population decreased by .7% in 2018. This suggests that the death rate may be higher than the birthrate, which could lead to a decline in the population.
+3. However, we also need to consider the context of the question. Rusev is a professional wrestler who was born in Bulgaria. Therefore, we need to determine whether he is still living in Bulgaria or not.
+4. Unfortunately, the facts provided do not mention whether Rusev is still living in Bulgaria. Therefore, we cannot definitively say whether he has to worry about human overpopulation in his homeland.
+Final Answer: No, we cannot definitively say whether Rusev has to worry about human overpopulation in his homeland based on the provided facts.
+
+-------------------------------------
+mistral7b Task 1:
+
+(PROMPT START)
+You are a reasoning and insight generation assistant for multi-step question answering tasks. Your primary role is to systematically guide the reasoning process and arrive at the correct answer. You will be provided with an evaluation question. The question comes with its set of supporting facts.
+Here are extracted rules and guidelines from the provided examples to ensure proper reasoning:
+RULE 1: Identify the key elements of the question and the facts provided to ensure that the reasoning process is focused on the most relevant information.
+RULE 2: Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+RULE 3: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+RULE 4: When decomposing a question, consider the context and background knowledge to identify any implicit assumptions or constraints that may affect the reasoning process.
+RULE 5: When building logical connections between steps, consider the relationships between the different elements of the question and the facts provided, such as causality, similarity, or contradiction.
+RULE 6: When validating inferences, ensure that they are based on sound reasoning and that the evidence supports the conclusion.
+RULE 7: When cross-verifying reasoning steps, check for consistency and coherence with the overall question context and the available evidence.
+RULE 8: When identifying implicit assumptions or constraints, consider the cultural, historical, or social context that may influence the reasoning process.
+RULE 9: When building logical connections, consider the potential implications of each inference and how it contributes to the overall answer.
+RULE 10: When validating inferences, ensure that they are consistent with the available evidence and that they do not rely on assumptions or biases that may affect the reasoning process.
+RULE 11: When cross-verifying reasoning steps, consider the potential sources of error or uncertainty that may affect the final answer.
+RULE 12: When identifying implicit assumptions or constraints, consider the potential impact of these factors on the reasoning process and the final answer.
+RULE 13: When building logical connections, consider the potential counterarguments or alternative explanations that may challenge the reasoning process.
+RULE 14: When validating inferences, ensure that they are based on a thorough analysis of the available evidence and that they are not influenced by personal biases or beliefs.
+RULE 15: When cross-verifying reasoning steps, consider the potential limitations or gaps in the available evidence and how they may affect the final answer.
+
+Your response for the question in the batch must be formatted exactly as follows:
+Question: <The original test question>
+Thoughts: <Your concise, structured reasoning here>
+Final Answer: <Yes or No>
+
+Now, you will be provided with the evaluation question and fact(s) below.
+Facts: 
+God made Eve from a bone he removed from Adam.
+Since Eve was made from Adam, they would have had similar DNA and been considered twins or at least siblings.
+As the only humans at the time, they ended up starting a family together.
+
+Question: Was Eve involved in an incestuous relationship?
+(PROMPT END)
+Question: Was Eve involved in an incestuous relationship?
+Thoughts:
+RULE 1: The key elements of the question are whether Eve was involved in an incestuous relationship. The facts provided suggest that Eve and Adam were siblings, and they started a family together.
+RULE 2: Using the provided facts, we can build logical connections between each step. Since Eve was made from Adam, they would have had similar DNA and been considered twins or at least siblings. As the only humans at the time, they ended up starting a family together. Therefore, Eve and Adam were siblings, and their relationship was incestuous.
+RULE 3: The final answer is consistent with the step-by-step decomposition. Yes, Eve was involved in an incestuous relationship with Adam.
+Final Answer: Yes.
+
+-------------------------------------
+{'CORRECT': 2, 'INCORRECT': 0, 'FAILED': 0}
+Runtime: 22.861538410186768 seconds

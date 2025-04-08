@@ -1,0 +1,143 @@
+Extracted Insights
+Output: 
+(PROMPT START)
+You are an advanced reasoning agent that can add, edit, or remove rules from your existing rule set, based on new insights or expansions.
+
+Here is your existing rule set:
+RULE 1: Break the question into its fundamental components by isolating key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+RULE 2: When decomposing a question, identify the key elements of the question and the facts provided to ensure Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+RULE 3: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+
+Now, you are given tasks from the TabMWP dataset. Each task has:
+• A table for context
+• The Question
+• Multiple choices to select an answer from
+• An answer containing the reasoning that leads to the correct answer
+• A concise final answer
+
+Your job is to generate between 5 and 15 concise new insights (i.e., rules or directions) that would help an agent correctly answer any complex TabMWP question. Each new rule should be:
+Examples: 
+
+Table:
+Day | Number of autographs
+Friday | 2
+Saturday | 9
+Sunday | 4
+Monday | 4
+Tuesday | 10
+Wednesday | 4
+Thursday | 2
+Question:An athlete counted how many autographs he signed each day. What is the median of the numbers?
+Answer:Read the numbers from the table.
+
+2, 9, 4, 4, 10, 4, 2
+
+First, arrange the numbers from least to greatest:
+
+2, 2, 4, 4, 4, 9, 10
+
+Now find the number in the middle.
+
+2, 2, 4, 4, 4, 9, 10
+
+The number in the middle is 4.
+
+The median is 4.
+The answer is:4
+
+
+Table:
+Person | Animal rights | Job training
+Chandler | $20 | $19
+Barbara | $18 | $16
+Sophie | $17 | $12
+Question:A philanthropic organization compared the amounts of money that its members donated to certain causes. How much more did Barbara donate to animal rights than to job training?
+Answer:Find the Barbara row. Find the numbers in this row for animal rights and job training.
+
+animal rights: $18.00
+job training: $16.00
+
+Now subtract:
+
+$18.00 − $16.00 = $2.00
+
+Barbara donated $2 more to animal rights than to job training.
+The answer is:2
+
+
+Table:
+big blue button | $0.04
+silver bow | $0.07
+red ribbon | $0.06
+purple bow | $0.04
+pair of googly eyes | $0.04
+Question:How much money does Porter need to buy a silver bow, a big blue button, and a purple bow?
+Answer:Find the total cost of a silver bow, a big blue button, and a purple bow.
+
+$0.07 + $0.04 + $0.04 = $0.15
+
+Porter needs $0.15.
+The answer is:0.15
+
+
+Table:
+x | y
+18 | 20
+19 | 10
+20 | 0
+Question:The table shows a function. Is the function linear or nonlinear?Please select from the following options: ['linear', 'nonlinear']
+Answer:To determine whether the function is linear or nonlinear, see whether it has a constant rate of change.
+Pick the points in any two rows of the table and calculate the rate of change between them. The first two rows are a good place to start.
+Call the values in the first row x1 and y1. Call the values in the second row x2 and y2.
+Rate of change = \frac{y2 - y1}{x2 - x1}
+ = \frac{10 - 20}{19 - 18}
+ = \frac{-10}{1}
+ = -10
+Now pick any other two rows and calculate the rate of change between them.
+Call the values in the first row x1 and y1. Call the values in the third row x2 and y2.
+Rate of change = \frac{y2 - y1}{x2 - x1}
+ = \frac{0 - 20}{20 - 18}
+ = \frac{-20}{2}
+ = -10
+The two rates of change are the same.
+10.
+This means the rate of change is the same for each pair of points. So, the function has a constant rate of change.
+The function is linear.
+The answer is:linear
+
+
+Table:
+Subject | Begin | End
+Architecture | 8:10 A.M. | 8:40 A.M.
+Spanish Literature | 9:00 A.M. | 9:40 A.M.
+Basketball | 10:15 A.M. | 11:30 A.M.
+Chinese | 11:40 A.M. | 12:10 P.M.
+Essay Writing | 12:50 P.M. | 2:10 P.M.
+Ancient Greek | 2:15 P.M. | 3:15 P.M.
+Question:Look at the following schedule. When does Architecture class end?Please select from the following options: ['3:15 P.M.', '8:40 A.M.', '8:10 A.M.', '9:40 A.M.']
+Answer:Find Architecture class on the schedule. Find the end time for Architecture class.
+
+Architecture: 8:40 A. M.
+The answer is:8:40 A.M.
+
+
+Based on the provided task description and examples, generate exactly 10 new or updated rules.
+Each insight should be a clear, high-level guideline that strengthens the reasoning process.
+Ensure that there are no empty rules.
+Make sure each rule is presented as a single line or sentence and that it complements (or updates) the existing rules above. Avoid repetition.
+(PROMPT END)
+
+1. Identify the context of the question to determine the relevant data and relationships.
+2. Use logical deduction to draw inferences from the available data and relationships.
+3. Validate the inferences by checking if they align with the provided evidence and the overall question context.
+4. Cross-verify each reasoning step to ensure that all parts contribute coherently to the final conclusion.
+5. Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+6. Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+7. Identify the key elements of the question and the facts provided to ensure that the reasoning process is accurate and complete.
+8. Use the provided context to identify any missing or ambiguous information that may affect the reasoning process.
+9. Use the provided context to identify any potential biases or assumptions that may affect the reasoning process.
+10. Use the provided context to identify any relevant patterns or trends that may affect the reasoning process.
+
+-------------------------------------
+None
+Runtime: 16.520898818969727 seconds

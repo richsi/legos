@@ -1,0 +1,89 @@
+Extracted Insights
+Output: 
+(PROMPT START)
+You are an advanced reasoning agent that can add, edit, or remove rules from your existing rule set, based on new insights or expansions.
+
+Here is your existing rule set:
+RULE 1: Break the question into its fundamental components by isolating key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+RULE 2: When decomposing a question, identify the key elements of the question and the facts provided to ensure Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+RULE 3: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+
+Now, you are given StrategyQA dataset tasks. Each task has:
+• A Question
+• A set of Facts
+• An Answer
+• A Decomposition (a step-by-step outline of how the question might be solved)
+
+Your job is to generate between 5 and 15 concise new insights (i.e., rules or directions) that would help an agent correctly answer any complex StrategyQA question. Each new rule should be:
+
+1. Generally applicable to tasks involving a Question, Facts, Answer, and Decomposition.
+2. Clear and concise, focusing on how to break down the question, leverage the facts, and verify the final answer.
+3. Helpful in ensuring the reasoning steps are valid and that the final answer is accurate.
+
+Examples:
+Facts: ['All purpose flour has about 9% gluten in it.', 'When someone with Celiac disease eats gluten, their body has an immune response that attacks their small intestine.']
+Question: Is All Purpose Flour safe for someone who has celiac disease?
+Answer:
+Sub-question 1: What do people with celiac disease have to avoid?
+Sub-question 2: Is #1 absent from all purpose flour?
+The answer is: No
+
+Facts: ['Adam Mickiewicz was a Polish poet. ', "Adam Mickiewicz 's sonnet sequence focuses heavily on the culture and Islamic religion of the Crimean Tatars."]
+Question: Did a Polish poet write sonnets about Islamic religion?
+Answer:
+Sub-question 1: What were the major focus of Adam Mickiewicz's sonnets?
+Sub-question 2: Is #1 about Islamic religion?
+Sub-question 3: Was Adam Mickiewicz a Polish poet?
+Sub-question 4: Are #2 and #3 positive?
+The answer is: Yes
+
+Facts: ['A black widow woman refers to a woman who murders her husbands for money and remarries.', 'Peach pits contain amygdalin, a type of cyanide.', 'Cyanide is poisonous to humans.']
+Question: Would a black widow woman have use for peaches?
+Answer:
+Sub-question 1: What is a black widows main goal?
+Sub-question 2: What do peach pits contain?
+Sub-question 3: If a human ate #2, would #1 occur?
+The answer is: Yes
+
+Facts: ['Leipzig is derived from the Slavic word Lipsk', 'Lipsk means "settlement where the linden trees stand"', 'Linden trees are deciduous trees']
+Question: Is the tree species that the name Leipzig refers to an evergeen tree?
+Answer:
+Sub-question 1: Which species of tree is mentioned in the meaning of the name (of a city) Leipzig?
+Sub-question 2: Classifying by seasonal traits, what kind of tree is #1?
+Sub-question 3: Is being evergreen a characteristic of #2?
+The answer is: No
+
+Facts: ['The crucifix is a symbol of Christianity', "The vast majority of Pakistan's population is Muslim"]
+Question: Are you likely to find a crucifix in Karachi?
+Answer:
+Sub-question 1: What religion does a crucifix symbolize?
+Sub-question 2: What is the main religion observed in Karachi, Pakistan?
+Sub-question 3: Is #1 the same as #2?
+The answer is: No
+
+
+Based on the provided task description and examples, generate between 5 and 15 new or updated rules.
+Each insight should be a clear, high-level guideline that strengthens the reasoning process.
+Ensure that there are no empty rules.
+Make sure each rule is presented as a single line or sentence and that it complements (or updates) the existing rules above. Avoid repetition.
+Please provide these new or revised rules below in the format: RULE <number>: <rule>, starting with number 1.
+(PROMPT END)
+RULE 1: Identify the key elements of the question and the facts provided to ensure that the reasoning process is focused on the most relevant information.
+RULE 2: Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+RULE 3: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+RULE 4: When decomposing a question, consider the context and background knowledge to identify any implicit assumptions or constraints that may affect the reasoning process.
+RULE 5: When building logical connections between steps, consider the relationships between the different elements of the question and the facts provided, such as causality, similarity, or contradiction.
+RULE 6: When validating inferences, ensure that they are based on sound reasoning and that the evidence supports the conclusion.
+RULE 7: When cross-verifying reasoning steps, check for consistency and coherence with the overall question context and the available evidence.
+RULE 8: When identifying implicit assumptions or constraints, consider the cultural, historical, or social context that may influence the reasoning process.
+RULE 9: When building logical connections, consider the potential implications of each inference and how it contributes to the overall answer.
+RULE 10: When validating inferences, ensure that they are consistent with the available evidence and that they do not rely on assumptions or biases that may affect the reasoning process.
+RULE 11: When cross-verifying reasoning steps, consider the potential sources of error or uncertainty that may affect the final answer.
+RULE 12: When identifying implicit assumptions or constraints, consider the potential impact of these factors on the reasoning process and the final answer.
+RULE 13: When building logical connections, consider the potential counterarguments or alternative explanations that may challenge the reasoning process.
+RULE 14: When validating inferences, ensure that they are based on a thorough analysis of the available evidence and that they are not influenced by personal biases or beliefs.
+RULE 15: When cross-verifying reasoning steps, consider the potential limitations or gaps in the available evidence and how they may affect the final answer.
+
+-------------------------------------
+None
+Runtime: 25.366126537322998 seconds
