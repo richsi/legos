@@ -37,7 +37,7 @@ class TrainAgent(BaseAgent):
     start_time = time.time()
 
     while not self.done():
-      print(f"STARTING TASK {self.task_idx}\n")
+      # print(f"STARTING TASK {self.task_idx}\n")
       self.step()
 
     end_time = time.time()
@@ -87,7 +87,7 @@ class TrainAgent(BaseAgent):
         "-------------------------------------"
     )
 
-    print(experience_log)
+    # print(experience_log)
     
     # Save and print the experience log
     self.log_history.append(experience_log)

@@ -1,0 +1,121 @@
+Extracted Insights
+Output: 
+(PROMPT START)
+You are an advanced reasoning agent that can add, edit, or remove rules from your existing rule set, based on new insights or expansions.
+
+Here is your existing rule set:
+RULE 1: Break the question into its fundamental components by isolating key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+RULE 2: When decomposing a question, identify the key elements of the question and the facts provided to ensure Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+RULE 3: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+
+Now, you are given mathematical tasks from the FinQA dataset. Each task has:
+• A table containing context 
+• A question
+• An equation
+• An answer
+
+Each new rule should be:
+
+1. Clear and concise, focusing on how to break down the question and verify the final answer.
+2. Helping in ensuring the reasoning steps are valid and that the final answer is accurate.
+
+Now, you will be provided examples to base these rules off of.
+Examples: 
+Read the following table, and then answer the question: 
+Table:
+2004 | $ 77622 | 
+2005 | 115444 | 
+2006 | 365051 | 
+2007 | 728153 | 
+2008 | 808043 | 
+thereafter | 1650760 | 
+total cash obligations | 3745073 | 
+accreted value of original issue discount of the ati 12.25% ( 12.25 % ) notes | -339601 ( 339601 ) | 
+accreted value of the related warrants | -44247 ( 44247 ) | 
+balance as of december 31 2003 | $ 3361225 | 
+
+Question: as of december 31, 2003, what was the percent of the total cash obligations for aggregate principal payments of long-term debt maturities was due in 2005
+Equation: ans=( 115444 / 3361225 )
+. The answer is 3.4%.
+
+Read the following table, and then answer the question: 
+Table:
+ | 12/31/17 allocation | adjustments | revised allocation | 
+goodwill | $ 151.1 | $ 5.5 | $ 156.6 | 
+other intangible assets | 72.6 | -5.5 ( 5.5 ) | 67.1 | 
+property plant and equipment | 26.7 | 2014 | 26.7 | 
+other net assets | 23.4 | 2014 | 23.4 | 
+net assets acquired | $ 273.8 | $ 2014 | $ 273.8 | 
+
+Question: what percentage of the revised allocation of net assets acquired is property, plant and equipment?
+Equation: ans=( 26.7 / 273.8 )
+. The answer is 10%.
+
+Read the following table, and then answer the question: 
+Table:
+ | 2015 | 2014 | 2013 | 
+pension expense | $ 135.6 | $ 135.9 | $ 169.7 | 
+special terminations settlements and curtailments ( included above ) | 35.2 | 5.8 | 19.8 | 
+weighted average discount rate | 4.0% ( 4.0 % ) | 4.6% ( 4.6 % ) | 4.0% ( 4.0 % ) | 
+weighted average expected rate of return on plan assets | 7.4% ( 7.4 % ) | 7.7% ( 7.7 % ) | 7.7% ( 7.7 % ) | 
+weighted average expected rate of compensation increase | 3.5% ( 3.5 % ) | 3.9% ( 3.9 % ) | 3.8% ( 3.8 % ) | 
+
+Question: what was the decrease observed in the fair market value of plan assets of the benefit pension plans during 2014 and 2015?
+Equation: x0=( 3916.4 - 4114.6 ),ans=( x0 - 4114.6 )
+. The answer is 4.81%.
+
+Read the following table, and then answer the question: 
+Table:
+company | owned and leased capability mw ( 1 ) total | owned and leased capability mw ( 1 ) gas/oil | owned and leased capability mw ( 1 ) nuclear | owned and leased capability mw ( 1 ) coal | owned and leased capability mw ( 1 ) hydro | 
+entergy arkansas | 4774 | 1668 | 1823 | 1209 | 74 | 
+entergy gulf states louisiana | 3317 | 1980 | 974 | 363 | - | 
+entergy louisiana | 5424 | 4265 | 1159 | - | - | 
+entergy mississippi | 3229 | 2809 | - | 420 | - | 
+entergy new orleans | 764 | 764 | - | - | - | 
+entergy texas | 2538 | 2269 | - | 269 | - | 
+system energy | 1071 | - | 1071 | - | - | 
+total | 21117 | 13755 | 5027 | 2261 | 74 | 
+
+Question: in 2011 what was the percent of the entergy arkansas property and other generation resources generating capacity that was from coal
+Equation: ans=( 1209 / 4774 )
+. The answer is 25.3%.
+
+Read the following table, and then answer the question: 
+Table:
+ | 2014 | 2013 | 2012 | 
+net sales | $ 7680 | $ 7757 | $ 7457 | 
+operating profit | 1358 | 1431 | 1256 | 
+operating margins | 17.7% ( 17.7 % ) | 18.4% ( 18.4 % ) | 16.8% ( 16.8 % ) | 
+backlog at year-end | $ 13600 | $ 15000 | $ 14700 | 
+
+Question: what is the growth rate in operating profit for mfc in 2013?
+Equation: x0=( 1431 - 1256 ),ans=( x0 - 1256 )
+. The answer is 13.9%.
+
+Your job is to generate exactly five concise new insights (i.e., RULES) that would help an agent correctly answer any complex FinQA question. 
+Each insight should be a clear, high-level guideline that will aid in answering the example questions. Ensure that there are no empty rules.
+Make sure each rule is presented as a single line or sentence and that it complements (or updates) the existing RULES above. Avoid repetition.
+(PROMPT END)
+## Step 1: Break down the question into its fundamental components by identifying key sub-questions and underlying assumptions or facts required to solve each step.
+This rule should be updated to reflect the importance of identifying key sub-questions and underlying assumptions or facts required to solve each step, as seen in the examples provided.
+
+## Step 2: When decomposing a question, identify the key elements of the question and the facts provided to ensure logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+This rule should be updated to emphasize the importance of validating inferences against the available evidence and the overall question context, as seen in the examples provided.
+
+## Step 3: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+This rule should be updated to reflect the importance of cross-verifying each reasoning step, as seen in the examples provided.
+
+## Step 4: When analyzing financial data, consider the context of the financial statements, including any relevant notes or disclosures, to ensure a comprehensive understanding of the data.
+This new rule should be added to help agents consider the broader context of financial statements when analyzing data.
+
+## Step 5: When calculating percentages or ratios, ensure that the base values are clearly identified and that the calculation is performed using the correct units, to avoid errors or misinterpretation.
+This new rule should be added to help agents ensure accurate calculations when working with percentages or ratios.
+
+## Step 6: When comparing data across different time periods, consider the impact of any changes in accounting standards, regulatory requirements, or other factors that may affect the comparability of the data.
+This new rule should be added to help agents consider the potential impact of changes in accounting standards or regulatory requirements on the comparability of data.
+
+The final answer is: $\boxed{6}$
+
+-------------------------------------
+None
+Runtime: 16.661197900772095 seconds

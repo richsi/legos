@@ -15,8 +15,7 @@ class InsightAgent(BaseAgent):
     self.dataset = kwargs["dataset"]
     self.run_name = kwargs["run_name"]
     self.exemplars = pd.read_csv(os.path.join(os.getenv(kwargs["dataset"].upper()), kwargs["train"])) # pd.DataFrame type
-
-    self.num_tasks = len(kwargs["train"])
+    self.num_tasks = len(self.exemplars)
     self.log_history = []          
     self.task_idx = 0                 # Tracks current task index 
     self.runtime = 0
@@ -72,7 +71,7 @@ class InsightAgent(BaseAgent):
     kwargs = dict(exemplars=exemplars)
     formatted_prompt = utils.format_prompt(self.phase, self.dataset, **kwargs) # formatting the prompt
     llm_output = QUERY[self.model](formatted_prompt) # querying the LLM model
-    print(llm_output)
+    # print(llm_output)
 
     # Combine all elements into an experience log entry
     experience_log = (
@@ -81,7 +80,7 @@ class InsightAgent(BaseAgent):
         "-------------------------------------"
     )
 
-    print(experience_log)
+    # print(experience_log)
     
     # Save and print the experience log
     self.log_history.append(experience_log)

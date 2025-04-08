@@ -1,0 +1,110 @@
+Extracted Insights
+Output: 
+(PROMPT START)
+You are an advanced reasoning agent that can add, edit, or remove rules from your existing rule set, based on new insights or expansions.
+
+Here is your existing rule set:
+RULE 1: Break the question into its fundamental components by isolating key sub-questions and identifying the underlying assumptions or facts required to solve each step.
+RULE 2: When decomposing a question, identify the key elements of the question and the facts provided to ensure Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+RULE 3: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+
+Now, you are given mathematical tasks from the FinQA dataset. Each task has:
+• A table containing context 
+• A question
+• An equation
+• An answer
+
+Each new rule should be:
+
+1. Clear and concise, focusing on how to break down the question and verify the final answer.
+2. Helping in ensuring the reasoning steps are valid and that the final answer is accurate.
+
+Now, you will be provided examples to base these rules off of.
+Examples: 
+Read the following table, and then answer the question: 
+Table:
+2012 | $ 52855 | 
+2013 | 46910 | 
+2014 | 42514 | 
+2015 | 22689 | 
+2016 | 3580 | 
+2017 and thereafter | 966 | 
+total future minimum sponsorship and other marketing payments | $ 169514 | 
+
+Question: as of december 31 , 2012 what was the percent of the company 2019s future minimum payments under its sponsorship and other marketing agreements to the total
+Equation: ans=( 52855 / 169514 )
+. The answer is 31.2%.
+
+Read the following table, and then answer the question: 
+Table:
+ | weighted averageuseful life ( years ) | 
+purchased technology | 5 | 
+customer contracts and relationships | 10 | 
+trademarks | 7 | 
+acquired rights to use technology | 9 | 
+localization | 1 | 
+other intangibles | 3 | 
+
+Question: what is the yearly amortization rate related to other intangibles?
+Equation: ans=( 100 / 3 )
+. The answer is 33.3%.
+
+Read the following table, and then answer the question: 
+Table:
+in billions of dollars | citigroup parent company | cgmhi ( 2 ) | citigroup funding inc. ( 2 ) | other citigroup subsidiaries |  | 
+long-term debt | $ 192.3 | $ 20.6 | $ 37.4 | $ 109.3 | -1 ( 1 ) | 
+commercial paper | $ 2014 | $ 2014 | $ 28.6 | $ 0.5 |  | 
+
+Question: what is the total long-term debt in billions of dollars for citigroup , cgmhi , cfi and citigroup 2019s subsidiaries at december 31 , 2008?
+Equation: x0=( 192.3 + 20.6 ),x1=( x0 + 37.4 ),ans=( x1 + 109.3 )
+. The answer is 359.6.
+
+Read the following table, and then answer the question: 
+Table:
+ | shares issued | treasury shares | shares outstanding | 
+balance at december 29 2013 | 376832 | 2014 | 376832 | 
+exercise of stock options issuance of other stock awards and other | 178 | 2014 | 178 | 
+balance at december 28 2014 | 377010 | 2014 | 377010 | 
+exercise of warrants | 20480 | 2014 | 20480 | 
+issuance of common stock to sponsors | 221666 | 2014 | 221666 | 
+acquisition of kraft foods group inc . | 592898 | 2014 | 592898 | 
+exercise of stock options issuance of other stock awards and other | 2338 | -413 ( 413 ) | 1925 | 
+balance at january 3 2016 | 1214392 | -413 ( 413 ) | 1213979 | 
+exercise of stock options issuance of other stock awards and other | 4555 | -2058 ( 2058 ) | 2497 | 
+balance at december 31 2016 | 1218947 | -2471 ( 2471 ) | 1216476 | 
+
+Question: how many total shares were issued from 2014 to 2016?
+Equation: ans=( 1218947 - 376832 )
+. The answer is 842115.
+
+Read the following table, and then answer the question: 
+Table:
+millions | dec . 31 2012 | dec . 312011 | 
+accounts payable | $ 825 | $ 819 | 
+accrued wages and vacation | 376 | 363 | 
+income and other taxes | 368 | 482 | 
+dividends payable | 318 | 284 | 
+accrued casualty costs | 213 | 249 | 
+interest payable | 172 | 197 | 
+equipment rents payable | 95 | 90 | 
+other | 556 | 624 | 
+total accounts payable and othercurrent liabilities | $ 2923 | $ 3108 | 
+
+Question: what was the percentage change in equipment rents payable from 2011 to 2012?
+Equation: x0=( 95 - 90 ),ans=( x0 - 90 )
+. The answer is 6%.
+
+Your job is to generate exactly five concise new insights (i.e., RULES) that would help an agent correctly answer any complex FinQA question. 
+Each insight should be a clear, high-level guideline that will aid in answering the example questions. Ensure that there are no empty rules.
+Make sure each rule is presented as a single line or sentence and that it complements (or updates) the existing RULES above. Avoid repetition.
+(PROMPT END)
+
+RULE 4: Identify the key variables and their relationships in the equation, ensuring that all variables are accounted for and that the equation is balanced.
+RULE 5: Check for any missing or incomplete information in the question or table, and if necessary, ask follow-up questions to clarify any ambiguities.
+RULE 6: Use logical deduction and reasoning to fill in any gaps in the information provided, making assumptions where necessary but ensuring that they are reasonable and supported by the available evidence.
+RULE 7: Verify that the final answer is consistent with the overall context and the question's requirements, ensuring that all steps in the reasoning process are valid and that the final answer is accurate.
+RULE 8: Simplify complex equations or calculations by breaking them down into smaller, more manageable parts, using standard mathematical operations and conventions to ensure clarity and accuracy.
+
+-------------------------------------
+None
+Runtime: 15.047637939453125 seconds

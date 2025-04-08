@@ -75,7 +75,7 @@ class EvalAgent(BaseAgent):
 
     # Getting insights from same run_name from logs/insight_extraction
     insights = utils.get_insights(self.model, self.dataset, self.run_name)
-    print(f"INSIGHTS:\n{insights}")
+    # print(f"INSIGHTS:\n{insights}")
 
     kwargs = dict(
       exemplars=train_data,
@@ -85,7 +85,7 @@ class EvalAgent(BaseAgent):
 
     start_time = time.time()
     while not self.done():
-      print(f"STARTING TASK {self.task_idx}\n")
+      # print(f"STARTING TASK {self.task_idx}\n")
       self.step(**kwargs)
     end_time = time.time()
     self.runtime = end_time - start_time
@@ -100,7 +100,8 @@ class EvalAgent(BaseAgent):
       "test_data_len": [len(self.all_test_exemplars)],
       "model": [self.model],
       "dataset": [self.dataset],
-      "run_name": [self.run_name]
+      "run_name": [self.run_name],
+      "eval_type": [self.eval_type],
     }
 
     utils.save_logs(
@@ -128,10 +129,10 @@ class EvalAgent(BaseAgent):
     kwargs["test_data"] = self.all_test_exemplars[self.task_idx]
     # Formatting prompt for LLM
     prompt = utils.format_prompt(self.phase, self.dataset, **kwargs) 
-    print(prompt)
+    # print(prompt)
     # Querying the LLM
     llm_output = utils.query(self.model, prompt)
-    print("SPLICED:\n",llm_output[len(prompt):])
+    # print("SPLICED:\n",llm_output[len(prompt):])
     # Recording the stats
     self.record_stats(llm_output, len(prompt))
     # Combine all elements into an experience log entry
@@ -264,7 +265,7 @@ class EvalAgent(BaseAgent):
           if final_answer is not None:
             break
       real_answer = self.eval_df.iloc[self.task_idx]["answer"]
-      print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
+      # print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)
     elif self.dataset == "gsm8k":
       for line in output_lines:
@@ -276,7 +277,7 @@ class EvalAgent(BaseAgent):
       real_answer_raw = self.eval_df.iloc[self.task_idx]["answer"]
       matches = re.search(r"####\s*(\d+)", real_answer_raw)
       real_answer = matches.group(1)
-      print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
+      # print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)
     elif self.dataset == "tabmwp":
       for line in output_lines:
@@ -286,7 +287,7 @@ class EvalAgent(BaseAgent):
         if final_answer is not None:
           break
       real_answer= self.eval_df.iloc[self.task_idx]["answer"]
-      print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
+      # print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)
     elif self.dataset == "aquarat":
       for line in output_lines:
@@ -296,7 +297,7 @@ class EvalAgent(BaseAgent):
         if final_answer is not None:
           break
       real_answer= self.eval_df.iloc[self.task_idx]["correct"]
-      print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
+      # print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)
     elif self.dataset == "finqa":
       for line in output_lines:
@@ -306,5 +307,5 @@ class EvalAgent(BaseAgent):
         if final_answer is not None:
           break
       real_answer= self.eval_df.iloc[self.task_idx]["correct"]
-      print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
+      # print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)

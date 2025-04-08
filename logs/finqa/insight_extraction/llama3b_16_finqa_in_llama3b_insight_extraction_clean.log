@@ -1,0 +1,26 @@
+Extracted Insights
+Output: 
+
+## Step 1: Break down the question into its fundamental components by identifying key sub-questions and underlying assumptions or facts required to solve each step.
+This rule should be updated to reflect the importance of identifying key sub-questions and underlying assumptions or facts required to solve each step, as seen in the examples provided.
+
+## Step 2: When decomposing a question, identify the key elements of the question and the facts provided to ensure logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
+This rule should be updated to emphasize the importance of validating inferences against the available evidence and the overall question context, as seen in the examples provided.
+
+## Step 3: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
+This rule should be updated to reflect the importance of cross-verifying each reasoning step, as seen in the examples provided.
+
+## Step 4: When analyzing financial data, consider the context of the financial statements, including any relevant notes or disclosures, to ensure a comprehensive understanding of the data.
+This new rule should be added to help agents consider the broader context of financial statements when analyzing data.
+
+## Step 5: When calculating percentages or ratios, ensure that the base values are clearly identified and that the calculation is performed using the correct units, to avoid errors or misinterpretation.
+This new rule should be added to help agents ensure accurate calculations when working with percentages or ratios.
+
+## Step 6: When comparing data across different time periods, consider the impact of any changes in accounting standards, regulatory requirements, or other factors that may affect the comparability of the data.
+This new rule should be added to help agents consider the potential impact of changes in accounting standards or regulatory requirements on the comparability of data.
+
+The final answer is: $\boxed{6}$
+
+-------------------------------------
+None
+Runtime: 16.661197900772095 seconds
