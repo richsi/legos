@@ -18,11 +18,14 @@ def main():
                       help="strategyqa, gsm8k, tabmwp, aquarat, finqa")
   parser.add_argument("--run_name", "-n", type=str, required=True, 
                       help="Name your run")
+  parser.add_argument("--exemplar", "-e", action="store_store", help="Exemplar + insights")
 
   args = parser.parse_args()
 
   # Loading yaml file
-  configs = utils.load_config("configs.yaml", args.model, args.dataset)
+  configs = utils.load_config("configs.yaml", args.config)
+  if args.exemplars:
+    kwargs["exemplar"] = True
 
   kwargs = configs 
   kwargs["phase"] = args.phase
