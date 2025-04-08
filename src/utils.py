@@ -18,6 +18,7 @@ def save_logs(
   log_history: list, 
   stats: dict, 
   runtime: float, 
+  total_token_sizes: list,
   eval_type: str=None,
   results_dict: dict=None
 ):
@@ -67,11 +68,15 @@ def save_logs(
   with open(full_log_path, "w") as f:
       f.write(full_log_text + "\n")
       f.write(str(stats) + "\n")
-      f.write(f"Runtime: {runtime} seconds")
+      f.write(f"Runtime: {runtime} seconds\n")
+      f.write(f"Total token size: {sum(total_token_sizes)}\n")
+      f.write(f"Average token size: {sum(total_token_sizes) // len(total_token_sizes)}\n")
   with open(clean_log_path, "w") as f:
       f.write(clean_log_text + "\n")
       f.write(str(stats) + "\n")
-      f.write(f"Runtime: {runtime} seconds")
+      f.write(f"Runtime: {runtime} seconds\n")
+      f.write(f"Total token size: {sum(total_token_sizes)}\n")
+      f.write(f"Average token size: {sum(total_token_sizes) // len(total_token_sizes)}\n")
     
   print(f"[TrainAgent] Full logs saved to {full_log_path}")
   print(f"[TrainAgent] Clean logs saved to {clean_log_path}")
@@ -125,6 +130,11 @@ def get_insights(model: str, dataset: str, run_name: str):
         insights.append(line.strip())
   return "\n".join(insights)
 
+
+def count_tokens(text, model="gpt-3.5-turbo"):
+  import tiktoken
+  encoding = tiktoken.encoding_for_model(model)
+  return len(encoding.encode(text))
 
 
 def self_consistency():

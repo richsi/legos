@@ -29,6 +29,8 @@ class EvalAgent(BaseAgent):
     self.eval_df = None
     self.all_test_exemplars = []
 
+    self.total_token_sizes = []
+
 
   def run(self, reset: bool=True):
     """
@@ -101,6 +103,7 @@ class EvalAgent(BaseAgent):
       "model": [self.model],
       "dataset": [self.dataset],
       "run_name": [self.run_name],
+      "avg_token_len": [sum(self.total_token_sizes) / len(self.total_token_sizes)],
       "eval_type": [self.eval_type],
     }
 
@@ -112,6 +115,7 @@ class EvalAgent(BaseAgent):
       self.log_history, 
       self.stats, 
       self.runtime,
+      self.total_token_sizes,
       self.eval_type,
       results_dict
     )  
@@ -132,12 +136,13 @@ class EvalAgent(BaseAgent):
     # print(prompt)
     # Querying the LLM
     llm_output = utils.query(self.model, prompt)
-    # print("SPLICED:\n",llm_output[len(prompt):])
+    self.total_token_sizes.append(utils.count_tokens(llm_output))
+    print("SPLICED:\n",llm_output[len(prompt):])
     # Recording the stats
     self.record_stats(llm_output, len(prompt))
     # Combine all elements into an experience log entry
     experience_log = (
-        f"{self.model} Task {self.task_idx}:\n{llm_output}\n\n"
+        f"{self.model} Task {self.task_idx}:\n{llm_output}\n\nToken count: {self.total_token_sizes[self.task_idx]}\n"
         "-------------------------------------"
     )
     # Save and print the experience log
@@ -146,8 +151,8 @@ class EvalAgent(BaseAgent):
     self.task_idx += 1
 
   def done(self):
-    # return self.task_idx >= self.num_tasks
-    return self.task_idx >= 2
+    return self.task_idx >= self.num_tasks
+    # return self.task_idx >= 1
 
   def get_strategyqa_exemplars(self, exemplar):
     string = "Facts: "
@@ -177,7 +182,7 @@ class EvalAgent(BaseAgent):
     return string
 
   def get_gsm8k_test_exemplars(self, exemplar):
-    string = "Question: " + exemplar["question"] + "\n" + answer + "\n\n"
+    string = "Question: " + exemplar["question"] + "\n"
     return string
 
   def get_tabmwp_exemplars(self, exemplar):

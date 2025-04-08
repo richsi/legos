@@ -6,6 +6,7 @@ from src.agents.base import BaseAgent
 import src.utils as utils
 import ast
 from src.models import QUERY
+import tiktoken
 
 class InsightAgent(BaseAgent):
   def __init__(self, **kwargs):
@@ -20,6 +21,8 @@ class InsightAgent(BaseAgent):
     self.task_idx = 0                 # Tracks current task index 
     self.runtime = 0
     self.stats = None
+
+    self.total_token_sizes = []
 
 
   def run(self, reset: bool=True):
@@ -42,7 +45,8 @@ class InsightAgent(BaseAgent):
       self.phase,
       self.log_history, 
       self.stats, 
-      self.runtime
+      self.runtime,
+      self.total_token_sizes
     )  # Once done with all tasks, save logs to txt file
 
   def step(self):
@@ -71,12 +75,15 @@ class InsightAgent(BaseAgent):
     kwargs = dict(exemplars=exemplars)
     formatted_prompt = utils.format_prompt(self.phase, self.dataset, **kwargs) # formatting the prompt
     llm_output = QUERY[self.model](formatted_prompt) # querying the LLM model
-    # print(llm_output)
+    self.total_token_sizes.append(utils.count_tokens(llm_output))
+    print(llm_output)
+    print(f"Total token size: {self.total_token_sizes[self.task_idx]}")
 
     # Combine all elements into an experience log entry
     experience_log = (
         f"Extracted Insights\n"
         f"Output: {llm_output}\n\n"
+        f"Output token size: {self.total_token_sizes[self.task_idx]}"
         "-------------------------------------"
     )
 
