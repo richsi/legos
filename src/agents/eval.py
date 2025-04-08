@@ -29,6 +29,8 @@ class EvalAgent(BaseAgent):
     self.eval_df = None
     self.all_test_exemplars = []
 
+    self.total_token_sizes = []
+
 
   def run(self, reset: bool=True):
     """
@@ -100,7 +102,8 @@ class EvalAgent(BaseAgent):
       "test_data_len": [len(self.all_test_exemplars)],
       "model": [self.model],
       "dataset": [self.dataset],
-      "run_name": [self.run_name]
+      "run_name": [self.run_name],
+      "avg_token_len": [sum(self.total_token_sizes) / len(self.total_token_sizes)]
     }
 
     utils.save_logs(
@@ -111,6 +114,7 @@ class EvalAgent(BaseAgent):
       self.log_history, 
       self.stats, 
       self.runtime,
+      self.total_token_sizes,
       self.eval_type,
       results_dict
     )  
@@ -131,12 +135,13 @@ class EvalAgent(BaseAgent):
     print(prompt)
     # Querying the LLM
     llm_output = utils.query(self.model, prompt)
+    self.total_token_sizes.append(utils.count_tokens(llm_output))
     print("SPLICED:\n",llm_output[len(prompt):])
     # Recording the stats
     self.record_stats(llm_output, len(prompt))
     # Combine all elements into an experience log entry
     experience_log = (
-        f"{self.model} Task {self.task_idx}:\n{llm_output}\n\n"
+        f"{self.model} Task {self.task_idx}:\n{llm_output}\n\nToken count: {self.total_token_sizes[self.task_idx]}"
         "-------------------------------------"
     )
     # Save and print the experience log
@@ -145,8 +150,8 @@ class EvalAgent(BaseAgent):
     self.task_idx += 1
 
   def done(self):
-    # return self.task_idx >= self.num_tasks
-    return self.task_idx >= 2
+    return self.task_idx >= self.num_tasks
+    # return self.task_idx >= 2
 
   def get_strategyqa_exemplars(self, exemplar):
     string = "Facts: "
@@ -305,6 +310,6 @@ class EvalAgent(BaseAgent):
           final_answer = line.partition(":")[2].strip() # getting the half after the colon
         if final_answer is not None:
           break
-      real_answer= self.eval_df.iloc[self.task_idx]["correct"]
+      real_answer= self.eval_df.iloc[self.task_idx]["answer"]
       print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)

@@ -1,9 +1,2 @@
-matches,mismatches,EM,train_data_len,test_data_len,model,dataset,run_name
-0,5,0.0,684720,1319,Llama1B,GSM8K,run1
-0,5,0.0,1319,1319,Llama1B,GSM8K,run1
-0,5,0.0,50,1319,Llama1B,GSM8K,run1
-0,5,0.0,50,1319,Llama1B,GSM8K,run1
-0,5,0.0,50,1319,Llama1B,GSM8K,run1
-0,2,0.0,50,1319,Mistral7B,GSM8K,run1
-0,2,0.0,50,1319,Llama1B,GSM8K,run1
-2,0,100.0,50,490,mistral7b,strategyqa,test
+matches,mismatches,EM,train_data_len,test_data_len,model,dataset,run_name,avg_token_len
+0,2,0.0,50,1147,mistral7b,finqa,tokentest,498.0
