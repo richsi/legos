@@ -30,6 +30,7 @@ class EvalAgent(BaseAgent):
     self.all_test_exemplars = []
 
     self.total_token_sizes = []
+    self.error_log = []
 
 
   def run(self, reset: bool=True):
@@ -37,46 +38,50 @@ class EvalAgent(BaseAgent):
     Starts new run
     """
     # Dict mapping to correct exemplar getter function
-    exemplar_getter = {
-      "strategyqa": self.get_strategyqa_exemplars,
-      "gsm8k": self.get_gsm8k_exemplars,
-      "tabmwp": self.get_tabmwp_exemplars,
-      "aquarat": self.get_aquarat_exemplars,
-      "finqa": self.get_finqa_exemplars,
-    }.get(self.dataset)
-
-    # Check that dataset is valid and function exists
-    if exemplar_getter is None:
-      raise ValueError(f"Unsupported dataset: {self.dataset}")
-
-    # Formatting the exemplar to pass into prompt
-    all_train_exemplars = [exemplar_getter(row) for _, row in self.train_exemplars.iterrows()]
-    train_data = "\n\n".join(all_train_exemplars)
+    try:
+      exemplar_getter = {
+        "strategyqa": self.get_strategyqa_exemplars,
+        "gsm8k": self.get_gsm8k_exemplars,
+        "tabmwp": self.get_tabmwp_exemplars,
+        "aquarat": self.get_aquarat_exemplars,
+        "finqa": self.get_finqa_exemplars,
+      }.get(self.dataset)
+      all_train_exemplars = [exemplar_getter(row) for _, row in self.train_exemplars.iterrows()]
+      train_data = "\n\n".join(all_train_exemplars)
+    except Exception as e:
+      error_msg = f"Error getting train exemplars for {self.dataset}: {e}"
+      self.error_log.append(error_msg)
+      utils.log_errors(self.error_log, self.dataset, self.run_name, self.model, self.phase)
+      return
 
     # Getting the eval file path
     eval_path = os.path.join(os.getenv(self.dataset.upper()), self.eval_file)
-    # Getting eval file contents
     self.eval_df = pd.read_csv(eval_path)
 
-    # Dict mapping to correct test exemplar getter function
-    test_exemplar_getter = {
-      "strategyqa": self.get_strategyqa_test_exemplars,
-      "gsm8k": self.get_gsm8k_test_exemplars,
-      "tabmwp": self.get_tabmwp_test_exemplars,
-      "aquarat": self.get_aquarat_test_exemplars,
-      "finqa": self.get_finqa_test_exemplars
-    }.get(self.dataset)
-
-    if test_exemplar_getter is None:
-      raise ValueError(f"Unsupported dataset: {self.dataset}")
-
     # Formatting the test exemplars to pass into prompt
-    self.all_test_exemplars = [test_exemplar_getter(row) for _, row in self.eval_df.iterrows()]
-    # Assigning num tasks
-    self.num_tasks = len(self.all_test_exemplars) 
+    try:
+      test_exemplar_getter = {
+        "strategyqa": self.get_strategyqa_test_exemplars,
+        "gsm8k": self.get_gsm8k_test_exemplars,
+        "tabmwp": self.get_tabmwp_test_exemplars,
+        "aquarat": self.get_aquarat_test_exemplars,
+        "finqa": self.get_finqa_test_exemplars
+      }.get(self.dataset)
+      self.all_test_exemplars = [test_exemplar_getter(row) for _, row in self.eval_df.iterrows()]
+      self.num_tasks = len(self.all_test_exemplars) 
+    except Exception as e:
+      error_msg = f"Error getting test exemplars for {self.dataset}: {e}"
+      self.error_log.append(error_msg)
+      utils.log_errors(self.error_log, self.dataset, self.run_name, self.model, self.phase)
+      return
 
     # Getting insights from same run_name from logs/insight_extraction
-    insights = utils.get_insights(self.model, self.dataset, self.run_name)
+    try:
+      insights = utils.get_insights(self.model, self.dataset, self.run_name)
+    except Exception as e:
+      error_msg = f"Error extracting insights from {self.run_name}_{self.model}_insight_clean.log for dataset {self.dataset}:\n{e}"
+      self.error_log.append(error_msg)
+      insights = ""
     # print(f"INSIGHTS:\n{insights}")
 
     kwargs = dict(
@@ -87,39 +92,49 @@ class EvalAgent(BaseAgent):
 
     start_time = time.time()
     while not self.done():
-      # print(f"STARTING TASK {self.task_idx}\n")
       self.step(**kwargs)
     end_time = time.time()
     self.runtime = end_time - start_time
 
-    EM = self.stats["CORRECT"] / (self.stats["CORRECT"] + self.stats["INCORRECT"] + self.stats["FAILED"]) * 100 
+    try:
+      EM = self.stats["CORRECT"] / (self.stats["CORRECT"] + self.stats["INCORRECT"] + self.stats["FAILED"]) * 100 
+    except Exception as e:
+      error_msg = f"Unable to compute EM: {e}"
+      self.error_log.append(error_msg)
+      EM = -1 # error
 
-    results_dict = {
-      "matches": [self.stats["CORRECT"]],
-      "mismatches": [self.stats["INCORRECT"] + self.stats["FAILED"]],
-      "EM": [EM],
-      "train_data_len": [len(all_train_exemplars)],
-      "test_data_len": [len(self.all_test_exemplars)],
-      "model": [self.model],
-      "dataset": [self.dataset],
-      "run_name": [self.run_name],
-      "avg_token_len": [sum(self.total_token_sizes) / len(self.total_token_sizes)],
-      "eval_type": [self.eval_type],
-    }
+    try:
+      results_dict = {
+        "matches": [self.stats["CORRECT"]],
+        "mismatches": [self.stats["INCORRECT"] + self.stats["FAILED"]],
+        "EM": [EM],
+        "train_data_len": [len(all_train_exemplars)],
+        "test_data_len": [len(self.all_test_exemplars)],
+        "model": [self.model],
+        "dataset": [self.dataset],
+        "run_name": [self.run_name],
+        "avg_token_len": [sum(self.total_token_sizes) / len(self.total_token_sizes)],
+        "eval_type": [self.eval_type],
+      }
 
-    utils.save_logs(
-      self.model,
-      self.dataset, 
-      self.run_name, 
-      self.phase,
-      self.log_history, 
-      self.stats, 
-      self.runtime,
-      self.total_token_sizes,
-      self.eval_type,
-      results_dict
-    )  
-
+      utils.save_logs(
+        self.model,
+        self.dataset, 
+        self.run_name, 
+        self.phase,
+        self.log_history, 
+        self.stats, 
+        self.runtime,
+        self.total_token_sizes,
+        self.eval_type,
+        results_dict
+      )  
+    except Exception as e:
+      error_msg = f"Error saving logs for {self.dataset}/{self.run_name}_{self.model}_eval_{self.eval_type}: {e}"
+      self.error_log.append(error_msg)
+    
+    if self.error_log:
+      utils.log_errors(self.error_log, self.dataset, self.run_name, self.model, self.phase)
 
   def step(self, **kwargs):
     """
@@ -133,13 +148,23 @@ class EvalAgent(BaseAgent):
     kwargs["test_data"] = self.all_test_exemplars[self.task_idx]
     # Formatting prompt for LLM
     prompt = utils.format_prompt(self.phase, self.dataset, **kwargs) 
-    # print(prompt)
-    # Querying the LLM
-    llm_output = utils.query(self.model, prompt)
-    self.total_token_sizes.append(utils.count_tokens(llm_output))
-    # print("SPLICED:\n",llm_output[len(prompt):])
+
+    try:
+      llm_output = utils.query(self.model, prompt)
+      self.total_token_sizes.append(utils.count_tokens(llm_output))
+    except Exception as e:
+      error_msg = f"Error querying {self.model} for task {self.task_idx}: {e}"
+      self.error_log.append(error_msg)
+      llm_output = ""
+      self.total_token_sizes.append(-1)
+
     # Recording the stats
-    self.record_stats(llm_output, len(prompt))
+    try:
+      self.record_stats(llm_output, len(prompt))
+    except Exception as e:
+      error_msg = f"Error recording stats for task {self.task_idx}: {e}"
+      self.error_log.append(error_msg)
+
     # Combine all elements into an experience log entry
     experience_log = (
         f"{self.model} Task {self.task_idx}:\n{llm_output}\n\nToken count: {self.total_token_sizes[self.task_idx]}\n"
@@ -151,8 +176,8 @@ class EvalAgent(BaseAgent):
     self.task_idx += 1
 
   def done(self):
-    return self.task_idx >= self.num_tasks
-    # return self.task_idx >= 1
+    # return self.task_idx >= self.num_tasks
+    return self.task_idx >= 2
 
   def get_strategyqa_exemplars(self, exemplar):
     string = "Facts: "
@@ -280,7 +305,7 @@ class EvalAgent(BaseAgent):
         if final_answer is not None:
           break
       real_answer_raw = self.eval_df.iloc[self.task_idx]["answer"]
-      matches = re.search(r"####\s*(\d+)", real_answer_raw)
+      matches = re.search(r"#+\s*(\d+)", real_answer_raw)
       real_answer = matches.group(1)
       # print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)

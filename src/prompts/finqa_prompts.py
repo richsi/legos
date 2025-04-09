@@ -43,9 +43,6 @@ FINQA_EVAL_EXEMPLAR_PROMPT = """
 You will be provided with some example questions. Do not generate answers for the example questions.
 {}
 
-Now, you will be provided with some insights and guidelines to help you answer the evaluation question.
-{}
-
 Now, you will be provided with the evaluation question. Provide your final answer in a newline following "Final answer: ".
 {}
 (PROMPT END)
