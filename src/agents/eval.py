@@ -176,8 +176,8 @@ class EvalAgent(BaseAgent):
     self.task_idx += 1
 
   def done(self):
-    # return self.task_idx >= self.num_tasks
-    return self.task_idx >= 2
+    return self.task_idx >= self.num_tasks
+    # return self.task_idx >= 3
 
   def get_strategyqa_exemplars(self, exemplar):
     string = "Facts: "
@@ -333,7 +333,7 @@ class EvalAgent(BaseAgent):
       for line in output_lines:
         lower_line = line.lower()
         if "final" in lower_line and "answer" in lower_line:
-          final_answer = line.partition(":")[2].strip() # getting the half after the colon
+          final_answer = line.partition(":")[2].strip().rstrip('.') # getting the half after the colon
         if final_answer is not None:
           break
       real_answer= self.eval_df.iloc[self.task_idx]["answer"]
