@@ -1,23 +1,20 @@
 ,Unnamed: 0,question,answer,cluster,index
-4146,4146,"At Roosevelt high school there are 600 students in the senior class. A fifth of the students are in the marching band. Of the students in the marching band, half of them play a brass instrument. Of the students that play a brass instrument, a fifth of them play the saxophone. Of the students that play the saxophone, a third of them play the alto saxophone. How many students play the alto saxophone?","The number of students in the marching band is 600 / 5 = <<600/5=120>>120 students
-The number of students that play a brass instrument is 120 / 2 = <<120/2=60>>60 students
-The number of students that play the saxophone is 60 / 5 = <<60/5=12>>12 students
-The number of students that play the alto saxophone is 12 / 3 = <<12/3=4>>4 students
-#### 4",0,4730
-3309,3309,"Denver uses 7 pieces of wood for each birdhouse and he pays $1.50 for each piece of wood. If he makes a $5.50 profit per birdhouse, how much will Denver charge to Danny for buying two birdhouses?","The cost for making one birdhouse is $1.50 x 7 = $<<1.5*7=10.50>>10.50.
-So the selling price of one birdhouse is $10.50 + $5.50 = $<<10.5+5.5=16>>16.
-Thus, Denver will charge Danny $16 x 2 = $<<16*2=32>>32 for the two birdhouses.
-#### 32",1,44
-4869,4869,Brenda catches smallpox. She has 60 blisters on each arm and 80 blisters on the rest of her body. How many blisters does she have in total?,"First find the total number of blisters on Brenda's arms: 60 blisters/arm * 2 arms = 120 blisters
-Then add the blisters on the rest of her body to find the total: 120 blisters + 80 blisters = <<120+80=200>>200 blisters
-#### 200",2,4706
-1307,1307,"Sarah's age is equal to three times Mark's age minus 4. Mark is four years older than Billy. Billy is half Ana's age. If Ana will be 15 in 3 years, how old is Sarah?","First figure out how old Ana is right now by subtracting 3 from 15: 15 - 3 = <<15-3=12>>12
-Next, figure out how old Billy is by dividing Ana's age by 2: 12 / 2 = <<6=6>>6
-Now figure out how old Mark is by adding 4 to Billy's age: 6 + 4 = <<6+4=10>>10
-Now, to figure out Sarah's age, first multiply Mark's age by 3: 10 * 3 = <<10*3=30>>30
-Finally, subtract 4 from triple Mark's age to find Sarah's age: 30 - 4 = <<30-4=26>>26
-#### 26",3,3038
-5031,5031,"Gretchen read that you should spend 10 minutes walking for every 90 minutes you spend sitting. If Gretchen spends 6 hours working at her desk, how long will she spend walking?","First find the total number of minutes Gretchen spends sitting at her desk: 6 hours * 60 minutes/hour = <<6*60=360>>360 minutes
-Then divide this amount by 90 minutes to find how many walking breaks Gretchen takes: 360 minutes / 90 minutes/break = <<360/90=4>>4 breaks
-Then multiply the number of breaks by the length of each break to find how long Gretchen spends walking: 4 breaks * 10 minutes/break = <<4*10=40>>40 minutes
-#### 40",4,3880
+1534,1534,A library has a number of books. 35% of them are intended for children and 104 of them are for adults. How many books are in the library?,"65% of the library books are for adults because 100 - 35 = <<100-35=65>>65
+There are 160 library books in total because 104 / .65 = <<104/.65=160>>160
+#### 160",0,1049
+5088,5088,"Barbara went shopping in a supermarket. She bought 5 packs of tuna for $2 each and 4 bottles of water for $1.5 each. In total, she paid $56 for her shopping. How much did Barbara spend on different than the mentioned goods?","For the tuna Barbara needed to pay 5 * 2 = $<<5*2=10>>10.
+For the four bottles of water, she needed to pay 4 * 1.5 = $<<4*1.5=6>>6.
+On different goods Barbara spend 56 - 10 - 6 = $<<56-10-6=40>>40.
+#### 40",1,4792
+3789,3789,"Doris works at the Widget Factory in the packing department. She puts 3 widgets in each carton, which are 4 inches wide, 4 inches long, and 5 inches tall. She then packs those cartons into a shipping box before sending it to the loading bay. The shipping boxes are 20 inches wide, 20 inches long, and 20 inches high. How many widgets get shipped in each shipping box?","Each carton has an area of 4*4*5 = <<4*4*5=80>>80 square inches.
+Each shipping box has an area of 20*20*20 = <<20*20*20=8000>>8000 square inches
+The total number of cartons that will fit into each box is 8000/80 = <<8000/80=100>>100
+Since there are 3 widgets in each carton, the total number of cartons in each box will be 3*100 = <<3*100=300>>300
+#### 300",2,2110
+4721,4721,"In 6 years, Carla will be 30 years old. The sum of the current ages of Carla and Louis is 55. How old is Louis now?","Carla is currently 30-6=<<30-6=24>>24 years old.
+Louis is 55-24=<<55-24=31>>31 years old at present.
+#### 31",3,4772
+7170,7170,"Monica read 16 books last year. This year, she read twice the number of books she read last year. Next year, she wants to read 5 more than twice the number of books she read this year. How many books will Monica read next year?","The number of books that Monica read this year is 2 * 16 = <<2*16=32>>32 books.
+Twice the number of books that Monica read this year is 2 * 32 = <<2*32=64>>64 books.
+The number of books that Monica will read next year is 64 + 5 = <<64+5=69>>69 books.
+#### 69",4,1919

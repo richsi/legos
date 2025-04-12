@@ -13,6 +13,8 @@ Output:
 9. Use the provided context to identify any potential biases or assumptions that may affect the reasoning process.
 10. Use the provided context to identify any relevant patterns or trends that may affect the reasoning process.
 
--------------------------------------
+Output token size: 1514-------------------------------------
 None
-Runtime: 16.520898818969727 seconds
+Runtime: 84.56239056587219 seconds
+Total token size: 1514
+Average token size: 1514

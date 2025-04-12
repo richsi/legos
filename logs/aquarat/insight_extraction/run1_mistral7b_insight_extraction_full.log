@@ -95,6 +95,8 @@ RULE 7: When decomposing a question, ensure that the final answer is consistent 
 
 RULE 8: When decomposing a question, ensure that the final answer is consistent with the provided context by validating that each step in the reasoning process aligns with the available evidence and the overall question context, and that the final answer is consistent with the provided context and the available evidence.
 
--------------------------------------
+Output token size: 1217-------------------------------------
 None
-Runtime: 16.245725870132446 seconds
+Runtime: 16.327585697174072 seconds
+Total token size: 1217
+Average token size: 1217

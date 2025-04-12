@@ -23,81 +23,90 @@ Now, you will be provided examples to base these rules off of.
 Examples: 
 Read the following table, and then answer the question: 
 Table:
- | smart plans and other consumer membership | other commercial membership | commercial medical membership | 
-fully-insured | 327900 | 1480700 | 1808600 | 
-aso | 236800 | 1406200 | 1643000 | 
-total commercial medical | 564700 | 2886900 | 3451600 | 
+2012 | $ 52855 | 
+2013 | 46910 | 
+2014 | 42514 | 
+2015 | 22689 | 
+2016 | 3580 | 
+2017 and thereafter | 966 | 
+total future minimum sponsorship and other marketing payments | $ 169514 | 
 
-Question: as of december 2007 what was the approximate total of the total commercial medical membership
-Equation: ans=( 564700 / 16.4 )
-. The answer is 3443292.68.
-
-Read the following table, and then answer the question: 
-Table:
-( in millions ) | payments due by period ( 1 ) total | payments due by period ( 1 ) 2006 | payments due by period ( 1 ) 2007 | payments due by period ( 1 ) 2008 | payments due by period ( 1 ) 2009 | payments due by period ( 1 ) 2010 | payments due by period ( 1 ) thereafter | 
-long-term debt obligations | $ 4033 | $ 119 | $ 1222 | $ 200 | $ 2 | $ 529 | $ 1961 | 
-lease obligations | 1150 | 438 | 190 | 134 | 109 | 84 | 195 | 
-purchase obligations | 992 | 418 | 28 | 3 | 2 | 2 | 539 | 
-total contractual obligations | $ 6175 | $ 975 | $ 1440 | $ 337 | $ 113 | $ 615 | $ 2695 | 
-
-Question: what percent of the total contractual obligations should be paid by the end of 2006?
-Equation: ans=( 975 / 6175 )
-. The answer is 15.8%.
+Question: as of december 31 , 2012 what was the percent of the company 2019s future minimum payments under its sponsorship and other marketing agreements to the total
+Equation: ans=( 52855 / 169514 )
+. The answer is 31.2%.
 
 Read the following table, and then answer the question: 
 Table:
-2017 | $ 4.5 | 
-2018 | 4.0 | 
-2019 | 4.0 | 
-2020 | 4.6 | 
-2021 | 4.5 | 
-2021-2025 | 44.6 | 
+ | weighted averageuseful life ( years ) | 
+purchased technology | 5 | 
+customer contracts and relationships | 10 | 
+trademarks | 7 | 
+acquired rights to use technology | 9 | 
+localization | 1 | 
+other intangibles | 3 | 
 
-Question: during 2016 what was the average price paid for the shares repurchased by the company?
-Equation: ans=( 662.3 / 7.3 )
-. The answer is 90.73.
-
-Read the following table, and then answer the question: 
-Table:
- | amount ( in millions ) | 
-2014 net revenue | $ 2224 | 
-nuclear realized price changes | -310 ( 310 ) | 
-vermont yankee shutdown in december 2014 | -305 ( 305 ) | 
-nuclear volume excluding vermont yankee effect | 20 | 
-other | 37 | 
-2015 net revenue | $ 1666 | 
-
-Question: what percentage of 2015 net revenue relates to the nuclear volume impact?
-Equation: ans=( 20 / 1666 )
-. The answer is 1.2%.
+Question: what is the yearly amortization rate related to other intangibles?
+Equation: ans=( 100 / 3 )
+. The answer is 33.3%.
 
 Read the following table, and then answer the question: 
 Table:
- | significant unobservable inputs ( level 3 ) ( in millions ) | 
-fair value december 31 2008 | $ 192 | 
-calls at par | -28 ( 28 ) | 
-recovery of unrealized losses due to issuer calls | 5 | 
-increase in fair value | 11 | 
-fair value december 31 2009 | 180 | 
-calls at par | -94 ( 94 ) | 
-recovery of unrealized losses due to issuer calls | 13 | 
-increase in fair value | 7 | 
-fair value december 31 2010 | $ 106 | 
+in billions of dollars | citigroup parent company | cgmhi ( 2 ) | citigroup funding inc. ( 2 ) | other citigroup subsidiaries |  | 
+long-term debt | $ 192.3 | $ 20.6 | $ 37.4 | $ 109.3 | -1 ( 1 ) | 
+commercial paper | $ 2014 | $ 2014 | $ 28.6 | $ 0.5 |  | 
 
-Question: what is the percentual decrease observed in the fair value of ars investments between 2009 and 2008?
-Equation: x0=( 180 - 192 ),ans=( x0 - 192 )
-. The answer is 6.25%.
+Question: what is the total long-term debt in billions of dollars for citigroup , cgmhi , cfi and citigroup 2019s subsidiaries at december 31 , 2008?
+Equation: x0=( 192.3 + 20.6 ),x1=( x0 + 37.4 ),ans=( x1 + 109.3 )
+. The answer is 359.6.
+
+Read the following table, and then answer the question: 
+Table:
+ | shares issued | treasury shares | shares outstanding | 
+balance at december 29 2013 | 376832 | 2014 | 376832 | 
+exercise of stock options issuance of other stock awards and other | 178 | 2014 | 178 | 
+balance at december 28 2014 | 377010 | 2014 | 377010 | 
+exercise of warrants | 20480 | 2014 | 20480 | 
+issuance of common stock to sponsors | 221666 | 2014 | 221666 | 
+acquisition of kraft foods group inc . | 592898 | 2014 | 592898 | 
+exercise of stock options issuance of other stock awards and other | 2338 | -413 ( 413 ) | 1925 | 
+balance at january 3 2016 | 1214392 | -413 ( 413 ) | 1213979 | 
+exercise of stock options issuance of other stock awards and other | 4555 | -2058 ( 2058 ) | 2497 | 
+balance at december 31 2016 | 1218947 | -2471 ( 2471 ) | 1216476 | 
+
+Question: how many total shares were issued from 2014 to 2016?
+Equation: ans=( 1218947 - 376832 )
+. The answer is 842115.
+
+Read the following table, and then answer the question: 
+Table:
+millions | dec . 31 2012 | dec . 312011 | 
+accounts payable | $ 825 | $ 819 | 
+accrued wages and vacation | 376 | 363 | 
+income and other taxes | 368 | 482 | 
+dividends payable | 318 | 284 | 
+accrued casualty costs | 213 | 249 | 
+interest payable | 172 | 197 | 
+equipment rents payable | 95 | 90 | 
+other | 556 | 624 | 
+total accounts payable and othercurrent liabilities | $ 2923 | $ 3108 | 
+
+Question: what was the percentage change in equipment rents payable from 2011 to 2012?
+Equation: x0=( 95 - 90 ),ans=( x0 - 90 )
+. The answer is 6%.
 
 Your job is to generate exactly five concise new insights (i.e., RULES) that would help an agent correctly answer any complex FinQA question. 
 Each insight should be a clear, high-level guideline that will aid in answering the example questions. Ensure that there are no empty rules.
 Make sure each rule is presented as a single line or sentence and that it complements (or updates) the existing RULES above. Avoid repetition.
 (PROMPT END)
 
-RULE 4: Identify the key variables and their relationships in the equation, ensuring that all necessary inputs are accounted for and that the equation is properly formatted.
-RULE 5: Check for any missing or incorrect data in the table, ensuring that all required information is available and that any inconsistencies are resolved before proceeding with the question.
-RULE 6: Verify that the equation is consistent with the overall context of the question, ensuring that all relevant information is included and that the equation is properly aligned with the table.
-RULE 7: Ensure that the final answer is accurate and complete, cross-referencing the equation with the table and any other relevant information to confirm that all calculations are correct and that the answer is consistent with the overall context of the question.
+RULE 4: Identify the key variables and their relationships in the equation, ensuring that all variables are accounted for and that the equation is balanced.
+RULE 5: Check for any missing or incomplete information in the question or table, and if necessary, ask follow-up questions to clarify any ambiguities.
+RULE 6: Use logical deduction and reasoning to fill in any gaps in the information provided, making assumptions where necessary but ensuring that they are reasonable and supported by the available evidence.
+RULE 7: Verify that the final answer is consistent with the overall context and the question's requirements, ensuring that all steps in the reasoning process are valid and that the final answer is accurate.
+RULE 8: Simplify complex equations or calculations by breaking them down into smaller, more manageable parts, using standard mathematical operations and conventions to ensure clarity and accuracy.
 
--------------------------------------
+Output token size: 1466-------------------------------------
 None
-Runtime: 14.064945936203003 seconds
+Runtime: 38.19207429885864 seconds
+Total token size: 1466
+Average token size: 1466

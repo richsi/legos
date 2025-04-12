@@ -1,2 +1,15 @@
 matches,mismatches,EM,train_data_len,test_data_len,model,dataset,run_name,avg_token_len,eval_type
 1,0,100.0,5,1319,mistral7b,gsm8k,tokentest,485.0,insight
+0,254,0.0,5,254,mistral7b,aquarat,run1,962.2716535433071,insight
+0,254,0.0,5,254,mistral7b,aquarat,run1,1009.3267716535433,exemplar
+0,254,0.0,5,254,mistral7b,aquarat,run1,1327.492125984252,insight_exemplar
+1,1146,0.08718395815170009,5,1147,mistral7b,finqa,run1,630.2955536181342,insight
+395,95,80.61224489795919,5,490,mistral7b,strategyqa,run1,869.3632653061225,insight
+374,116,76.32653061224491,5,490,mistral7b,strategyqa,run1,826.9795918367347,exemplar
+365,125,74.48979591836735,5,490,mistral7b,strategyqa,run1,1341.4489795918366,insight_exemplar
+198,7488,2.576112412177986,5,7686,mistral7b,tabmwp,run1,799.7919594067135,insight
+1697,5989,22.07910486599011,5,7686,mistral7b,tabmwp,run1,1315.0728597449909,exemplar
+851,6835,11.07207910486599,5,7686,mistral7b,tabmwp,run1,1841.6008326827998,insight_exemplar
+2,252,0.7874015748031495,5,254,llama3b,aquarat,run1,2184.5984251968503,insight
+0,254,0.0,5,254,llama3b,aquarat,run1,1501.3228346456692,exemplar
+0,254,0.0,5,254,llama3b,aquarat,run1,2297.4133858267714,insight_exemplar
