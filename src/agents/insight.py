@@ -24,6 +24,8 @@ class InsightAgent(BaseAgent):
 
     self.total_token_sizes = []
 
+    self.error_log = []
+
 
   def run(self, reset: bool=True):
     """
@@ -38,16 +40,24 @@ class InsightAgent(BaseAgent):
     self.runtime = end_time - start_time
 
 
-    utils.save_logs(
-      self.model,
-      self.dataset, 
-      self.run_name, 
-      self.phase,
-      self.log_history, 
-      self.stats, 
-      self.runtime,
-      self.total_token_sizes
-    )  # Once done with all tasks, save logs to txt file
+    try:
+      utils.save_logs(
+        self.model,
+        self.dataset, 
+        self.run_name, 
+        self.phase,
+        self.log_history, 
+        self.stats, 
+        self.runtime,
+        self.total_token_sizes
+      )  # Once done with all tasks, save logs to txt file
+    except Exception as e:
+      error_msg = f"Error saving logs for {self.dataset}/{self.run_name}_{self.model}_insight: {e}"
+      self.error_log.append(error_msg)
+
+    if self.error_log:
+      utils.log_errors(self.error_log, self.dataset, self.run_name, self.model, self.phase)
+
 
   def step(self):
     """
@@ -57,27 +67,40 @@ class InsightAgent(BaseAgent):
       - Generated insights from the exemplars
     """
 
-    exemplar_getter = {
-      "strategyqa": self.get_strategyqa_exemplars,
-      "gsm8k": self.get_gsm8k_exemplars,
-      "tabmwp": self.get_tabmwp_exemplars,
-      "aquarat": self.get_aquarat_exemplars,
-      "finqa": self.get_finqa_exemplars,
-    }.get(self.dataset)
+    try:
+      exemplar_getter = {
+        "strategyqa": self.get_strategyqa_exemplars,
+        "gsm8k": self.get_gsm8k_exemplars,
+        "tabmwp": self.get_tabmwp_exemplars,
+        "aquarat": self.get_aquarat_exemplars,
+        "finqa": self.get_finqa_exemplars,
+      }.get(self.dataset)
 
-    if exemplar_getter is None:
-      raise ValueError(f"Unsupported dataset: {self.dataset}")
+      all_exemplars = [exemplar_getter(row) for _, row in self.exemplars.iterrows()]
+      exemplars = "\n\n".join(all_exemplars)
+    except Exception as e:
+      error_msg = f"Error getting train exemplars for {self.dataset}/{self.run_name}_{self.model}: {e}"
+      self.error_log.append(error_msg)
+      return
 
-    all_exemplars = [exemplar_getter(row) for _, row in self.exemplars.iterrows()]
-    exemplars = "\n\n".join(all_exemplars)
 
     # LLM api call to get model output
     kwargs = dict(exemplars=exemplars)
-    formatted_prompt = utils.format_prompt(self.phase, self.dataset, **kwargs) # formatting the prompt
-    llm_output = QUERY[self.model](formatted_prompt) # querying the LLM model
-    self.total_token_sizes.append(utils.count_tokens(llm_output))
-    # print(llm_output)
-    # print(f"Total token size: {self.total_token_sizes[self.task_idx]}")
+    try:
+      formatted_prompt = utils.format_prompt(self.phase, self.dataset, **kwargs) # formatting the prompt
+    except Exception as e:
+      error_msg = f"Error formatting prompt {self.dataset}/{self.run_name}_{self.model}: {e}"
+      self.error_log.append(error_msg)
+      formatted_prompt = ""
+
+    try:
+      llm_output = QUERY[self.model](formatted_prompt) # querying the LLM model
+      self.total_token_sizes.append(utils.count_tokens(llm_output))
+    except Exception as e:
+      error_msg = f"Error querying llm {self.dataset}/{self.run_name}_{self.model}: {e}"
+      self.error_log.append(error_msg)
+      llm_output = ""
+      self.total_token_sizes.append(-1)
 
     # Combine all elements into an experience log entry
     experience_log = (

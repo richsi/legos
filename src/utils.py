@@ -137,6 +137,20 @@ def count_tokens(text, model="gpt-3.5-turbo"):
   return len(encoding.encode(text))
 
 
+def log_errors(error_log, dataset, run_name, model, phase, log_file_path="logs/error_log.txt"):
+  try:
+    if not os.path.exists(log_file_path):
+      with open(log_file_path, "w") as f:
+        pass  # Creating an empty file
+
+    with open(log_file_path, "a") as log_file:
+      log_file.write(f"\n--- Log Entry For Run {dataset}/{run_name}_{model}_{phase} ---\n")
+      for msg in error_messages:
+        log_file.write(msg + "\n")
+  except Exception as e:
+    print(f"Failed to write to log file {log_file_path}: {e}")
+
+
 def self_consistency():
   # TODO: implement
   """
