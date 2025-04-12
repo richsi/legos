@@ -13,3 +13,7 @@ matches,mismatches,EM,train_data_len,test_data_len,model,dataset,run_name,avg_to
 2,252,0.7874015748031495,5,254,llama3b,aquarat,run1,2184.5984251968503,insight
 0,254,0.0,5,254,llama3b,aquarat,run1,1501.3228346456692,exemplar
 0,254,0.0,5,254,llama3b,aquarat,run1,2297.4133858267714,insight_exemplar
+
+####
+
+
