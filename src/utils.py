@@ -109,9 +109,9 @@ def format_prompt(phase: str, dataset: str, **kwargs):
   return full_prompt
 
 
-def query(model: str, prompt: str):
+def query(model: str, prompt: str, sc: bool = False):
   from src.models import QUERY
-  return QUERY[model](prompt)
+  return QUERY[model](prompt, sc)
 
 
 def get_insights(model: str, dataset: str, run_name: str):
@@ -138,6 +138,7 @@ def count_tokens(text, model="gpt-3.5-turbo"):
 
 
 def log_errors(error_log, dataset, run_name, model, phase, log_file_path="logs/error_log.txt"):
+  import os
   try:
     if not os.path.exists(log_file_path):
       with open(log_file_path, "w") as f:
@@ -145,7 +146,7 @@ def log_errors(error_log, dataset, run_name, model, phase, log_file_path="logs/e
 
     with open(log_file_path, "a") as log_file:
       log_file.write(f"\n--- Log Entry For Run {dataset}/{run_name}_{model}_{phase} ---\n")
-      for msg in error_messages:
+      for msg in error_log:
         log_file.write(msg + "\n")
   except Exception as e:
     print(f"Failed to write to log file {log_file_path}: {e}")

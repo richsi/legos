@@ -74,7 +74,8 @@ class TrainAgent(BaseAgent):
     )
 
     # LLM api call to get model output
-    llm_output = utils.query(self.model, self.benchmark, experience_prompt)
+    # llm_output = utils.query(self.model, self.benchmark, experience_prompt)
+    llm_output = utils.query(self.model, experience_prompt)
     result = self.compare_final_answer(llm_output) # returns CORRECT or INCORRECT
 
     self.stats[result] += 1 # increment final results

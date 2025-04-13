@@ -14,6 +14,56 @@ matches,mismatches,EM,train_data_len,test_data_len,model,dataset,run_name,avg_to
 0,254,0.0,5,254,llama3b,aquarat,run1,1501.3228346456692,exemplar
 0,254,0.0,5,254,llama3b,aquarat,run1,2297.4133858267714,insight_exemplar
 
-####
+#### test data length 10
 
+0,10,0.0,5,254,mistral7b,aquarat,run1,845.5,exemplar
+3,7,30.0,5,254,mistral7b,aquarat,run1,441.1,insight
+0,10,0.0,5,254,mistral7b,aquarat,run1,1087.5,insight_exemplar
+0,10,0.0,5,1147,mistral7b,finqa,run1,1166.2,exemplar
+0,10,0.0,5,1147,mistral7b,finqa,run1,542.2,insight
+0,10,0.0,5,1147,mistral7b,finqa,run1,1502.4,insight_exemplar
+4,6,40.0,5,1319,mistral7b,gsm8k,run1,1482.4,exemplar
+2,8,20.0,5,1319,mistral7b,gsm8k,run1,549.0,insight
+2,8,20.0,5,1319,mistral7b,gsm8k,run1,1184.6,insight_exemplar
+8,2,80.0,5,490,mistral7b,strategyqa,run1,824.6,exemplar
+8,2,80.0,5,490,mistral7b,strategyqa,run1,836.0,insight
+7,3,70.0,5,490,mistral7b,strategyqa,run1,1280.6,insight_exemplar
+6,4,60.0,5,7686,mistral7b,tabmwp,run1,1213.7,exemplar
+0,10,0.0,5,7686,mistral7b,tabmwp,run1,740.2,insight
+0,10,0.0,5,7686,mistral7b,tabmwp,run1,1797.9,insight_exemplar
+0,10,0.0,5,254,llama3b,aquarat,run1,844.9,exemplar
+1,9,10.0,5,254,llama3b,aquarat,run1,3109.0,insight
+0,10,0.0,5,254,llama3b,aquarat,run1,1558.7,insight_exemplar
+0,10,0.0,5,1147,llama3b,finqa,run1,1680.6,exemplar
+0,10,0.0,5,1147,llama3b,finqa,run1,1391.8,insight
+0,10,0.0,5,1147,llama3b,finqa,run1,1454.5,insight_exemplar
+4,6,40.0,5,1319,llama3b,gsm8k,run1,840.4,exemplar
+3,7,30.0,5,1319,llama3b,gsm8k,run1,616.4,insight
+4,6,40.0,5,1319,llama3b,gsm8k,run1,848.8,insight_exemplar
+7,3,70.0,5,490,llama3b,strategyqa,run1,741.6,exemplar
+6,4,60.0,5,490,llama3b,strategyqa,run1,4862.6,insight
+6,4,60.0,5,490,llama3b,strategyqa,run1,5421.6,insight_exemplar
+0,10,0.0,5,7686,llama3b,tabmwp,run1,1107.3,exemplar
+0,10,0.0,5,7686,llama3b,tabmwp,run1,161.3,insight
+0,10,0.0,5,7686,llama3b,tabmwp,run1,1126.3,insight_exemplar
+0,10,0.0,5,254,llama1b,aquarat,run1,840.5,exemplar
+1,9,10.0,5,254,llama1b,aquarat,run1,213.5,insight
+1,9,10.0,5,254,llama1b,aquarat,run1,859.5,insight_exemplar
+0,10,0.0,5,1147,llama1b,finqa,run1,1027.9,exemplar
+0,10,0.0,5,1147,llama1b,finqa,run1,4848.9,insight
+0,10,0.0,5,1147,llama1b,finqa,run1,5716.9,insight_exemplar
+2,8,20.0,5,1319,llama1b,gsm8k,run1,859.8,exemplar
+3,7,30.0,5,1319,llama1b,gsm8k,run1,228.8,insight
+0,10,0.0,5,1319,llama1b,gsm8k,run1,867.8,insight_exemplar
+1,9,10.0,5,490,llama1b,strategyqa,run1,741.6,exemplar
+3,7,30.0,5,490,llama1b,strategyqa,run1,513.6,insight
+3,7,30.0,5,490,llama1b,strategyqa,run1,1072.6,insight_exemplar
+0,10,0.0,5,7686,llama1b,tabmwp,run1,1107.3,exemplar
+1,9,10.0,5,7686,llama1b,tabmwp,run1,404.3,insight
+1,9,10.0,5,7686,llama1b,tabmwp,run1,1369.3,insight_exemplar
+0,10,0.0,5,254,mistral7b,aquarat,run1,840.5,exemplar
+1,9,10.0,5,254,mistral7b,aquarat,run1,436.5,insight
+0,10,0.0,5,254,mistral7b,aquarat,run1,1082.5,insight_exemplar
+
+##### test data 50
 

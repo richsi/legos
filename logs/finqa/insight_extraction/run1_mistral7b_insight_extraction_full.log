@@ -107,6 +107,6 @@ RULE 8: Simplify complex equations or calculations by breaking them down into sm
 
 Output token size: 1466-------------------------------------
 None
-Runtime: 38.19207429885864 seconds
+Runtime: 14.534690380096436 seconds
 Total token size: 1466
 Average token size: 1466

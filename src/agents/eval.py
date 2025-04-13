@@ -17,6 +17,7 @@ class EvalAgent(BaseAgent):
     self.dataset = kwargs["dataset"]
     self.run_name = kwargs["run_name"]
     self.eval_type = kwargs["eval_type"]
+    self.sc = kwargs["sc"]
     self.train_exemplars = pd.read_csv(os.path.join(os.getenv(kwargs["dataset"].upper()), kwargs["train"])) # pd.DataFrame type
 
     self.num_tasks = 0
@@ -150,9 +151,10 @@ class EvalAgent(BaseAgent):
     prompt = utils.format_prompt(self.phase, self.dataset, **kwargs) 
 
     try:
-      llm_output = utils.query(self.model, prompt)
-      self.total_token_sizes.append(utils.count_tokens(llm_output))
+      llm_output = utils.query(self.model, prompt, self.sc)
+      self.total_token_sizes.append(utils.count_tokens(prompt))
     except Exception as e:
+      # print(e)
       error_msg = f"Error querying {self.model} for task {self.task_idx}: {e}"
       self.error_log.append(error_msg)
       llm_output = ""
@@ -160,9 +162,15 @@ class EvalAgent(BaseAgent):
 
     # Recording the stats
     try:
-      self.record_stats(llm_output, len(prompt))
+      if self.sc:
+        self.record_statsV2(llm_output, len(prompt))
+      else:
+        self.record_stats(llm_output, len(prompt))
     except Exception as e:
+      # print(llm_output)
+      # print(e)
       error_msg = f"Error recording stats for task {self.task_idx}: {e}"
+      # print(error_msg)
       self.error_log.append(error_msg)
 
     # Combine all elements into an experience log entry
@@ -176,8 +184,8 @@ class EvalAgent(BaseAgent):
     self.task_idx += 1
 
   def done(self):
-    return self.task_idx >= self.num_tasks
-    # return self.task_idx >= 3
+    # return self.task_idx >= self.num_tasks
+    return self.task_idx >= 50
 
   def get_strategyqa_exemplars(self, exemplar):
     string = "Facts: "
@@ -339,3 +347,83 @@ class EvalAgent(BaseAgent):
       real_answer= self.eval_df.iloc[self.task_idx]["answer"]
       # print(f"\nFinal Answer: {final_answer}\nReal Answer: {real_answer}")
       _update_stats(final_answer, real_answer)
+      
+  def record_statsV2(self, outputs, prompt_len):
+    def _update_stats(final_answer, real_answer):
+      if final_answer is None:
+        key = "FAILED"
+      elif final_answer == real_answer:
+        key = "CORRECT"
+      else:
+        key = "INCORRECT"
+      self.stats[key] += 1
+
+    def _get_final_answer(output):
+      output_lines = output[prompt_len:].splitlines()[::-1] # start backwards since final answer is more likely to be towards end
+      if self.dataset == "strategyqa":
+        for line in output_lines: 
+          lower_line = line.lower()
+          if "final" in lower_line and "answer" in lower_line:
+            if "yes" in lower_line:
+              final_answer = "Yes"
+            elif "no" in lower_line:
+              final_answer = "No"
+            if final_answer is not None:
+              break
+      elif self.dataset == "gsm8k":
+        for line in output_lines:
+          lower_line = line.lower()
+          if "final" in lower_line and "answer" in lower_line:
+            final_answer = line.partition(":")[2].strip() # getting the half after the colon
+          if final_answer is not None:
+            break
+        real_answer_raw = self.eval_df.iloc[self.task_idx]["answer"]
+        matches = re.search(r"#+\s*(\d+)", real_answer_raw)
+      elif self.dataset == "tabmwp":
+        for line in output_lines:
+          lower_line = line.lower()
+          if "final" in lower_line and "answer" in lower_line:
+            final_answer = line.partition(":")[2].strip() # getting the half after the colon
+          if final_answer is not None:
+            break
+      elif self.dataset == "aquarat":
+        for line in output_lines:
+          lower_line = line.lower()
+          if "final" in lower_line and "answer" in lower_line:
+            final_answer = line.partition(":")[2].strip() # getting the half after the colon
+          if final_answer is not None:
+            break
+      elif self.dataset == "finqa":
+        for line in output_lines:
+          lower_line = line.lower()
+          if "final" in lower_line and "answer" in lower_line:
+            final_answer = line.partition(":")[2].strip().rstrip('.') # getting the half after the colon
+          if final_answer is not None:
+            break
+      return final_answer
+
+    def _sc_answer(outputs):
+      answers = [_get_final_answer(output) for output in outputs]
+      answer_count = {}
+      for answer in answers:
+        if answer is not None:
+          answer_count[answer] += 1
+      if len(answer_count.keys()) == 0:
+        return None
+      return sorted(answer_count.items(), key=lambda x:x[1], reverse=True)[0][0]
+    
+    final_answer = _sc_answer(outputs)
+    if self.dataset == "strategyqa":
+      real_answer = self.eval_df.iloc[self.task_idx]["answer"]
+    elif self.dataset == "gsm8k":
+      real_answer_raw = self.eval_df.iloc[self.task_idx]["answer"]
+      matches = re.search(r"#+\s*(\d+)", real_answer_raw)
+      real_answer = matches.group(1)
+    elif self.dataset == "tabmwp":
+      real_answer= self.eval_df.iloc[self.task_idx]["answer"]
+    elif self.dataset == "aquarat":
+      real_answer= self.eval_df.iloc[self.task_idx]["correct"]
+    elif self.dataset == "finqa":
+      real_answer= self.eval_df.iloc[self.task_idx]["answer"]
+    _update_stats(final_answer, real_answer)
+    

@@ -18,6 +18,8 @@ def main():
                       help="strategyqa, gsm8k, tabmwp, aquarat, finqa")
   parser.add_argument("--run_name", "-n", type=str, required=True, 
                       help="Name your run")
+  parser.add_argument("--sc", "-sc", type=bool, required=False, 
+                      help="Name whether self consistency is needed")
 
   args = parser.parse_args()
 
@@ -29,6 +31,10 @@ def main():
   kwargs["model"] = args.model
   kwargs["dataset"] = args.dataset
   kwargs["run_name"] = args.run_name
+  if args.sc is None:
+    kwargs["sc"] = False
+  else:
+    kwargs["sc"] = args.sc
 
   if args.phase == "eval":
     assert(args.eval_type != None)
@@ -36,6 +42,7 @@ def main():
   else:
     assert(args.eval_type == None)
 
+  print(kwargs)
   # Initializing model
   agent = AGENT[args.phase](**kwargs)
 

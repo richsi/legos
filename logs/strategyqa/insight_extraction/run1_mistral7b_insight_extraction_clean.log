@@ -1,24 +1,25 @@
 Extracted Insights
 Output: 
 
-RULE 1: Identify the key elements of the question and the facts provided to ensure that the reasoning process is focused on the most relevant information.
-RULE 2: Use the provided facts to build logical connections between each step, validating that every inference aligns with the available evidence and the overall question context.
-RULE 3: Ensure that the final answer is consistent with the step-by-step decomposition by cross-verifying each reasoning step, confirming that all parts contribute coherently to the final conclusion.
-RULE 4: When decomposing a question, consider the context and background knowledge to identify any implicit assumptions or constraints that may affect the reasoning process.
-RULE 5: When building logical connections between steps, consider the relationships between the different elements of the question and the facts provided, such as causality, similarity, or contradiction.
-RULE 6: When validating inferences, ensure that they are based on sound reasoning and that the evidence supports the conclusion.
-RULE 7: When cross-verifying reasoning steps, check for consistency and coherence with the overall question context and the available evidence.
-RULE 8: When identifying implicit assumptions or constraints, consider the cultural, historical, or social context that may influence the reasoning process.
-RULE 9: When building logical connections, consider the potential implications of each inference and how it contributes to the overall answer.
-RULE 10: When validating inferences, ensure that they are consistent with the available evidence and that they do not rely on assumptions or biases that may affect the reasoning process.
-RULE 11: When cross-verifying reasoning steps, consider the potential sources of error or uncertainty that may affect the final answer.
-RULE 12: When identifying implicit assumptions or constraints, consider the potential impact of these factors on the reasoning process and the final answer.
-RULE 13: When building logical connections, consider the potential counterarguments or alternative explanations that may challenge the reasoning process.
-RULE 14: When validating inferences, ensure that they are based on a thorough analysis of the available evidence and that they are not influenced by personal biases or beliefs.
-RULE 15: When cross-verifying reasoning steps, consider the potential limitations or gaps in the available evidence and how they may affect the final answer.
 
-Output token size: 1392-------------------------------------
+RULE 1: Identify the main idea or thesis of the question to keep the reasoning on track and avoid getting sidetracked.
+RULE 2: Before decomposing the question, identify any special considerations or requirements (e.g., contextual or scope-related) to ensure the solution is grounded in the appropriate set of facts.
+RULE 3: When building logical connections between the sub-questions, be mindful of any potential contradictions or competing considerations, and ensure that each inference is consistent with the available evidence and the overall question context.
+RULE 4: When validating a final answer, consider how it integrates with the overall reasoning process and the contextual and scope-related requirements outlined in RULE 2, and ensure that all logic is sound.
+RULE 5: Avoid relying too heavily on a single piece of evidence for a conclusion, and consider the overall reliability of all sources and their potential biases.
+RULE 6: When working with a set of given facts, prioritize the most relevant information or the most significant facts based on their potential impact on the final answer.
+RULE 7: When synthesizing information, pay attention to any patterns or commonalities in the facts to identify potential connections and relationships between the sub-questions.
+RULE 8: Before making a final determination, assess the potential implications or consequences of each possible inference or decision, and consider their overall relevance to the question context.
+RULE 9: In cases where multiple possible answers exist, provide an explanation or a rationale for your preference, highlighting the strengths and weaknesses of each option.
+RULE 10: Ensure all intermediate reasoning steps are explicitly stated, allowing the user to understand the reasoning process and any potential assumptions that might be involved.
+RULE 11: When assessing the reliability of a fact or a source, consider whether it comes from a reputable or an objective source, as well as whether it's supported by other evidence.
+RULE 12: Pay attention to any linguistic or lexical cues that might reveal the main theme or framework of the question, helping to guide the reasoning process.
+RULE 13: To ensure the reasoning is comprehensive, consider any missing or incomplete information that might affect the final answer and look for opportunities to gather additional facts or clarify uncertainties.
+RULE 14: Keep an open mind when working with complex or ambiguous questions, and be prepared to adapt your reasoning approach based on new insights or information as they become available.
+RULE 15: Finally, always verify that the final answer matches the context of the question and is consistent with the given facts and the decomposition, ensuring the overall solution is both valid and relevant.
+
+Output token size: 1462-------------------------------------
 None
-Runtime: 54.48081922531128 seconds
-Total token size: 1392
-Average token size: 1392
+Runtime: 28.761215209960938 seconds
+Total token size: 1462
+Average token size: 1462
